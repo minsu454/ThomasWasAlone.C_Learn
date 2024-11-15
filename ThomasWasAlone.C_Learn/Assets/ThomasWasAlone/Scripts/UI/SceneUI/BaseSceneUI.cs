@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BaseSceneUI : BaseUI
+public class BaseSceneUI : MonoBehaviour
 {
     public virtual void Init()
     {
