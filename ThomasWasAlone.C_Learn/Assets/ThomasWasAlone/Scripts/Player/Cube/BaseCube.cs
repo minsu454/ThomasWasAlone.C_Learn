@@ -19,14 +19,6 @@ public abstract class BaseCube : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
-        InitializeGroundCheck();
-    }
-
-    protected virtual void InitializeGroundCheck()
-    {
-        boxSize = boxCollider.size * 0.9f;
-        boxSize.y = boxCollider.size.y * 0.1f;
-        rayLength = boxCollider.size.y * 0.2f;
     }
 
     protected virtual void Update()
@@ -54,19 +46,20 @@ public abstract class BaseCube : MonoBehaviour
 
     protected virtual void CheckGrounded()
     {
-        origin = transform.position;
-        origin.y -= boxCollider.size.y * 0.45f;
+        float rayLength = boxCollider.size.y * 0.15f;
+        Vector3 boxSize = boxCollider.size * 0.9f;
+        boxSize.y = boxCollider.size.y * 0.1f;
+        
+        Vector3 origin = transform.position - new Vector3(0, boxCollider.size.y * 0.4f, 0);
         
         isGrounded = Physics.BoxCast(
             origin,
             boxSize * 0.5f,
             Vector3.down,
-            out _,
+            out RaycastHit hit,
             transform.rotation,
             rayLength
         );
-
-        if (!isGrounded) jumpRequested = false;
     }
 
     protected virtual void HandleMovement()
