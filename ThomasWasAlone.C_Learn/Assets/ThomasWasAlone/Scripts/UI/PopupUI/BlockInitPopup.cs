@@ -13,18 +13,16 @@ public class BlockInitPopup : BasePopupUI
     public void MapCreateButton()
     {
 
-        if (!int.TryParse(inputFieldx.text, out int x) || !int.TryParse(inputFieldy.text, out int y)) return;
+        int x = int.Parse(inputFieldx.text);
+        int y = int.Parse(inputFieldy.text);
+
+        MapObject = MapManager.Instance.MapObject;
         
-        if (MapObject == null)
-        {
-            MapObject = new GameObject("Map");
-            MapManager.Instance.MapObject = MapObject;
-        }
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)
             {
-                GameObject Ins = Instantiate(block, new Vector3(i, j, 0), Quaternion.identity);
+                GameObject Ins = Instantiate(block, new Vector3(i, 0, j), Quaternion.identity);
                 Ins.transform.SetParent(MapObject.transform);
             }
         }
