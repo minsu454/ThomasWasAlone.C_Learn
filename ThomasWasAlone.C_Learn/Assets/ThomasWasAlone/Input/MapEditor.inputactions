@@ -1,0 +1,54 @@
+{
+    "name": "MapEditor",
+    "maps": [
+        {
+            "name": "Map",
+            "id": "24f68b25-5b8d-4b2d-9500-307359329bb4",
+            "actions": [
+                {
+                    "name": "Create",
+                    "type": "Button",
+                    "id": "3c284658-2ec4-48e5-a189-45ae1d496a1c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Delete",
+                    "type": "Button",
+                    "id": "1f08ebb5-90c8-4332-b9f3-4d76cb0bc8c6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "15c2a33d-5d33-46a2-941c-f917ca96f348",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Create",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d13838a-947a-45ec-9220-77c567e67e5b",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Delete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
