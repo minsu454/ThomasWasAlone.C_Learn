@@ -37,8 +37,6 @@ public class SoundManager : MonoBehaviour, IInit
         }
 
         bgmSource.clip = clip;
-        bgmSource.Play();
-        SetVolume(SoundPath.BGMGroupName, 0.0001f);
     }
 
     /// <summary>
