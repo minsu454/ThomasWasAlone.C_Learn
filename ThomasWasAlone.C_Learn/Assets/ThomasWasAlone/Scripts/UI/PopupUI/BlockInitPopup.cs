@@ -12,7 +12,6 @@ public class BlockInitPopup : BasePopupUI
     private GameObject MapObject;
     public void MapCreateButton()
     {
-
         int x = int.Parse(inputFieldx.text);
         int y = int.Parse(inputFieldy.text);
 
@@ -27,5 +26,6 @@ public class BlockInitPopup : BasePopupUI
             }
         }
         Close();
+        Managers.UI.CreatePopup<BlockMenu>();
     }
 }
