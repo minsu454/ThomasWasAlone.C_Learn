@@ -7,6 +7,8 @@ public class ImageButton : MonoBehaviour
 {
     private Button button;
     private string resourcesBlockName;
+    private Dictionary<string, GameObject> cachedObjects = new Dictionary<string, GameObject>();
+
     public void Initialize(string blockName)
     {
         resourcesBlockName = blockName;
@@ -19,11 +21,22 @@ public class ImageButton : MonoBehaviour
     public void OnClick()
     {
         MapManager.Instance.Input.objectToSpawn = ClickGameObject();
-        Debug.Log(gameObject.GetComponent<RawImage>().texture.name);
     }
+   
     public GameObject ClickGameObject()
     {
-        GameObject blockObj = Resources.Load<GameObject>($"Prefabs/Map/MapBlock/{resourcesBlockName}");
+        if (!cachedObjects.TryGetValue(resourcesBlockName, out GameObject blockObj))
+        {
+            blockObj = Resources.Load<GameObject>($"Prefabs/Map/MapBlock/{resourcesBlockName}");
+            if (blockObj != null)
+            {
+                cachedObjects[resourcesBlockName] = blockObj; // 캐싱
+            }
+            else
+            {
+                return null;
+            }
+        }
         return blockObj;
     }
 }

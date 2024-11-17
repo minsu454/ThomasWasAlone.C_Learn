@@ -458,6 +458,9 @@ MonoBehaviour:
     type: 3}
   objectToSpawn: {fileID: 0}
   spawnDistance: 1
+  layMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1032833790
 MonoBehaviour:
   m_ObjectHideFlags: 0
