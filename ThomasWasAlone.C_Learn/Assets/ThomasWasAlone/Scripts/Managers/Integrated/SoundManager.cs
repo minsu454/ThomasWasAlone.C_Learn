@@ -1,3 +1,4 @@
+using Common.EnumExtensions;
 using Common.Path;
 using Common.Pool;
 using Common.SceneEx;
@@ -20,11 +21,12 @@ public class SoundManager : MonoBehaviour, IInit
     {
         audioMixer = Resources.Load<AudioMixer>(SoundPath.AudioMixerPath);
 
-        CreateBgmSource();
+        CreateAudioSource(SoundType.BGM.EnumToString());
+        CreateSoundPool();
 
         SceneManagerEx.OnLoadCompleted(OnSceneLoaded);
     }
-
+    
     /// <summary>
     /// 씬 로드시 bgm깔아주는 이벤트 함수
     /// </summary>
@@ -44,22 +46,32 @@ public class SoundManager : MonoBehaviour, IInit
     /// <summary>
     /// BGMSource 제작 함수
     /// </summary>
-    private void CreateBgmSource()
+    private void CreateAudioSource(string GroupName)
     {
-        GameObject bgmGo = new GameObject(SoundPath.BGMGroupName);
+        GameObject bgmGo = new GameObject(GroupName);
         bgmGo.transform.SetParent(transform);
 
         bgmSource = bgmGo.AddComponent<AudioSource>();
 
-        if (!GetAudioMixerGroup(SoundPath.BGMGroupName, out var bgmGroup))
+        if (!GetAudioMixerGroup(GroupName, out var bgmGroup))
         {
-            Debug.LogError($"Is Not Found AudioMixerGroup : {SoundPath.BGMGroupName}");
+            Debug.LogError($"Is Not Found AudioMixerGroup : {GroupName}");
         }
 
         bgmSource.outputAudioMixerGroup = bgmGroup;
 
         bgmSource.playOnAwake = false;
         bgmSource.loop = true;
+    }
+
+    /// <summary>
+    /// SoundPool 제작 함수
+    /// </summary>
+    /// <exception cref="NotImplementedException"></exception>
+    private void CreateSoundPool()
+    {
+        GameObject prefab = Resources.Load<GameObject>(SoundPath.SoundPlayerPath);
+        soundPool = new ObjectPool(prefab.name, prefab, transform, SoundPath.SoundPlayerCount);
     }
 
     /// <summary>
@@ -79,8 +91,8 @@ public class SoundManager : MonoBehaviour, IInit
         return true;
     }
 
-    public void SetVolume(string groupName, float volume)
+    public void SetVolume(SoundType type, float volume)
     {
-        audioMixer.SetFloat(groupName, Mathf.Log10(volume) * 20);
+        audioMixer.SetFloat(type.EnumToString(), Mathf.Log10(volume) * 20);
     }
 }

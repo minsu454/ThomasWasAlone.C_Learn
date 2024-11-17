@@ -12,7 +12,6 @@ public class InGame : BaseSceneUI
     {
         base.Init();
     }
-
     
     public void OnClickPauseButton()
     {
