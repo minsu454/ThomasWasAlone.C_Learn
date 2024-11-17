@@ -19,6 +19,14 @@ public abstract class BaseCube : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        InitializeGroundCheck();
+    }
+
+    protected virtual void InitializeGroundCheck()
+    {
+        boxSize = boxCollider.size * 0.9f;
+        boxSize.y = boxCollider.size.y * 0.1f;
+        rayLength = boxCollider.size.y * 0.15f;
     }
 
     protected virtual void Update()
@@ -46,6 +54,22 @@ public abstract class BaseCube : MonoBehaviour
 
     protected virtual void CheckGrounded()
     {
+        // 큐브의 중심에서 시작
+        origin = transform.position;
+        // 큐브 크기의 절반만큼 아래로 이동
+        origin.y -= boxCollider.size.y * 0.5f;
+        
+        isGrounded = Physics.BoxCast(
+            origin,
+            boxSize * 0.5f,
+            Vector3.down,
+            out _,
+            Quaternion.identity,
+            rayLength
+        );
+
+        // 디버그용
+        Debug.DrawRay(origin, Vector3.down * rayLength, isGrounded ? Color.green : Color.red);
     }
 
     protected virtual void HandleMovement()

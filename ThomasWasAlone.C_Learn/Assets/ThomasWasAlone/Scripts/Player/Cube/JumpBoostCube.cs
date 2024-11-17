@@ -4,32 +4,43 @@ public class JumpBoostCube : BaseCube
 {
     [SerializeField] private float boostForce = 15f;
     
-    protected override void CheckGrounded()
-    {
-        float rayLength = boxCollider.size.y * 0.15f;
-        Vector3 boxSize = boxCollider.size * 0.9f;
-        boxSize.y = boxCollider.size.y * 0.1f;
-        
-        Vector3 origin = transform.position - new Vector3(0, boxCollider.size.y * 0.15f, 0);
-        
-        isGrounded = Physics.BoxCast(
-            origin,
-            boxSize * 0.5f,
-            Vector3.down,
-            out RaycastHit hit,
-            transform.rotation,
-            rayLength
-        );
-    }
-    
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision?.gameObject || collision.contacts.Length == 0) return;
         
-        if (collision.gameObject.TryGetComponent<BaseCube>(out BaseCube cube) && 
-            collision.contacts[0].point.y > transform.position.y)
+        if (collision.gameObject.TryGetComponent<BaseCube>(out BaseCube cube))
         {
-            cube.BoostJump(boostForce);
+            Vector3 contactNormal = collision.contacts[0].normal;
+            
+            float cubeTopY = transform.position.y + (boxCollider.size.y * 0.5f);
+            float collisionHeight = collision.contacts[0].point.y;
+            
+            if (Vector3.Dot(contactNormal, Vector3.up) < -0.7f &&
+                collisionHeight > cubeTopY - (boxCollider.size.y * 0.3f))
+            {
+                cube.BoostJump(boostForce);
+            }
         }
+    }
+
+    protected override void InitializeGroundCheck()
+    {
+        base.InitializeGroundCheck();
+        rayLength = boxCollider.size.y * 0.3f;
+    }
+
+    protected override void CheckGrounded()
+    {
+        origin = transform.position;
+        origin.y -= boxCollider.size.y * 0.15f;
+
+        isGrounded = Physics.BoxCast(
+            origin,
+            boxSize * 0.5f,
+            Vector3.down,
+            out _,
+            Quaternion.identity,
+            rayLength
+        );
     }
 }
