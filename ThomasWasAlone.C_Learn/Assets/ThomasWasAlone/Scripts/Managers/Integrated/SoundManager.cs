@@ -1,4 +1,5 @@
 using Common.Path;
+using Common.Pool;
 using Common.SceneEx;
 using System;
 using System.Collections;
@@ -10,8 +11,9 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour, IInit
 {
-    private AudioMixer audioMixer;
+    private ObjectPool soundPool;
 
+    private AudioMixer audioMixer;
     private AudioSource bgmSource;
 
     public void Init()
