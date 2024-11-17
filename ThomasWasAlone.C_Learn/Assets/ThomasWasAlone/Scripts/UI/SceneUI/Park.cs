@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Park : BaseSceneUI
 {
     public override void Init()
