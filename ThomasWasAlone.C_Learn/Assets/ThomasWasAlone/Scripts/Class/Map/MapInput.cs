@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class MapInput : MonoBehaviour
 {
+    public GameObject DefaultObj;
     public GameObject objectToSpawn;
     public float spawnDistance = 1f; // 생성 거리
+    private void Start()
+    {
+        objectToSpawn = DefaultObj;
+    }
     public void OnCreate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

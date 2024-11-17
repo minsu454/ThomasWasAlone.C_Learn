@@ -8,24 +8,28 @@ public class MapMenuImageLoader : MonoBehaviour
     [SerializeField]public Texture2D[] textures;
     private void Start()
     {
-        textures = Resources.LoadAll<Texture2D>("Prefabs/Map/MapImage");
+        textures = Resources.LoadAll<Texture2D>("Prefabs/Map/MapBlockImage");
         LoadAndDisplayImages();
     }
     private void LoadAndDisplayImages()
     {
         foreach (var texture in textures)
         {
-            // 부모에 RawImage 추가
+            // 새로운 게임 오브젝트 생성
             GameObject imageObject = new GameObject("MapImage");
-            imageObject.transform.SetParent(parentObject);
-            imageObject.AddComponent<ImageButton>();
-            RawImage rawImage = imageObject.AddComponent<RawImage>(); // RawImage 컴포넌트 추가
+            imageObject.transform.SetParent(parentObject, false);
+
+            // RawImage 추가 및 설정
+            RawImage rawImage = imageObject.AddComponent<RawImage>();
             rawImage.texture = texture;
 
-            // 크기 설정
+            // RectTransform 크기 설정
             RectTransform rectTransform = rawImage.GetComponent<RectTransform>();
             rectTransform.sizeDelta = new Vector2(128, 128);
 
+            // ImageButton 추가 및 초기화
+            ImageButton imageButton = imageObject.AddComponent<ImageButton>();
+            imageButton.Initialize(texture.name);
         }
 
         // 필요 없는 리소스 해제

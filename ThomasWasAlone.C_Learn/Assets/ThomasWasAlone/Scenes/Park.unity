@@ -454,8 +454,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cc556ad574db6f41aaf92a9b390046b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 2228018293265132702, guid: f4f468fb81ade3446a13821ec6c3e2b6,
+  DefaultObj: {fileID: 2228018293265132702, guid: f4f468fb81ade3446a13821ec6c3e2b6,
     type: 3}
+  objectToSpawn: {fileID: 0}
   spawnDistance: 1
 --- !u!114 &1032833790
 MonoBehaviour:
@@ -533,6 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MapObject: {fileID: 677904925}
+  Input: {fileID: 1032833789}
 --- !u!1 &2026487457
 GameObject:
   m_ObjectHideFlags: 0

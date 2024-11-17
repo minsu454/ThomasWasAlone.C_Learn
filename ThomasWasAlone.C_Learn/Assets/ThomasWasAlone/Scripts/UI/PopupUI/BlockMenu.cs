@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BlockMenu : BasePopupUI
 {
-    private const string ImageDirectory = "Assets/Resources/Prefabs/Map/MapImage/";
-    private const string DirectoryPath = "Assets/Resources/Prefabs/Map/SaveMap/";
+    private const string ImageDirectory = "Assets/Resources/Prefabs/Map/SaveMap/SaveMapImage/";
+    private const string DirectoryPath = "Assets/Resources/Prefabs/Map/SaveMap/SaveMap/";
     private const int RenderTextureWidth = 128;
     private const int RenderTextureHeight = 128;
     private const int RenderTextureDepth = 24;
