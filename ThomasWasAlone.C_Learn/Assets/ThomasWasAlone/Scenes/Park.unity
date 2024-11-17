@@ -418,6 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1032833788}
+  - component: {fileID: 1032833790}
   - component: {fileID: 1032833789}
   m_Layer: 0
   m_Name: MapInput
@@ -442,6 +443,21 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1032833789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032833787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc556ad574db6f41aaf92a9b390046b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToSpawn: {fileID: 2228018293265132702, guid: f4f468fb81ade3446a13821ec6c3e2b6,
+    type: 3}
+  spawnDistance: 1
+--- !u!114 &1032833790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -516,10 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1163a291d5d9343a39af572c9c4834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToSpawn: {fileID: 2228018293265132702, guid: f4f468fb81ade3446a13821ec6c3e2b6,
-    type: 3}
   MapObject: {fileID: 677904925}
-  spawnDistance: 1
 --- !u!1 &2026487457
 GameObject:
   m_ObjectHideFlags: 0
