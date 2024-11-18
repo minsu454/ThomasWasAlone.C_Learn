@@ -1,29 +1,64 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class CursorChanger : MonoBehaviour
 {
-    private CameraController _cameraController;
-    
     [SerializeField] private RectTransform cubeImages;
     [SerializeField] private Image cursor;
-    private const int MaxCursorIndex = 4;
-    private int _currentCursorIndex;
     
-    private float _eachSize => cubeImages.rect.width / MaxCursorIndex;
-    private float pivotOffset = -25f;
+    private int _maxCubeQuantity;
+    private int _currentCursorIndex = 1;
+
+    private float _eachSize;
     
     
-    private void Start()
-    {
+    public void Init(int maxCubeQuantity = 4)
+    {  
+        _maxCubeQuantity = maxCubeQuantity;
+        _eachSize = cubeImages.rect.width / 4;
         UpdateCursorPosition();
     }
 
-    
-    private void ChangeCursor() // 이벤트 등록
+
+    private void Update()
     {
-        _currentCursorIndex = (_currentCursorIndex + 1) % MaxCursorIndex;
+        if (Input.GetMouseButtonDown(0))
+        {
+            ChangePreviousIndex();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            ChangeNextIndex();
+        }
+    }
+    
+    
+    public void ChangePreviousIndex()
+    {
+        if(_currentCursorIndex == 1) return;
+        
+        _currentCursorIndex--;
+
+        ChangeCursor();
+    }
+
+
+    public void ChangeNextIndex()
+    {
+        if(_currentCursorIndex >= _maxCubeQuantity) return;
+        
+        _currentCursorIndex++;
+
+        UpdateCursorPosition();
+    }
+
+
+    private void ChangeCursor()
+    {
+        _currentCursorIndex %= _maxCubeQuantity;
         
         UpdateCursorPosition();
     }
@@ -31,7 +66,7 @@ public class CursorChanger : MonoBehaviour
     
     private void UpdateCursorPosition()
     {
-        float cursorXPosition = -cubeImages.rect.width / 2 + _eachSize * (_currentCursorIndex + 0.5f) + pivotOffset;
+        float cursorXPosition = -cubeImages.rect.width + _eachSize * _currentCursorIndex;
         
         cursor.rectTransform.anchoredPosition = new Vector2(cursorXPosition, cursor.rectTransform.anchoredPosition.y);
     }
