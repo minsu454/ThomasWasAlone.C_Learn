@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 
 public class MapInput : MonoBehaviour
@@ -50,6 +51,44 @@ public class MapInput : MonoBehaviour
     //    }
     //}
     public void MovingPlatformIns()
+    {
+        if (!isStartSelected)
+        {
+            startBlock = CreateBlock("Start");
+            if (startBlock == null)
+            {
+                Debug.Log("block없음");
+                return;
+            }
+            SetTransparency(startBlock, 0.7f, Color.red);
+            isStartSelected = true;
+        }
+        else
+        {
+            endBlock = CreateBlock("End");
+            if (endBlock == null)
+            {
+                Debug.LogWarning("block없음");
+                return;
+            }
+
+            SetTransparency(endBlock, 0.7f, Color.red);
+            // 무빙 플랫폼 생성
+            GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
+            platform.transform.SetParent(MapManager.Instance.MapObject.transform);
+
+            // MovingPlatform 컴포넌트 추가
+            MovingPlatform movingPlatformComponent = platform.AddComponent<MovingPlatform>();
+
+            // Start와 End에 해당 블록을 설정
+            movingPlatformComponent.SetStartAndEnd(startBlock.transform.position, endBlock.transform.position);
+
+            // 선택 초기화
+            isStartSelected = false;
+            objectToSpawn = DefaultObj;
+        }
+    }
+    public void ChracterPlatformIns()
     {
         if (!isStartSelected)
         {

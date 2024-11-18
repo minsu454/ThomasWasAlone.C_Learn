@@ -9,9 +9,10 @@ public class ImageButton : MonoBehaviour
     private Button button;
     [SerializeField] private string resourcesBlockName;
     public GameObject resourcesBlock;
-    public void Initialize(string blockName, Texture2D texture , GameObject[] Objs)
+    public void Initialize(string blockName, Texture2D texture , GameObject Objs)
     {
         resourcesBlockName = blockName;
+        resourcesBlock = Objs;
         // RawImage 추가 및 설정
         RawImage rawImage = gameObject.AddComponent<RawImage>();
         rawImage.texture = texture;
@@ -25,20 +26,10 @@ public class ImageButton : MonoBehaviour
         button.onClick.AddListener(() => OnClick(Objs));
     }
 
-    public void OnClick(GameObject[] objs)
+    public void OnClick(GameObject objs)
     {
-        MapManager.Instance.Input.objectToSpawn = ClickGameObject(objs);
+        MapManager.Instance.Input.objectToSpawn = objs;
     }
 
-    public GameObject ClickGameObject(GameObject[] objs)
-    {
-        foreach (GameObject obj in objs)
-        {
-            if (obj.name == resourcesBlockName)
-            {
-                return obj; // 일치하는 오브젝트 반환
-            }
-        }
-        return null;
-    }
+    
 }
