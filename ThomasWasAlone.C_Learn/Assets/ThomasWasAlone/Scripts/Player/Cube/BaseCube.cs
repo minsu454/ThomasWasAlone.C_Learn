@@ -49,8 +49,6 @@ public abstract class BaseCube : MonoBehaviour
             Quaternion.identity,
             rayLength
         );
-
-        Debug.DrawRay(origin, Vector3.down * rayLength, isGrounded ? Color.green : Color.red);
     }
 
     public virtual void BoostJump(float boostForce)
