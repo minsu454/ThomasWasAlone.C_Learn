@@ -22,6 +22,12 @@ public sealed class UIManager : MonoBehaviour, IInit
     {
         GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/Main/{name}");
 
+        if (prefab == null)
+        {
+            Debug.LogWarning($"{name} UI is None.");
+            return;
+        }
+
         GameObject clone = Instantiate(prefab);
 
         if (!clone.TryGetComponent(out BaseSceneUI sceneUI))
@@ -36,6 +42,12 @@ public sealed class UIManager : MonoBehaviour, IInit
     public void CreatePopup<T>(PopupOption option = null) where T : BasePopupUI
     {
         GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/Popup/{typeof(T).Name}");
+
+        if (prefab == null)
+        {
+            Debug.LogWarning($"{name} Popup is None.");
+            return;
+        }
 
         GameObject clone = Instantiate(prefab);
 
