@@ -32,7 +32,7 @@ public class CubeManager : MonoBehaviour
 
     private void SwitchToCube(int index)
     {
-        if (currentMovement != null)
+        if (currentMovement)
         {
             currentMovement.enabled = false;
         }
