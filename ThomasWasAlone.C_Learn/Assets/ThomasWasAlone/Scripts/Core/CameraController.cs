@@ -4,23 +4,17 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController Instance { get; private set; }
     
-    [SerializeField] private Vector3[] cameraPositions;
+    [SerializeField] private float distance = 8f;
+    [SerializeField] private float height = 5f;
     [SerializeField] private float smoothSpeed = 5f;
     
     private Transform target;
-    private int currentPositionIndex;
-    private Vector3 desiredPosition;
+    private float currentRotationAngle;
     private Vector3 currentVelocity;
     
     private void Awake()
     {
         Instance = this;
-        cameraPositions = new[]
-        {
-            new Vector3(0, 5f, -8f),
-            new Vector3(-8f, 5f, 4f),
-            new Vector3(8f, 5f, 4f) 
-        };
     }
 
     private void LateUpdate()
@@ -29,13 +23,28 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            currentPositionIndex = (currentPositionIndex + 1) % cameraPositions.Length;
+            currentRotationAngle += 90f;
+            if (currentRotationAngle >= 360f) currentRotationAngle = 0f;
+            // 플레이어도 회전
+            target.rotation = Quaternion.Euler(0, currentRotationAngle, 0);
         }
 
-        desiredPosition = target.position + cameraPositions[currentPositionIndex];
+        float rad = currentRotationAngle * Mathf.Deg2Rad;
+        Vector3 offset = new Vector3(
+            Mathf.Sin(rad) * distance,
+            height,
+            -Mathf.Cos(rad) * distance
+        );
+        
+        Vector3 desiredPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref currentVelocity, smoothSpeed * Time.deltaTime);
         transform.LookAt(target);
     }
 
-    public void SetTarget(Transform newTarget) => target = newTarget;
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+        currentRotationAngle = 0f;
+        target.rotation = Quaternion.Euler(0, currentRotationAngle, 0);
+    }
 } 

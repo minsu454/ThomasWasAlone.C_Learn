@@ -19,6 +19,14 @@ public abstract class BaseCube : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
+        InitializeGroundCheck();
+    }
+
+    protected virtual void InitializeGroundCheck()
+    {
+        boxSize = boxCollider.size * 0.9f;
+        boxSize.y = boxCollider.size.y * 0.1f;
+        rayLength = boxCollider.size.y * 0.15f;
     }
 
     protected virtual void Update()
@@ -46,25 +54,38 @@ public abstract class BaseCube : MonoBehaviour
 
     protected virtual void CheckGrounded()
     {
-        float rayLength = boxCollider.size.y * 0.15f;
-        Vector3 boxSize = boxCollider.size * 0.9f;
-        boxSize.y = boxCollider.size.y * 0.1f;
-        
-        Vector3 origin = transform.position - new Vector3(0, boxCollider.size.y * 0.4f, 0);
+        // 큐브의 중심에서 시작
+        origin = transform.position;
+        // 큐브 크기의 절반만큼 아래로 이동
+        origin.y -= boxCollider.size.y * 0.5f;
         
         isGrounded = Physics.BoxCast(
             origin,
             boxSize * 0.5f,
             Vector3.down,
-            out RaycastHit hit,
-            transform.rotation,
+            out _,
+            Quaternion.identity,
             rayLength
         );
+
+        // 디버그용
+        Debug.DrawRay(origin, Vector3.down * rayLength, isGrounded ? Color.green : Color.red);
     }
 
     protected virtual void HandleMovement()
     {
-        Vector3 targetVelocity = (transform.right * moveInput.x + transform.forward * moveInput.z) * moveSpeed;
+        // 카메라의 방향을 기준으로 이동 방향 계산
+        Vector3 forward = Camera.main.transform.forward;
+        Vector3 right = Camera.main.transform.right;
+        
+        // y축 회전만 사용하도록 y값을 0으로 설정
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        // 카메라 기준으로 이동 방향 계산
+        Vector3 targetVelocity = (right * moveInput.x + forward * moveInput.z) * moveSpeed;
         targetVelocity.y = rb.velocity.y;
         rb.velocity = targetVelocity;
     }
