@@ -16,17 +16,18 @@ public class BlockMenu : BasePopupUI
     private Camera renderCamera;
 
     private RenderTexture renderTexture;
+    public override void Init<T>(T option)
+    {
+        base.Init(option);
+        renderCamera = Camera.main;
+
+        renderTexture = new RenderTexture(RenderTextureWidth, RenderTextureHeight, RenderTextureDepth);
+
+    }
     public void MenuOpen()
     {
         blockMenu.SetActive(!blockMenu.activeSelf);
     }
-    private void Start()
-    {
-        renderCamera = Camera.main;
-
-        renderTexture = new RenderTexture(RenderTextureWidth, RenderTextureHeight, RenderTextureDepth);
-    }
-
     public void SaveMap()
     {
         string baseName = "SaveMap";

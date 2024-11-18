@@ -35,5 +35,4 @@ public class MapMenuImageLoader : MonoBehaviour
         // 필요 없는 리소스 해제
         Resources.UnloadUnusedAssets();
     }
-
 }
