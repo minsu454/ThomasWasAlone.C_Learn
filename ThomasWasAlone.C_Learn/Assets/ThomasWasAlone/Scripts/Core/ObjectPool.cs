@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Pool
 {
-    public class ObjectPool<T> where T : Component
+    public class ObjectPool<T> where T : Component, IObjectPoolable<T>
     {
         public readonly string poolName;                                            //이름
         public readonly Queue<T> objectQueue = new Queue<T>();                      //스텍
@@ -56,6 +56,7 @@ namespace Common.Pool
                 return null;
             }
 
+            newGo.GetComponent<IObjectPoolable<T>>().ReturnEvent += ReturnObject;
             return component;
         }
 

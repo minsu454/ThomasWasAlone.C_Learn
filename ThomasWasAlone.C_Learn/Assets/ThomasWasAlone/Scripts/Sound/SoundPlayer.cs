@@ -4,15 +4,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundPlayer : MonoBehaviour
+public class SoundPlayer : MonoBehaviour, IObjectPoolable<SoundPlayer>
 {
     [SerializeField] private AudioSource audioSource;
 
+    public event Action<SoundPlayer> ReturnEvent;
     private float delay;
 
     private void OnEnable()
     {
-        StartCoroutine(CoTimer.Start(delay, () => gameObject.SetActive(false)));
+        StartCoroutine(CoTimer.Start(delay, () => ReturnEvent.Invoke(this)));
     }
 
     public void SetDelay(float delay, bool is3D = true)
