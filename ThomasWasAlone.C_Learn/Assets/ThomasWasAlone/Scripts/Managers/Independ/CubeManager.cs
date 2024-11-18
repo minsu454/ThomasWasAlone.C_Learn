@@ -1,3 +1,5 @@
+using Common.Yield;
+using System.Collections;
 using UnityEngine;
 
 public class CubeManager : MonoBehaviour
@@ -6,9 +8,22 @@ public class CubeManager : MonoBehaviour
     private int currentCubeIndex = 0;
     public Camera mainCamera;
 
+    public AudioClip clip;
+
     private void Start()
     {
         SwitchToCube(0);
+        StartCoroutine(CoLoop());
+    }
+
+    
+    private IEnumerator CoLoop()
+    {
+        while (true)
+        {
+            yield return YieldCache.WaitForSeconds(1);
+            Managers.Sound.SFX3DPlay(clip);
+        }
     }
 
     private void Update()
@@ -27,6 +42,6 @@ public class CubeManager : MonoBehaviour
             cubes[i].enabled = (i == index);
         }
         
-        CameraController.Instance.SetTarget(cubes[index].transform);
+        //CameraController.Instance.SetTarget(cubes[index].transform);
     }
 } 
