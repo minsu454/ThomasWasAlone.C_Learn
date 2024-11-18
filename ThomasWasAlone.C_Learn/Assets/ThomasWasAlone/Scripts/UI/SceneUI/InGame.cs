@@ -8,16 +8,16 @@ using UnityEngine.UI;
 
 public class InGame : BaseSceneUI
 {
+    [SerializeField] private CursorChanger _cursorChanger;
+    
     public override void Init()
     {
         base.Init();
+        _cursorChanger.Init();
     }
-    
+
     public void OnClickPauseButton()
     {
-        PausePopup pausePopup = FindObjectOfType<PausePopup>();
-        if(pausePopup != null) return;
-        
         Managers.UI.CreatePopup<PausePopup>();
     }
 }

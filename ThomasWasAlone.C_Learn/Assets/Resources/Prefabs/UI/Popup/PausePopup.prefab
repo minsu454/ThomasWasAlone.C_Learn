@@ -199,8 +199,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5598439717597711232}
-        m_TargetAssemblyTypeName: BasePopupUI, Assembly-CSharp
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: PausePopup, Assembly-CSharp
+        m_MethodName: OnClickContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
