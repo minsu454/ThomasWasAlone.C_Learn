@@ -20,7 +20,9 @@ public class MapInput : MonoBehaviour
             case "MovingPlatform":
                 MovingPlatformIns();
                 break;
-
+            case "Tower":
+                TowerIns();
+                break;
             default:
                 // 일반적인 오브젝트 생성
                 CreateBlock("Nomal");
@@ -57,7 +59,7 @@ public class MapInput : MonoBehaviour
                 Debug.Log("block없음");
                 return;
             }
-            SetTransparency(startBlock, 0.7f);
+            SetTransparency(startBlock, 0.7f, Color.red);
             isStartSelected = true;
         }
         else
@@ -69,7 +71,7 @@ public class MapInput : MonoBehaviour
                 return;
             }
 
-            SetTransparency(endBlock, 0.7f);
+            SetTransparency(endBlock, 0.7f, Color.red);
             // 무빙 플랫폼 생성
             GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
             platform.transform.SetParent(MapManager.Instance.MapObject.transform);
@@ -82,9 +84,16 @@ public class MapInput : MonoBehaviour
 
             // 선택 초기화
             isStartSelected = false;
+            objectToSpawn = DefaultObj;
         }
     }
-
+    public void TowerIns()
+    {
+        GameObject towerObj = CreateBlock("Tower");
+        towerObj.AddComponent<Tower>();
+        towerObj.GetComponent<Tower>().startPos = transform.position;
+        objectToSpawn = DefaultObj;
+    }
     // 블럭을 생성하고 반환하는 메서드 (Start 또는 End)
     private GameObject CreateBlock(string blockType)
     {
@@ -101,7 +110,7 @@ public class MapInput : MonoBehaviour
         }
         return null;
     }
-    private void SetTransparency(GameObject obj, float alpha)
+    private void SetTransparency(GameObject obj, float alpha, Color changecolor)
     {
         if (obj == null)
         {
@@ -123,8 +132,7 @@ public class MapInput : MonoBehaviour
             material.SetFloat("_Surface", 1);  // 'Opaque' -> 'Transparent'로 설정
             material.SetFloat("_Blend", 0);    // AlphaBlend 모드로 설정
 
-            // 빨간색으로 설정하고 알파값을 적용
-            Color color = Color.red;  // 빨간색
+            Color color = changecolor;//색깔 변경
             color.a = Mathf.Clamp(alpha, 0f, 1f);  // 알파값이 0에서 1 사이로 제한
             material.color = color;
         }

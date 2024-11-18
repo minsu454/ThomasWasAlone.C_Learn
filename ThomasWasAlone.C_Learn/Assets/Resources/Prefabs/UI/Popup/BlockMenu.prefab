@@ -247,7 +247,6 @@ GameObject:
   - component: {fileID: 4166263854453617954}
   - component: {fileID: 2693916117833180085}
   - component: {fileID: -5878762835186842331}
-  - component: {fileID: 9104061739949851933}
   - component: {fileID: 6739147211190963461}
   m_Layer: 5
   m_Name: BlockMenu
@@ -354,18 +353,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockMenu: {fileID: 2240059974995428488}
---- !u!114 &9104061739949851933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2576154441930905350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcdc839e79f7b044e9fbcf466b5127f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6739147211190963461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +366,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentObject: {fileID: 9028946001254465115}
-  textures: []
+  textures:
+  - {fileID: 2800000, guid: af5d6596465e2a84a8ccf4368b7b8561, type: 3}
+  - {fileID: 2800000, guid: 99e75ea297543b24883d46e2cd325c0f, type: 3}
+  resourcesBlocks:
+  - {fileID: 6167897208403550753, guid: 5e11528b71fe76944891f63333927055, type: 3}
+  - {fileID: 8473854859632569038, guid: 8664d2dc7d5ea1e47852ca103294325c, type: 3}
 --- !u!1 &3752833363240445713
 GameObject:
   m_ObjectHideFlags: 0
