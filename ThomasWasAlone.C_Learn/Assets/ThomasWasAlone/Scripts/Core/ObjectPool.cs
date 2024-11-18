@@ -1,17 +1,20 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Common.Pool
 {
-    public class ObjectPool
+    public class ObjectPool<T> where T : Component
     {
         public readonly string poolName;                                            //이름
-        public readonly Stack<GameObject> objectStack = new Stack<GameObject>();    //스텍
+        public readonly Queue<T> objectQueue = new Queue<T>();                      //스텍
         public readonly GameObject bassPrefab;                                      //기본 프리팹
         public readonly Transform poolTr;                                           //생성 위치
 
         public ObjectPool(string poolName, GameObject bassPrefab, Transform poolTr, int preloadCount)
         {
+            bassPrefab.SetActive(false);
+
             this.poolName = poolName;
             this.bassPrefab = bassPrefab;
             this.poolTr = poolTr;
@@ -22,13 +25,18 @@ namespace Common.Pool
         /// <summary>
         /// ObjectPool을 생성할 때 해당 값만큼 생성해주는 함수
         /// </summary>
-        public bool Preload(int preloadCount)
+        private bool Preload(int preloadCount)
         {
+            if (bassPrefab == null)
+            {
+                Debug.LogError($"ObjectPool - basePrefab is null.");
+                return false;
+            }
+
             for (int i = 0; i < preloadCount; i++)
             {
-                GameObject go = CreateImpl();
-                go.SetActive(false);
-                objectStack.Push(go);
+                T component = CreateImpl();
+                objectQueue.Enqueue(component);
             }
 
             return true;
@@ -37,51 +45,49 @@ namespace Common.Pool
         /// <summary>
         /// 오브젝트 생성해주는 함수
         /// </summary>
-        public GameObject CreateImpl()
+        private T CreateImpl()
         {
-            if (bassPrefab == null)
-            {
-                Debug.LogError($"ObjectPool - basePrefab is null.");
-                return null;
-            }
-
             GameObject newGo = Object.Instantiate(bassPrefab, poolTr);
             newGo.name = poolName;
 
-            return newGo;
+            if (!newGo.TryGetComponent(out T component))
+            {
+                Debug.LogError($"Is Not Prefab GetComponent : {typeof(T).Name}");
+                return null;
+            }
+
+            return component;
         }
 
         /// <summary>
         /// 오브젝트 내보내주는 함수
         /// </summary>
-        public GameObject GetObject()
+        public T GetObject()
         {
-            GameObject go;
+            T component;
 
-            if (objectStack.Count == 0)
+            if (objectQueue.Count == 0)
             {
-                go = CreateImpl();
+                component = CreateImpl();
             }
             else
             {
-                go = objectStack.Pop();
+                component = objectQueue.Dequeue();
             }
 
-            return go;
+            return component;
         }
 
         /// <summary>
         /// 오브젝트 스택에 다시 넣어주는 함수
         /// </summary>
-        public void ReturnObject(GameObject go)
+        public void ReturnObject(T pool)
         {
-            if (go == null)
-            {
+            if (pool == null)
                 return;
-            }
 
-            go.transform.parent = poolTr;
-            objectStack.Push(go);
+            pool.transform.SetParent(poolTr);
+            objectQueue.Enqueue(pool);
         }
     }
 }

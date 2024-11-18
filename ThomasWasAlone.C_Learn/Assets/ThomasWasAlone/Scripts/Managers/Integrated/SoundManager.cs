@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour, IInit
 {
-    private ObjectPool soundPool;
+    private ObjectPool<AudioSource> soundPool;
 
     private AudioMixer audioMixer;
     private AudioSource bgmSource;
@@ -71,7 +71,7 @@ public class SoundManager : MonoBehaviour, IInit
     private void CreateSoundPool()
     {
         GameObject prefab = Resources.Load<GameObject>(SoundPath.SoundPlayerPath);
-        soundPool = new ObjectPool(prefab.name, prefab, transform, SoundPath.SoundPlayerCount);
+        soundPool = new ObjectPool<AudioSource>(prefab.name, prefab, transform, SoundPath.SoundPlayerCount);
     }
 
     /// <summary>
