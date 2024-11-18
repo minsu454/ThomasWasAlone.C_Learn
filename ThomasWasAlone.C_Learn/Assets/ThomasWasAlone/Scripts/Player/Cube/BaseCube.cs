@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class BaseCube : MonoBehaviour
 {
     [SerializeField] protected float moveSpeed = 5f;
-    [SerializeField] protected float jumpForce = 8f;
+    [SerializeField] protected float jumpForce = 7f;
     
     public float MoveSpeed => moveSpeed;
     public float JumpForce => jumpForce;
@@ -49,8 +49,6 @@ public abstract class BaseCube : MonoBehaviour
             Quaternion.identity,
             rayLength
         );
-
-        Debug.DrawRay(origin, Vector3.down * rayLength, isGrounded ? Color.green : Color.red);
     }
 
     public virtual void BoostJump(float boostForce)

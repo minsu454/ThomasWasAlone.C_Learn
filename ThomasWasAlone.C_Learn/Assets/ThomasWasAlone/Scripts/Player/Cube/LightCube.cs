@@ -6,6 +6,5 @@ public class LightCube : BaseCube
     {
         base.InitializeGroundCheck();
         rayLength = boxCollider.size.y * 0.3f;
-        jumpForce = 12f;
     }
 } 

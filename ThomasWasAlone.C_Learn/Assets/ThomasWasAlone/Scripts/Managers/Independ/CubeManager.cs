@@ -6,22 +6,29 @@ public class CubeManager : MonoBehaviour
     private int currentCubeIndex = 0;
     public Camera mainCamera;
     
-    private PlayerMovement currentMovement;
+    private Vector3 moveDirection;
+    private bool jumpRequested;
+    private BaseCube currentCube => cubes[currentCubeIndex];
 
     private void Start()
     {
-        foreach (var cube in cubes)
-        {
-            if (cube.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
-            {
-                movement.enabled = false;
-            }
-        }
-        
         SwitchToCube(0);
     }
 
     private void Update()
+    {
+        CheckCubeSwitch();
+        GetMovementInput();
+        GetJumpInput();
+    }
+
+    private void FixedUpdate()
+    {
+        ApplyMovement();
+        if (jumpRequested) ApplyJump();
+    }
+
+    private void CheckCubeSwitch()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -30,19 +37,56 @@ public class CubeManager : MonoBehaviour
         }
     }
 
+    private void GetMovementInput()
+    {
+        Vector3 forward = mainCamera.transform.forward;
+        Vector3 right = mainCamera.transform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
+        
+        moveDirection = (right * h + forward * v).normalized;
+    }
+
+    private void GetJumpInput()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpRequested = true;
+        }
+    }
+
+    private void ApplyMovement()
+    {
+        if (moveDirection != Vector3.zero)
+        {
+            Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.fixedDeltaTime);
+            currentCube.transform.position += movement;
+        }
+    }
+
+    private void ApplyJump()
+    {
+        if (currentCube.IsGrounded)
+        {
+            Rigidbody rb = currentCube.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
+            }
+        }
+        jumpRequested = false;
+    }
+
     private void SwitchToCube(int index)
     {
-        if (currentMovement)
-        {
-            currentMovement.enabled = false;
-        }
+        moveDirection = Vector3.zero;
+        jumpRequested = false;
 
-        if (cubes[index].TryGetComponent<PlayerMovement>(out PlayerMovement movement))
-        {
-            currentMovement = movement;
-            currentMovement.enabled = true;
-        }
-        
         CameraController.Instance.SetTarget(cubes[index].transform);
     }
 } 
