@@ -1,24 +1,48 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class JumpBoostCube : BaseCube
 {
     [SerializeField] private float boostForce = 15f;
+    private HashSet<BaseCube> boostedCubes = new HashSet<BaseCube>();
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision?.gameObject || collision.contacts.Length == 0) return;
+        CheckBoostJump(collision);
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        CheckBoostJump(collision);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<BaseCube>(out BaseCube cube))
+        {
+            boostedCubes.Remove(cube);
+        }
+    }
+
+    private void CheckBoostJump(Collision collision)
+    {
+        // JumpBoostCube가 비비면서 점프할때 예외처리
+        if (collision.contacts.Length == 0) return;
         
         if (collision.gameObject.TryGetComponent<BaseCube>(out BaseCube cube))
         {
+            if (boostedCubes.Contains(cube)) return;
+            
             Vector3 contactNormal = collision.contacts[0].normal;
+            float contactY = collision.contacts[0].point.y;
+            float cubeBottom = transform.position.y - (boxCollider.size.y * 0.5f);
+            float cubeHeight = boxCollider.size.y;
             
-            float cubeTopY = transform.position.y + (boxCollider.size.y * 0.5f);
-            float collisionHeight = collision.contacts[0].point.y;
-            
-            if (Vector3.Dot(contactNormal, Vector3.up) < -0.7f &&
-                collisionHeight > cubeTopY - (boxCollider.size.y * 0.3f))
+            if (Vector3.Dot(contactNormal, Vector3.up) < -0.5f && 
+                contactY > cubeBottom + (cubeHeight * 0.3f))
             {
                 cube.BoostJump(boostForce);
+                boostedCubes.Add(cube);
             }
         }
     }
