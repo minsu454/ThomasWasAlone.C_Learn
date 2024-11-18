@@ -5,9 +5,19 @@ public class CubeManager : MonoBehaviour
     public BaseCube[] cubes;
     private int currentCubeIndex = 0;
     public Camera mainCamera;
+    
+    private PlayerMovement currentMovement;
 
     private void Start()
     {
+        foreach (var cube in cubes)
+        {
+            if (cube.TryGetComponent<PlayerMovement>(out PlayerMovement movement))
+            {
+                movement.enabled = false;
+            }
+        }
+        
         SwitchToCube(0);
     }
 
@@ -22,9 +32,15 @@ public class CubeManager : MonoBehaviour
 
     private void SwitchToCube(int index)
     {
-        for (int i = 0; i < cubes.Length; i++)
+        if (currentMovement)
         {
-            cubes[i].enabled = (i == index);
+            currentMovement.enabled = false;
+        }
+
+        if (cubes[index].TryGetComponent<PlayerMovement>(out PlayerMovement movement))
+        {
+            currentMovement = movement;
+            currentMovement.enabled = true;
         }
         
         CameraController.Instance.SetTarget(cubes[index].transform);
