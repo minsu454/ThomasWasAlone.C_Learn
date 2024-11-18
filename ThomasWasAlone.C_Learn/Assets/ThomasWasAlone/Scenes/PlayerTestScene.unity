@@ -606,6 +606,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4305414319684008201, guid: b45a7e23c70cd6b4fab240bf1f0721b3,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510215496627437288, guid: b45a7e23c70cd6b4fab240bf1f0721b3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7750163841521054176, guid: b45a7e23c70cd6b4fab240bf1f0721b3,
         type: 3}
       propertyPath: m_Name
@@ -679,6 +689,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightCube
       objectReference: {fileID: 0}
+    - target: {fileID: 6012194280376170527, guid: 97b6c264521f1a54eb92367e928a970c,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 8674366249146139219, guid: 97b6c264521f1a54eb92367e928a970c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -742,6 +757,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4526399929347214194, guid: 703e3fe5144959745a21200551659ed8,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6366918895972996906, guid: 703e3fe5144959745a21200551659ed8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -797,6 +817,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpBoostCube
       objectReference: {fileID: 0}
+    - target: {fileID: 8680983446328223105, guid: 703e3fe5144959745a21200551659ed8,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680983446328223105, guid: 703e3fe5144959745a21200551659ed8,
+        type: 3}
+      propertyPath: boostForce
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -810,6 +840,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1403889947149355578, guid: 783a0ae91b53f6244a2a15ae2c88e516,
+        type: 3}
+      propertyPath: jumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5551603279556495693, guid: 783a0ae91b53f6244a2a15ae2c88e516,
+        type: 3}
+      propertyPath: m_Mass
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6797895293605151237, guid: 783a0ae91b53f6244a2a15ae2c88e516,
         type: 3}
       propertyPath: m_LocalPosition.x
