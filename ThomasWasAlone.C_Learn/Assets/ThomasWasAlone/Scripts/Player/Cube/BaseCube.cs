@@ -26,9 +26,8 @@ public abstract class BaseCube : MonoBehaviour
 
     protected virtual void InitializeGroundCheck()
     {
-        boxSize = boxCollider.size * 0.9f;
-        boxSize.y = boxCollider.size.y * 0.1f;
-        rayLength = boxCollider.size.y * 0.15f;
+        boxSize = GetDefaultBoxSize();
+        rayLength = GetRayLength();
     }
 
     protected virtual void Update()
@@ -39,7 +38,7 @@ public abstract class BaseCube : MonoBehaviour
     protected virtual void CheckGrounded()
     {
         origin = transform.position;
-        origin.y -= boxCollider.size.y * 0.5f;
+        origin.y -= GetOriginYOffset();
         
         isGrounded = Physics.BoxCast(
             origin,
@@ -49,6 +48,23 @@ public abstract class BaseCube : MonoBehaviour
             Quaternion.identity,
             rayLength
         );
+    }
+
+    protected virtual Vector3 GetDefaultBoxSize()
+    {
+        var size = boxCollider.size * 0.9f;
+        size.y = boxCollider.size.y * 0.1f;
+        return size;
+    }
+
+    protected virtual float GetRayLength()
+    {
+        return boxCollider.size.y * 0.15f;
+    }
+
+    protected virtual float GetOriginYOffset()
+    {
+        return boxCollider.size.y * 0.5f;
     }
 
     public virtual void BoostJump(float boostForce)

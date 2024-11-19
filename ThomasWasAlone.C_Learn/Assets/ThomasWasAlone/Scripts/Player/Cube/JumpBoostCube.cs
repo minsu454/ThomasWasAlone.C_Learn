@@ -45,24 +45,13 @@ public class JumpBoostCube : BaseCube
         }
     }
 
-    protected override void InitializeGroundCheck()
+    protected override float GetRayLength()
     {
-        base.InitializeGroundCheck();
-        rayLength = boxCollider.size.y * 0.3f;
+        return boxCollider.size.y * 0.3f;
     }
 
-    protected override void CheckGrounded()
+    protected override float GetOriginYOffset()
     {
-        origin = transform.position;
-        origin.y -= boxCollider.size.y * 0.15f;
-
-        isGrounded = Physics.BoxCast(
-            origin,
-            boxSize * 0.5f,
-            Vector3.down,
-            out _,
-            Quaternion.identity,
-            rayLength
-        );
+        return boxCollider.size.y * 0.15f;
     }
 }

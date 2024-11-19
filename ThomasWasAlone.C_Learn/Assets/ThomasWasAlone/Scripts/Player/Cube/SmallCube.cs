@@ -2,25 +2,20 @@ using UnityEngine;
 
 public class SmallCube : BaseCube
 {
-    protected override void InitializeGroundCheck()
+    protected override Vector3 GetDefaultBoxSize()
     {
-        rayLength = boxCollider.size.y * 0.15f;
-        boxSize = boxCollider.size * 0.8f;
-        boxSize.y = boxCollider.size.y * 0.05f;
+        var size = boxCollider.size * 0.8f;
+        size.y = boxCollider.size.y * 0.05f;
+        return size;
     }
 
-    protected override void CheckGrounded()
+    protected override float GetRayLength()
     {
-        origin = transform.position;
-        origin.y -= boxCollider.size.y * 0.1f;
+        return boxCollider.size.y * 0.15f;
+    }
 
-        isGrounded = Physics.BoxCast(
-            origin,
-            boxSize * 0.5f,
-            Vector3.down,
-            out _,
-            Quaternion.identity,
-            rayLength
-        );
+    protected override float GetOriginYOffset()
+    {
+        return boxCollider.size.y * 0.1f;
     }
 }
