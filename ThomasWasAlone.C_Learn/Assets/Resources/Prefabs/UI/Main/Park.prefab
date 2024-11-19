@@ -402,9 +402,17 @@ MonoBehaviour:
   textures:
   - {fileID: 2800000, guid: af5d6596465e2a84a8ccf4368b7b8561, type: 3}
   - {fileID: 2800000, guid: 99e75ea297543b24883d46e2cd325c0f, type: 3}
+  - {fileID: 2800000, guid: cb7d0b0981f39eb4fa924b7d587f164b, type: 3}
+  - {fileID: 2800000, guid: 8568fe3074347e040a146647d2722dbe, type: 3}
+  - {fileID: 2800000, guid: 8732dd8ca85674c45b9d47a005221890, type: 3}
+  - {fileID: 2800000, guid: 6ba57b089c6313b4ca88681e9c078686, type: 3}
   resourcesObj:
   - {fileID: 6167897208403550753, guid: 5e11528b71fe76944891f63333927055, type: 3}
   - {fileID: 8473854859632569038, guid: 8664d2dc7d5ea1e47852ca103294325c, type: 3}
+  - {fileID: 353753727320540617, guid: 33478f942470fdd43b0f102abbf8a092, type: 3}
+  - {fileID: 8243287271449866437, guid: 5f9594b8b2139bf46af8993d4a3a1c66, type: 3}
+  - {fileID: 7774427051314775551, guid: 58832d338c2587b4a9c954e349d98690, type: 3}
+  - {fileID: 8659320502387833806, guid: afba961424ddd7c42a83eac3c34351e1, type: 3}
 --- !u!1 &6548347462462514874
 GameObject:
   m_ObjectHideFlags: 0

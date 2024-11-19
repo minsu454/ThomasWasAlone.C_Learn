@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class MapInput : MonoBehaviour
     private GameObject startBlock;   // 시작 블록
     private GameObject endBlock;     // 끝 블록
     private bool isStartSelected = false; // 시작 블록이 선택되었는지 여부
+    Vector3 startpos;
     [SerializeField] private LayerMask layMask;
     private void Start()
     {
@@ -23,6 +25,12 @@ public class MapInput : MonoBehaviour
                 break;
             case "Tower":
                 TowerIns();
+                break;
+            case "BigCube":
+            case "LightCube":
+            case "SmallCube":
+            case "JumpBoostCube":
+                ChracterStartEndIns();
                 break;
             default:
                 // 일반적인 오브젝트 생성
@@ -54,25 +62,24 @@ public class MapInput : MonoBehaviour
     {
         if (!isStartSelected)
         {
-            startBlock = CreateBlock("Start");
+            startBlock = CreateBlock("PlatformStart");
             if (startBlock == null)
             {
                 Debug.Log("block없음");
                 return;
             }
-            SetTransparency(startBlock, 0.7f, Color.red);
+            SetTransparency(startBlock, 0.7f, Color.yellow);
             isStartSelected = true;
         }
         else
         {
-            endBlock = CreateBlock("End");
+            endBlock = CreateBlock("PlatformEnd");
             if (endBlock == null)
             {
                 Debug.LogWarning("block없음");
                 return;
             }
-
-            SetTransparency(endBlock, 0.7f, Color.red);
+            SetTransparency(endBlock, 0.7f, Color.yellow);
             // 무빙 플랫폼 생성
             GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
             platform.transform.SetParent(MapManager.Instance.MapObject.transform);
@@ -87,40 +94,50 @@ public class MapInput : MonoBehaviour
             isStartSelected = false;
             objectToSpawn = DefaultObj;
         }
+
     }
-    public void ChracterPlatformIns()
+    public void ChracterStartEndIns()
     {
         if (!isStartSelected)
         {
-            startBlock = CreateBlock("Start");
+            startBlock = CreateBlock("BlockStart");
             if (startBlock == null)
             {
                 Debug.Log("block없음");
                 return;
             }
-            SetTransparency(startBlock, 0.7f, Color.red);
+            MapManager.Instance.map.startObj.Add(startBlock);
+            startpos = startBlock.transform.position;
+            SetTransparency(startBlock, 0.01f, Color.red);
             isStartSelected = true;
         }
         else
         {
-            endBlock = CreateBlock("End");
+            endBlock = CreateBlock("BlockEnd");
             if (endBlock == null)
             {
                 Debug.LogWarning("block없음");
                 return;
             }
-
-            SetTransparency(endBlock, 0.7f, Color.red);
-            // 무빙 플랫폼 생성
-            GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
-            platform.transform.SetParent(MapManager.Instance.MapObject.transform);
-
-            // MovingPlatform 컴포넌트 추가
-            MovingPlatform movingPlatformComponent = platform.AddComponent<MovingPlatform>();
-
-            // Start와 End에 해당 블록을 설정
-            movingPlatformComponent.SetStartAndEnd(startBlock.transform.position, endBlock.transform.position);
-
+            MapManager.Instance.map.endObj.Add(endBlock);
+            SetTransparency(endBlock, 0.01f, Color.green);
+            MapPlayerPoint point = endBlock.AddComponent<MapPlayerPoint>();
+            point.index = MapManager.Instance.map.index;
+            MapManager.Instance.map.index++;
+            MapManager.Instance.map.Clear = new bool[MapManager.Instance.map.index];
+            ////////////////////////////////////////////////////////////////
+            // 플레이어 생성
+            //foreach (GameObject obj in MapManager.Instance.map.playerObj)
+            //{
+            //    if(obj.name == objectToSpawn.name)
+            //    {
+            //        objectToSpawn = obj;
+            //        GameObject Character = Instantiate(objectToSpawn, startpos, Quaternion.identity);
+            //        Character.transform.SetParent(MapManager.Instance.MapObject.transform);
+            //        point.playerObj = Character;
+            //    }
+            //}
+            /////////////////////////////////////////////////////////////////
             // 선택 초기화
             isStartSelected = false;
             objectToSpawn = DefaultObj;
