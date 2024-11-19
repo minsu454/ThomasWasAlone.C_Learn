@@ -43,10 +43,16 @@ public class MapInput : MonoBehaviour
                 TowerIns();
                 break;
             case "BigCube":
+                ChracterStartEndIns(CubeType.BigCube);
+                break;
             case "LightCube":
+                ChracterStartEndIns(CubeType.LightCube);
+                break;
             case "SmallCube":
+                ChracterStartEndIns(CubeType.SmallCube);
+                break;
             case "JumpBoostCube":
-                ChracterStartEndIns();
+                ChracterStartEndIns(CubeType.JumpBoostCube);
                 break;
             case "MapItem":// 맵 아이템
                 MapItemIns();
@@ -121,7 +127,7 @@ public class MapInput : MonoBehaviour
         }
 
     }
-    public void ChracterStartEndIns()
+    public void ChracterStartEndIns(CubeType type)
     {
         if (!isStartSelected)
         {
@@ -131,7 +137,7 @@ public class MapInput : MonoBehaviour
                 Debug.Log("block없음");
                 return;
             }
-            MapManager.Instance.map.startVecs.Add(startBlock.transform.position);
+            MapManager.Instance.map.startVecs.Add(type, startBlock.transform.position);
             startpos = startBlock.transform.position;
             SetTransparency(startBlock, 0.01f, Color.red);
             isStartSelected = true;
@@ -144,7 +150,7 @@ public class MapInput : MonoBehaviour
                 Debug.LogWarning("block없음");
                 return;
             }
-            MapManager.Instance.map.endVecs.Add(endBlock.transform.position);
+            MapManager.Instance.map.endVecs.Add(type, endBlock.transform.position);
             SetTransparency(endBlock, 0.01f, Color.green);
             //////////////////////////////////////////////////////////////////
             // 플레이어 생성

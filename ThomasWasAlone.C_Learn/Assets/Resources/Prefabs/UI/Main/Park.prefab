@@ -257,7 +257,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7473680122041736609}
         m_TargetAssemblyTypeName: Park, Assembly-CSharp
-        m_MethodName: SaveMap
+        m_MethodName: CombineMeshesSave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 2775100909966666022}
   - component: {fileID: 7473680122041736609}
   - component: {fileID: 8652032189146141522}
+  - component: {fileID: 4149790797676041646}
   m_Layer: 5
   m_Name: Park
   m_TagString: Untagged
@@ -386,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blockMenu: {fileID: 6908319718607291445}
+  material: {fileID: 2100000, guid: 131e027e47437914e8b615c699aeee07, type: 2}
 --- !u!114 &8652032189146141522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +417,18 @@ MonoBehaviour:
   - {fileID: 7774427051314775551, guid: 58832d338c2587b4a9c954e349d98690, type: 3}
   - {fileID: 8659320502387833806, guid: afba961424ddd7c42a83eac3c34351e1, type: 3}
   - {fileID: 475101578925139672, guid: a7fc8674267e09246842a5095a94cff8, type: 3}
+--- !u!114 &4149790797676041646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005098970898358351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 412ed7703ee4b1a4f90f0d89108fd670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6548347462462514874
 GameObject:
   m_ObjectHideFlags: 0
