@@ -1,4 +1,5 @@
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -14,17 +15,24 @@ public class Park : BaseSceneUI
     private Camera renderCamera;
 
     private RenderTexture renderTexture;
+    private MapMeshCombiner meshCombiner;
+    [SerializeField] public Material material;
     public override void Init()
     {
         base.Init();
         Managers.UI.CreatePopup<BlockInitPopup>();
         renderCamera = Camera.main;
-
+        meshCombiner = GetComponent<MapMeshCombiner>();
         renderTexture = new RenderTexture(RenderTextureWidth, RenderTextureHeight, RenderTextureDepth);
     }
     public void MenuOpen()
     {
         blockMenu.SetActive(!blockMenu.activeSelf);
+    }
+    public void CombineMeshesSave()
+    {
+        //meshCombiner.CombineMeshes(MapManager.Instance.map.groundObjs.ToList(), material);
+        Invoke("SaveMap", 1f);
     }
     public void SaveMap()
     {
@@ -37,7 +45,7 @@ public class Park : BaseSceneUI
             prefabPath = $"{DirectoryPath}{baseName}{index}.prefab";
             index++;
         } while (File.Exists(prefabPath));
-
+        Debug.Log("저장 시작");
         // Prefab 저장
         PrefabUtility.SaveAsPrefabAsset(MapManager.Instance.MapObject, prefabPath);
         Debug.Log($"Prefab saved at: {prefabPath}");
@@ -67,5 +75,16 @@ public class Park : BaseSceneUI
         // 클린업
         renderCamera.targetTexture = null;
         Destroy(texture);
+    }
+    public void SaveMeshToAsset(Mesh mesh)
+    {
+        // 프로젝트 폴더에 파일 경로 설정
+        string path = "Assets/Resources/Prefabs/Map/SaveMesh/CombinedMesh.asset";
+
+        // 메시를 Assets 폴더에 저장
+        AssetDatabase.CreateAsset(mesh, path);
+        AssetDatabase.SaveAssets();
+
+        Debug.Log("Mesh saved to: " + path);
     }
 }

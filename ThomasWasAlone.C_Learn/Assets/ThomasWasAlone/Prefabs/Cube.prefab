@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6238845240989102885}
-  - component: {fileID: 6914546480143804191}
   - component: {fileID: 8910191056234777668}
   - component: {fileID: 5117825509520192015}
   - component: {fileID: 6312389354223207608}
+  - component: {fileID: 1405096017546221837}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -35,14 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6914546480143804191
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228018293265132702}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8910191056234777668
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -133,3 +125,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!33 &1405096017546221837
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2228018293265132702}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

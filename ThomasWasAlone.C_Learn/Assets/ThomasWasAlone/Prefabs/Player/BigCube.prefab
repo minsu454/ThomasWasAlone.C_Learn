@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2581773049381501386}
   - component: {fileID: 4305414319684008201}
   - component: {fileID: 4510215496627437288}
-  - component: {fileID: 6681021374079485540}
   m_Layer: 0
   m_Name: BigCube
   m_TagString: Untagged
@@ -149,15 +148,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6681021374079485540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7750163841521054176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5116f1221ae0c9b4f870dbb409b73c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

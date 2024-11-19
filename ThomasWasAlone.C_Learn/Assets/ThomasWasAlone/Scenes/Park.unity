@@ -422,15 +422,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 401c388c653158b47b4e5a970f7542f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Clear: 
-  startObj: []
-  endObj: []
-  playerObj:
-  - {fileID: 7750163841521054176, guid: b45a7e23c70cd6b4fab240bf1f0721b3, type: 3}
-  - {fileID: 7453215615626331101, guid: 703e3fe5144959745a21200551659ed8, type: 3}
-  - {fileID: 4653397576091963340, guid: 97b6c264521f1a54eb92367e928a970c, type: 3}
-  - {fileID: 7617753937241494318, guid: 783a0ae91b53f6244a2a15ae2c88e516, type: 3}
-  index: 0
 --- !u!1 &1032833787
 GameObject:
   m_ObjectHideFlags: 0

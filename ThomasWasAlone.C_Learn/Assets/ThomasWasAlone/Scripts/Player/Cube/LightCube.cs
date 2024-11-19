@@ -2,9 +2,8 @@ using UnityEngine;
 
 public class LightCube : BaseCube 
 {
-    protected override void InitializeGroundCheck()
+    protected override float GetRayLength()
     {
-        base.InitializeGroundCheck();
-        rayLength = boxCollider.size.y * 0.3f;
+        return boxCollider.size.y * 0.3f;
     }
 } 
