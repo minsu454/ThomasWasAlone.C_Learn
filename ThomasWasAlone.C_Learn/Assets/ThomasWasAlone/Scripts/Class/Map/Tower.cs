@@ -1,3 +1,4 @@
+using Common.Yield;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class Tower : MonoBehaviour, IMapBlockLogic
             yield return null;  // 한 프레임 대기
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return YieldCache.WaitForSeconds(2f);
         transform.position = startPos;
         StartCoroutine(MapLogicCoroutine());
     }

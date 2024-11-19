@@ -1,3 +1,4 @@
+using Common.Yield;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,7 +65,7 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
             }
 
             // 이동이 끝난 후 잠시 대기 (2초)
-            yield return new WaitForSeconds(2f);
+            yield return YieldCache.WaitForSeconds(2f);
         }
     }
 }
