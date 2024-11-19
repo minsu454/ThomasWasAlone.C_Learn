@@ -26,11 +26,9 @@ public class JumpBoostCube : BaseCube
 
     private void CheckBoostJump(Collision collision)
     {
-        // JumpBoostCube가 비비면서 점프할때 예외처리
         if (collision.contacts.Length == 0) return;
-        
         if (collision.gameObject.TryGetComponent<BaseCube>(out BaseCube cube))
-        {
+        {   // Stay 추가로 인한 예외처리
             if (boostedCubes.Contains(cube)) return;
             
             Vector3 contactNormal = collision.contacts[0].normal;
