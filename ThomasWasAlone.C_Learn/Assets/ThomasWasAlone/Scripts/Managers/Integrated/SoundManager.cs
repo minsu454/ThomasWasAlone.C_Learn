@@ -12,7 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour, IInit
 {
-    private ObjectPool<AudioSource> soundPool;
+    private ObjectPool<SoundPlayer> soundPool;
 
     private AudioMixer audioMixer;
     private AudioSource bgmSource;
@@ -67,11 +67,10 @@ public class SoundManager : MonoBehaviour, IInit
     /// <summary>
     /// SoundPool 제작 함수
     /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
     private void CreateSoundPool()
     {
         GameObject prefab = Resources.Load<GameObject>(SoundPath.SoundPlayerPath);
-        soundPool = new ObjectPool<AudioSource>(prefab.name, prefab, transform, SoundPath.SoundPlayerCount);
+        soundPool = new ObjectPool<SoundPlayer>(prefab.name, prefab, transform, SoundPath.SoundPlayerCount);
     }
 
     /// <summary>
@@ -89,6 +88,32 @@ public class SoundManager : MonoBehaviour, IInit
 
         audioMixerGroup = audioMixerGroupArr[0];
         return true;
+    }
+
+    /// <summary>
+    /// 2D 플레이 함수(일반 플레이)
+    /// </summary>
+    public void SFX2DPlay(AudioClip clip)
+    {
+        SoundPlayer soundPlayer = soundPool.GetObject();
+        soundPlayer.SetDelay(clip.length);
+        soundPlayer.SetSound2D();
+        soundPlayer.gameObject.SetActive(true);
+
+        soundPlayer.Play(clip);
+    }
+
+    /// <summary>
+    /// 3D 플레이 함수(원근감 사운드)
+    /// </summary>
+    public void SFX3DPlay(AudioClip clip)
+    {
+        SoundPlayer soundPlayer = soundPool.GetObject();
+        soundPlayer.SetDelay(clip.length);
+        soundPlayer.SetSound3D();
+        soundPlayer.gameObject.SetActive(true);
+
+        soundPlayer.Play(clip);
     }
 
     public void SetVolume(SoundType type, float volume)

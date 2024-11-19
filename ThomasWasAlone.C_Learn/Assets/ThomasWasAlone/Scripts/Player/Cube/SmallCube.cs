@@ -22,7 +22,5 @@ public class SmallCube : BaseCube
             Quaternion.identity,
             rayLength
         );
-
-        Debug.DrawRay(origin, Vector3.down * rayLength, isGrounded ? Color.green : Color.red);
     }
 }

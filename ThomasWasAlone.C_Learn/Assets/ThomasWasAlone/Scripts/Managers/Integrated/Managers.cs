@@ -9,9 +9,11 @@ public sealed class Managers : MonoBehaviour
 
     public static UIManager UI { get { return instance.uiManager; } }
     public static SoundManager Sound { get { return instance.soundManager; } }
+    public static DataManager Data { get { return instance.dataManager; } }
 
     private UIManager uiManager;
     private SoundManager soundManager;
+    private DataManager dataManager = new DataManager();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Init()
@@ -20,6 +22,8 @@ public sealed class Managers : MonoBehaviour
         instance = go.AddComponent<Managers>();
 
         DontDestroyOnLoad(go);
+
+        instance.dataManager.Init();
 
         instance.uiManager = CreateManager<UIManager>(go.transform);
         instance.soundManager = CreateManager<SoundManager>(go.transform);
