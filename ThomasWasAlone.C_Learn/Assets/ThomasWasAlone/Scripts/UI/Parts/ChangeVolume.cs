@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
+
 public class ChangeVolume : MonoBehaviour
 {
     private AudioMixer myMixer;
@@ -33,7 +34,7 @@ public class ChangeVolume : MonoBehaviour
         SetVolume(masterSlider, "Master");
     }
 
-    public void OnMusicSliderChanged()
+    public void OnBGMSliderChanged()
     {
         SetVolume(bgmSlider, "BGM");
     }
