@@ -232,6 +232,7 @@ MonoBehaviour:
   distance: 8
   height: 5
   smoothSpeed: 5
+  rotationAngle: 90
 --- !u!114 &158364341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +312,7 @@ MonoBehaviour:
   - {fileID: 871642571}
   - {fileID: 1396900963}
   - {fileID: 1733986599}
-  inputController: {fileID: 786994030}
+  cameraController: {fileID: 158364340}
 --- !u!4 &786994029
 Transform:
   m_ObjectHideFlags: 0

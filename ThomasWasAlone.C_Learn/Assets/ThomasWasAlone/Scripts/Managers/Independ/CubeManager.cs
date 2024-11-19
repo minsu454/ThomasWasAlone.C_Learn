@@ -3,78 +3,60 @@ using UnityEngine;
 public class CubeManager : MonoBehaviour
 {
     [SerializeField] private BaseCube[] cubes;
-    private InputController inputController;
+    [SerializeField] private CameraController cameraController;
     
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
     
-    private void Awake()
-    {
-        inputController = GetComponent<InputController>();
-    }
-
     private void Start()
     {
         SwitchToCube(0);
     }
 
-    private void Update()
+    public void Move(float horizontal, float vertical, Transform cameraTransform)
     {
-        CheckCubeSwitch();
-    }
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
 
-    private void FixedUpdate()
-    {
-        ApplyMovement();
-        if (inputController.JumpRequested)
-        {
-            ApplyJump();
-        }
-    }
-
-    private void CheckCubeSwitch()
-    {
-        if (inputController.SwitchRequested)
-        {
-            currentCubeIndex = (currentCubeIndex + 1) % cubes.Length;
-            SwitchToCube(currentCubeIndex);
-            inputController.ResetSwitchRequest(); // TAP 입력 상태 초기화
-        }
-    }
-
-    private void ApplyMovement()
-    {
-        Vector3 moveDirection = inputController.MoveDirection;
+        Vector3 moveDirection = (right * horizontal + forward * vertical).normalized;
         if (moveDirection != Vector3.zero)
         {
-            Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.fixedDeltaTime);
+            Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.deltaTime);
             currentCube.transform.position += movement;
         }
     }
 
-    private void ApplyJump()
+    public void Jump()
     {
-        if (currentCube.IsGrounded)
+        if (!currentCube.IsGrounded) return;
+        
+        if (currentCube is LightCube)
         {
-            if (currentCube is LightCube)
+            var mover = currentCube.GetComponent<LightCubeMover>();
+            mover.Jump(currentCube.JumpForce);
+        }
+        else
+        {
+            Rigidbody rb = currentCube.GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                var mover = currentCube.GetComponent<LightCubeMover>();
-                mover.Jump(currentCube.JumpForce);
-            }
-            else
-            {
-                Rigidbody rb = currentCube.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
-                }
+                rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
             }
         }
-        inputController.ResetJumpRequest();
+    }
+
+    public void SwitchToNextCube()
+    {
+        currentCubeIndex = (currentCubeIndex + 1) % cubes.Length;
+        SwitchToCube(currentCubeIndex);
     }
 
     private void SwitchToCube(int index)
     {
-        CameraController.Instance.SetTarget(cubes[index].transform);
+        cameraController.SetTarget(cubes[index].transform);
     }
 } 

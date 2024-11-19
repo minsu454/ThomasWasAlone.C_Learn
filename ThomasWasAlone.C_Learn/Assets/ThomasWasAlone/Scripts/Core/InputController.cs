@@ -3,14 +3,18 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     private Camera mainCamera;
+    private CubeManager cubeManager;
+    private CameraController cameraController;
     
-    private Vector3 moveDirection;
     private bool jumpRequested;
     private bool switchRequested;
+    private bool rotateRequested;
     
-    public Vector3 MoveDirection => moveDirection;
-    public bool JumpRequested => jumpRequested;
-    public bool SwitchRequested => switchRequested;
+    private void Awake()
+    {
+        cubeManager = GetComponent<CubeManager>();
+        cameraController = Camera.main.GetComponent<CameraController>();
+    }
 
     private void Start()
     {
@@ -19,27 +23,26 @@ public class InputController : MonoBehaviour
 
     private void Update()
     {
-        GetMovementInput();
-        GetJumpInput();
-        GetSwitchInput();
+        HandleMovementInput();
+        HandleJumpInput();
+        HandleSwitchInput();
+        HandleRotateInput();
+        
+        ProcessInputs();
     }
 
-    private void GetMovementInput()
+    private void HandleMovementInput()
     {
-        Vector3 forward = mainCamera.transform.forward;
-        Vector3 right = mainCamera.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         
-        moveDirection = (right * h + forward * v).normalized;
+        if (h != 0 || v != 0)
+        {
+            cubeManager.Move(h, v, mainCamera.transform);
+        }
     }
 
-    private void GetJumpInput()
+    private void HandleJumpInput()
     {
         if (Input.GetButtonDown("Jump"))
         {
@@ -47,21 +50,40 @@ public class InputController : MonoBehaviour
         }
     }
 
-    private void GetSwitchInput()
+    private void HandleSwitchInput()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             switchRequested = true;
         }
     }
-
-    public void ResetJumpRequest()
+    
+    private void HandleRotateInput()
     {
-        jumpRequested = false;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            rotateRequested = true;
+        }
     }
-
-    public void ResetSwitchRequest()
+    
+    private void ProcessInputs()
     {
-        switchRequested = false;
+        if (jumpRequested)
+        {
+            cubeManager.Jump();
+            jumpRequested = false;
+        }
+        
+        if (switchRequested)
+        {
+            cubeManager.SwitchToNextCube();
+            switchRequested = false;
+        }
+        
+        if (rotateRequested)
+        {
+            cameraController.Rotate();
+            rotateRequested = false;
+        }
     }
 } 

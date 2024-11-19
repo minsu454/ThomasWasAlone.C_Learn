@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class JumpBoostCube : BaseCube
 {
-    [SerializeField] private float boostForce = 15f;
+    [SerializeField] private float boostForce = 10f;
     private HashSet<BaseCube> boostedCubes = new HashSet<BaseCube>();
     
     private void OnCollisionEnter(Collision collision)
