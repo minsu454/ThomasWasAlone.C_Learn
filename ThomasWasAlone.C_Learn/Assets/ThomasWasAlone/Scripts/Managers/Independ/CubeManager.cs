@@ -73,10 +73,18 @@ public class CubeManager : MonoBehaviour
     {
         if (currentCube.IsGrounded)
         {
-            Rigidbody rb = currentCube.GetComponent<Rigidbody>();
-            if (rb != null)
+            if (currentCube is LightCube)
             {
-                rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
+                var mover = currentCube.GetComponent<LightCubeMover>();
+                mover.Jump(currentCube.JumpForce);
+            }
+            else
+            {
+                Rigidbody rb = currentCube.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
+                }
             }
         }
         jumpRequested = false;
