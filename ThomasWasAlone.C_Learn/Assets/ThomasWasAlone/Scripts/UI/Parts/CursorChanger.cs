@@ -38,20 +38,6 @@ public class CursorChanger : MonoBehaviour
             GameObject clone = Instantiate(prefab, cubeImagesParent.transform);
         }
     }
-
-
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ChangePreviousIndex();
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            ChangeNextIndex();
-        }
-    }
     
     
     public void ChangePreviousIndex()
