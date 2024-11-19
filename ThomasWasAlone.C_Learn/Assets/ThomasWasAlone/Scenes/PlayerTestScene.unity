@@ -708,7 +708,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6681021374079485540, guid: b45a7e23c70cd6b4fab240bf1f0721b3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -884,7 +885,8 @@ PrefabInstance:
       propertyPath: boostForce
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5526649114469622444, guid: 703e3fe5144959745a21200551659ed8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -967,7 +969,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallCube
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3214447603671914787, guid: 783a0ae91b53f6244a2a15ae2c88e516, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8144736656172537671}
   - component: {fileID: 1403889947149355578}
   - component: {fileID: 5551603279556495693}
-  - component: {fileID: 3214447603671914787}
   m_Layer: 0
   m_Name: SmallCube
   m_TagString: Untagged
@@ -149,15 +148,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &3214447603671914787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7617753937241494318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5116f1221ae0c9b4f870dbb409b73c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
