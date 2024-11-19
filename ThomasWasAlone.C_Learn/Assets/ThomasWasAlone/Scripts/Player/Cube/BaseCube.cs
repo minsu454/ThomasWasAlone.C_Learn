@@ -30,7 +30,7 @@ public abstract class BaseCube : MonoBehaviour
         rayLength = GetRayLength();
     }
 
-    protected virtual void Update()
+    protected virtual void FixedUpdate()
     {
         CheckGrounded();
     }
