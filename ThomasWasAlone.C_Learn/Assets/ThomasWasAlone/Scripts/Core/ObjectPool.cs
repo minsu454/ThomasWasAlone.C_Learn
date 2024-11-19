@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Pool
 {
-    public class ObjectPool<T> where T : Component
+    public class ObjectPool<T> where T : Component, IObjectPoolable<T>
     {
         public readonly string poolName;                                            //이름
         public readonly Queue<T> objectQueue = new Queue<T>();                      //스텍
@@ -56,6 +56,7 @@ namespace Common.Pool
                 return null;
             }
 
+            newGo.GetComponent<IObjectPoolable<T>>().ReturnEvent += ReturnObject;
             return component;
         }
 
@@ -66,8 +67,9 @@ namespace Common.Pool
         {
             T component;
 
-            if (objectQueue.Count == 0)
+            if (objectQueue.Peek().gameObject.activeInHierarchy)
             {
+                Debug.LogWarning($"ObjectPool CreateImpl : {poolName}");
                 component = CreateImpl();
             }
             else
@@ -75,6 +77,7 @@ namespace Common.Pool
                 component = objectQueue.Dequeue();
             }
 
+            objectQueue.Enqueue(component);
             return component;
         }
 
@@ -87,7 +90,7 @@ namespace Common.Pool
                 return;
 
             pool.transform.SetParent(poolTr);
-            objectQueue.Enqueue(pool);
+            pool.gameObject.SetActive(false);
         }
     }
 }

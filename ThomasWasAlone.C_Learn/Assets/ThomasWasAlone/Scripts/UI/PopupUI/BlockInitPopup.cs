@@ -26,6 +26,5 @@ public class BlockInitPopup : BasePopupUI
             }
         }
         Close();
-        Managers.UI.CreatePopup<BlockMenu>();
     }
 }
