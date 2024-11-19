@@ -3,7 +3,13 @@ using UnityEngine;
 public class CubeItem : MonoBehaviour
 {
     [SerializeField] private CubeType targetCubeType;
-    
+    [SerializeField] private IMapBlockLogic logic;
+    public MapObjType mapObjType;
+
+    public void StartMapObj()
+    {
+        StartCoroutine(logic.MapLogicCoroutine());
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<BaseCube>(out BaseCube cube)) return;

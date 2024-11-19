@@ -1,5 +1,7 @@
+using System;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapInput : MonoBehaviour
 {
@@ -9,11 +11,27 @@ public class MapInput : MonoBehaviour
     private GameObject startBlock;   // 시작 블록
     private GameObject endBlock;     // 끝 블록
     private bool isStartSelected = false; // 시작 블록이 선택되었는지 여부
+    Vector3 startpos;
     [SerializeField] private LayerMask layMask;
     private void Start()
     {
         objectToSpawn = DefaultObj;
     }
+    private GameObject CreateBlock()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask) && !EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector3 spawnPosition = hit.collider.bounds.center + hit.normal * spawnDistance;
+
+            GameObject block = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
+            block.transform.SetParent(MapManager.Instance.MapObject.transform);
+            block.name = objectToSpawn.name;
+            return block;
+        }
+        return null;
+    }
+
     public void OnCreate()
     {
         switch (objectToSpawn.name)
@@ -24,9 +42,18 @@ public class MapInput : MonoBehaviour
             case "Tower":
                 TowerIns();
                 break;
+            case "BigCube":
+            case "LightCube":
+            case "SmallCube":
+            case "JumpBoostCube":
+                ChracterStartEndIns();
+                break;
+            case "MapItem":// 맵 아이템
+                MapItemIns();
+                break;
             default:
                 // 일반적인 오브젝트 생성
-                CreateBlock("Nomal");
+                MapManager.Instance.map.groundObjs.Add(CreateBlock());
                 break;
         }
     }
@@ -36,7 +63,12 @@ public class MapInput : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            Destroy(hit.collider.gameObject);
+            GameObject obj = hit.collider.gameObject;
+            if (MapManager.Instance.map.groundObjs.Contains(obj))
+            {
+                MapManager.Instance.map.groundObjs.Remove(obj);
+            }
+            Destroy(obj);
         }
     }
     //public void BlockIns()
@@ -54,25 +86,25 @@ public class MapInput : MonoBehaviour
     {
         if (!isStartSelected)
         {
-            startBlock = CreateBlock("Start");
+            startBlock = CreateBlock();
             if (startBlock == null)
             {
                 Debug.Log("block없음");
                 return;
             }
-            SetTransparency(startBlock, 0.7f, Color.red);
+            SetTransparency(startBlock, 0.7f, Color.yellow);
             isStartSelected = true;
         }
         else
         {
-            endBlock = CreateBlock("End");
+            endBlock = CreateBlock();
+
             if (endBlock == null)
             {
                 Debug.LogWarning("block없음");
                 return;
             }
-
-            SetTransparency(endBlock, 0.7f, Color.red);
+            SetTransparency(endBlock, 0.7f, Color.yellow);
             // 무빙 플랫폼 생성
             GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
             platform.transform.SetParent(MapManager.Instance.MapObject.transform);
@@ -87,40 +119,46 @@ public class MapInput : MonoBehaviour
             isStartSelected = false;
             objectToSpawn = DefaultObj;
         }
+
     }
-    public void ChracterPlatformIns()
+    public void ChracterStartEndIns()
     {
         if (!isStartSelected)
         {
-            startBlock = CreateBlock("Start");
+            startBlock = CreateBlock();
             if (startBlock == null)
             {
                 Debug.Log("block없음");
                 return;
             }
-            SetTransparency(startBlock, 0.7f, Color.red);
+            MapManager.Instance.map.startVecs.Add(startBlock.transform.position);
+            startpos = startBlock.transform.position;
+            SetTransparency(startBlock, 0.01f, Color.red);
             isStartSelected = true;
         }
         else
         {
-            endBlock = CreateBlock("End");
+            endBlock = CreateBlock();
             if (endBlock == null)
             {
                 Debug.LogWarning("block없음");
                 return;
             }
-
-            SetTransparency(endBlock, 0.7f, Color.red);
-            // 무빙 플랫폼 생성
-            GameObject platform = Instantiate(objectToSpawn, Vector3.zero, Quaternion.identity);
-            platform.transform.SetParent(MapManager.Instance.MapObject.transform);
-
-            // MovingPlatform 컴포넌트 추가
-            MovingPlatform movingPlatformComponent = platform.AddComponent<MovingPlatform>();
-
-            // Start와 End에 해당 블록을 설정
-            movingPlatformComponent.SetStartAndEnd(startBlock.transform.position, endBlock.transform.position);
-
+            MapManager.Instance.map.endVecs.Add(endBlock.transform.position);
+            SetTransparency(endBlock, 0.01f, Color.green);
+            //////////////////////////////////////////////////////////////////
+            // 플레이어 생성
+            //foreach (GameObject obj in MapManager.Instance.map.playerObj)
+            //{
+            //    if(obj.name == objectToSpawn.name)
+            //    {
+            //        objectToSpawn = obj;
+            //        GameObject Character = Instantiate(objectToSpawn, startpos, Quaternion.identity);
+            //        Character.transform.SetParent(MapManager.Instance.MapObject.transform);
+            //        point.playerObj = Character;
+            //    }
+            //}
+            /////////////////////////////////////////////////////////////////
             // 선택 초기화
             isStartSelected = false;
             objectToSpawn = DefaultObj;
@@ -128,26 +166,32 @@ public class MapInput : MonoBehaviour
     }
     public void TowerIns()
     {
-        GameObject towerObj = CreateBlock("Tower");
+        GameObject towerObj = CreateBlock();
         towerObj.AddComponent<Tower>();
         towerObj.GetComponent<Tower>().startPos = transform.position;
         objectToSpawn = DefaultObj;
     }
-    // 블럭을 생성하고 반환하는 메서드 (Start 또는 End)
-    private GameObject CreateBlock(string blockType)
+    public void MapItemIns()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask))
+        GameObject itemBlock = CreateBlock();
+        CubeItem item = itemBlock.GetComponent<CubeItem>();
+        switch (item.mapObjType)
         {
-            Vector3 spawnPosition = hit.collider.bounds.center + hit.normal * spawnDistance;
-
-            GameObject block = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
-            block.transform.SetParent(MapManager.Instance.MapObject.transform);
-            block.name = blockType;  // 블럭 이름을 지정 (Start 또는 End)
-
-            return block;
+            case MapObjType.MovingPlatform:
+                MapItemMovingPlatform(itemBlock);
+                break;
+            case MapObjType.Tower:
+                MapItemTower(itemBlock);
+                break;
         }
-        return null;
+    }
+    public void MapItemMovingPlatform(GameObject obj)
+    {
+        SetTransparency(obj, 1f, Color.yellow);
+    }
+    public void MapItemTower(GameObject obj)
+    {
+        SetTransparency(obj, 1f, Color.grey);
     }
     private void SetTransparency(GameObject obj, float alpha, Color changecolor)
     {

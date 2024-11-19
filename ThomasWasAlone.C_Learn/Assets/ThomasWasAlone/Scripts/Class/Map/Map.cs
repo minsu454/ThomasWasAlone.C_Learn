@@ -2,37 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Map : MonoBehaviour
 {
-    [SerializeField] public bool[] Clear;
-    private void Awake()
-    {
-       // MapManager.Instance.map = this;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public readonly List<Vector3> startVecs = new List<Vector3>();
+    [SerializeField] public readonly List<Vector3> endVecs = new List<Vector3>();
+    public readonly HashSet<GameObject> groundObjs = new HashSet<GameObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ClearCheck()
-    {
-        int check = 0;
-        for (int i = 0; i < Clear.Length; i++) 
-        {
-            if(Clear[i] == true)
-            {
-                check++;
-            }
-        }
-        if(Clear.Length == check)
-        {
-            Debug.Log("클리어");
-        }
-    }
+
 }
