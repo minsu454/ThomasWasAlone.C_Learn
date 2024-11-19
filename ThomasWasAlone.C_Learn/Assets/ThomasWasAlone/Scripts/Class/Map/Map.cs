@@ -5,21 +5,11 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     [SerializeField] public bool[] Clear;
-    private void Awake()
-    {
-       // MapManager.Instance.map = this;
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] public List<GameObject> startObj = new List<GameObject>();
+    [SerializeField] public List<GameObject> endObj = new List<GameObject>();
+    [SerializeField] public List<GameObject> playerObj = new List<GameObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int index = 0;
     public void ClearCheck()
     {
         int check = 0;
