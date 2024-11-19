@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class CubeManager : MonoBehaviour
 {
-    public BaseCube[] cubes;
-    private int currentCubeIndex = 0;
-    public Camera mainCamera;
+    [SerializeField] private BaseCube[] cubes;
+    private InputController inputController;
     
-    private Vector3 moveDirection;
-    private bool jumpRequested;
+    private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
+    
+    private void Awake()
+    {
+        inputController = GetComponent<InputController>();
+    }
 
     private void Start()
     {
@@ -18,50 +21,30 @@ public class CubeManager : MonoBehaviour
     private void Update()
     {
         CheckCubeSwitch();
-        GetMovementInput();
-        GetJumpInput();
     }
 
     private void FixedUpdate()
     {
         ApplyMovement();
-        if (jumpRequested) ApplyJump();
+        if (inputController.JumpRequested)
+        {
+            ApplyJump();
+        }
     }
 
     private void CheckCubeSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (inputController.SwitchRequested)
         {
             currentCubeIndex = (currentCubeIndex + 1) % cubes.Length;
             SwitchToCube(currentCubeIndex);
-        }
-    }
-
-    private void GetMovementInput()
-    {
-        Vector3 forward = mainCamera.transform.forward;
-        Vector3 right = mainCamera.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward.Normalize();
-        right.Normalize();
-
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        
-        moveDirection = (right * h + forward * v).normalized;
-    }
-
-    private void GetJumpInput()
-    {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpRequested = true;
+            inputController.ResetSwitchRequest(); // TAP 입력 상태 초기화
         }
     }
 
     private void ApplyMovement()
     {
+        Vector3 moveDirection = inputController.MoveDirection;
         if (moveDirection != Vector3.zero)
         {
             Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.fixedDeltaTime);
@@ -87,14 +70,11 @@ public class CubeManager : MonoBehaviour
                 }
             }
         }
-        jumpRequested = false;
+        inputController.ResetJumpRequest();
     }
 
     private void SwitchToCube(int index)
     {
-        moveDirection = Vector3.zero;
-        jumpRequested = false;
-
         CameraController.Instance.SetTarget(cubes[index].transform);
     }
 } 
