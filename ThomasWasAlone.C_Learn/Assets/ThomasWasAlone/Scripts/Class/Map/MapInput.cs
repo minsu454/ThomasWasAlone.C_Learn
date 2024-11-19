@@ -94,6 +94,7 @@ public class MapInput : MonoBehaviour
             isStartSelected = false;
             objectToSpawn = DefaultObj;
         }
+
     }
     public void ChracterStartEndIns()
     {
@@ -126,16 +127,16 @@ public class MapInput : MonoBehaviour
             MapManager.Instance.map.Clear = new bool[MapManager.Instance.map.index];
             ////////////////////////////////////////////////////////////////
             // 플레이어 생성
-            foreach (GameObject obj in MapManager.Instance.map.playerObj)
-            {
-                if(obj.name == objectToSpawn.name)
-                {
-                    objectToSpawn = obj;
-                    GameObject Character = Instantiate(objectToSpawn, startpos, Quaternion.identity);
-                    Character.transform.SetParent(MapManager.Instance.MapObject.transform);
-                    point.playerObj = Character;
-                }
-            }
+            //foreach (GameObject obj in MapManager.Instance.map.playerObj)
+            //{
+            //    if(obj.name == objectToSpawn.name)
+            //    {
+            //        objectToSpawn = obj;
+            //        GameObject Character = Instantiate(objectToSpawn, startpos, Quaternion.identity);
+            //        Character.transform.SetParent(MapManager.Instance.MapObject.transform);
+            //        point.playerObj = Character;
+            //    }
+            //}
             /////////////////////////////////////////////////////////////////
             // 선택 초기화
             isStartSelected = false;
