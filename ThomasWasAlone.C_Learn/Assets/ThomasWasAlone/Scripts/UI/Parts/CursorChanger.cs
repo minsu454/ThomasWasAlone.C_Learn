@@ -1,37 +1,41 @@
-using System;
+using Common.EnumExtensions;
 using UnityEngine;
 using UnityEngine.UI;
 
 
 public class CursorChanger : MonoBehaviour
 {
-    [SerializeField] private RectTransform cubeImages;
+    [SerializeField] private GameObject cubeImagesParent;
     [SerializeField] private Image cursor;
+    
+    [SerializeField] private GridLayoutGroup gridLayoutGroup;
     
     private int _maxCubeQuantity;
     private int _currentCursorIndex = 1;
 
-    private float _eachSize;
     
-    
-    public void Init(int maxCubeQuantity = 4)
+    public void Init(CubeType[] cubeType)
     {  
-        _maxCubeQuantity = maxCubeQuantity;
-        _eachSize = cubeImages.rect.width / 4;
+        _maxCubeQuantity = cubeType.Length;
+        SetCube(cubeType);
         UpdateCursorPosition();
     }
 
-
-    private void Update()
+    private void SetCube(CubeType[] cubeType)
     {
-        if (Input.GetMouseButtonDown(0))
+        for (int i = 0; i < cubeType.Length; i++)
         {
-            ChangePreviousIndex();
-        }
+            string objName = EnumExtensions.EnumToString(cubeType[i]);
+            
+            GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/Cube/{objName}");
+            
+            if (prefab == null)
+            {
+                Debug.LogWarning($"{objName} UI is None.");
+                return;
+            }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            ChangeNextIndex();
+            GameObject clone = Instantiate(prefab, cubeImagesParent.transform);
         }
     }
     
@@ -41,8 +45,8 @@ public class CursorChanger : MonoBehaviour
         if(_currentCursorIndex == 1) return;
         
         _currentCursorIndex--;
-
-        ChangeCursor();
+        
+        UpdateCursorPosition();
     }
 
 
@@ -51,14 +55,6 @@ public class CursorChanger : MonoBehaviour
         if(_currentCursorIndex >= _maxCubeQuantity) return;
         
         _currentCursorIndex++;
-
-        UpdateCursorPosition();
-    }
-
-
-    private void ChangeCursor()
-    {
-        _currentCursorIndex %= _maxCubeQuantity;
         
         UpdateCursorPosition();
     }
@@ -66,8 +62,8 @@ public class CursorChanger : MonoBehaviour
     
     private void UpdateCursorPosition()
     {
-        float cursorXPosition = -cubeImages.rect.width + _eachSize * _currentCursorIndex;
-        
+        float cursorXPosition = (_currentCursorIndex - _maxCubeQuantity) * (gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x); // 현재 spacing은 0
+
         cursor.rectTransform.anchoredPosition = new Vector2(cursorXPosition, cursor.rectTransform.anchoredPosition.y);
     }
 }

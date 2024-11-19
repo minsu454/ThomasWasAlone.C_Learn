@@ -1,10 +1,11 @@
+using Common.Yield;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MovingPlatform : MonoBehaviour
+public class MovingPlatform : MonoBehaviour, IMapBlockLogic
 {
     // MapInput에서
     // 1. 블럭 2개 생성. (각각 종착점)
@@ -16,13 +17,22 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Vector3 startPosition;
     [SerializeField] private Vector3 endPosition;
     private float moveSpeed = 2f; // 움직임 속도
+    public MapObjType mapObjType = MapObjType.MovingPlatform;
     // Start is called before the first frame update
     void Start()
     {
         gameObject.transform.position = startPosition;
-        StartCoroutine(MovingPlatformCoroutine());
+        StartCoroutine(MapLogicCoroutine());
     }
-    private IEnumerator MovingPlatformCoroutine()
+    // start와 end 위치를 설정하는 메서드
+    public void SetStartAndEnd(Vector3 start, Vector3 end)
+    {
+        startPosition = start;
+        endPosition = end;
+        transform.position = startPosition; // 처음에는 start 위치로 설정
+    }
+
+    public IEnumerator MapLogicCoroutine()
     {
         Vector3 currentStartPos = startPosition;
         Vector3 currentEndPos = endPosition;
@@ -55,15 +65,7 @@ public class MovingPlatform : MonoBehaviour
             }
 
             // 이동이 끝난 후 잠시 대기 (2초)
-            yield return new WaitForSeconds(2f);
+            yield return YieldCache.WaitForSeconds(2f);
         }
-    }
-
-    // start와 end 위치를 설정하는 메서드
-    public void SetStartAndEnd(Vector3 start, Vector3 end)
-    {
-        startPosition = start;
-        endPosition = end;
-        transform.position = startPosition; // 처음에는 start 위치로 설정
     }
 }

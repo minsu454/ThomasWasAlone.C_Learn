@@ -13,7 +13,12 @@ public class InGame : BaseSceneUI
     public override void Init()
     {
         base.Init();
-        _cursorChanger.Init();
+
+        CubeType[] cubeType = new CubeType[2];
+        cubeType[0] = CubeType.BigCube;
+        cubeType[1] = CubeType.SmallCube;
+        
+        _cursorChanger.Init(cubeType);
     }
 
     public void OnClickPauseButton()

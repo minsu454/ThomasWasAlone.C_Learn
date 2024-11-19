@@ -23,6 +23,9 @@ public class BlockInitPopup : BasePopupUI
             {
                 GameObject Ins = Instantiate(block, new Vector3(i, 0, j), Quaternion.identity);
                 Ins.transform.SetParent(MapObject.transform);
+                MapManager.Instance.map.groundObjs.Add(Ins);
+
+
             }
         }
         Close();
