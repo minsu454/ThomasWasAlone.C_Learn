@@ -13,23 +13,15 @@ public class StageManager : MonoBehaviour
 
     private void CreateMap()
     {
-        //GameObject prefab = Resources.Load<GameObject>($"Prefabs/Map/SaveMap/SaveMap/{Managers.Data.MapName}");
-        //GameObject mapGo = Instantiate(prefab);
+        GameObject prefab = Resources.Load<GameObject>($"Prefabs/Map/SaveMap/SaveMap/{Managers.Data.MapName}");
+        GameObject mapGo = Instantiate(prefab);
 
-        //Map map = mapGo.GetComponent<Map>();
+        MapData mapData = mapGo.GetComponent<Map>().mapData;
 
-        //foreach (var obj in map.startVecs)
-        //{
-        //    for (int i = 0; i < playerObj.Count; i++)
-        //    {
-        //        if (playerObj[i].name == obj.name)
-        //        {
-        //            Instantiate(obj);
-        //            break;
-        //        }
-        //    }
-
-        //    obj.GetComponent<MeshCollider>().enabled = false;
-        //}
+        foreach (var spawnData in mapData.startDic)
+        {
+            GameObject cubePrefab = Managers.Cube.ReturnCube(spawnData.Type);
+            GameObject cubeGo = Instantiate(cubePrefab, spawnData.Pos, Quaternion.identity);
+        }
     }
 }
