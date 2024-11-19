@@ -1,0 +1,27 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SettingsPopup : BasePopupUI
+{
+    
+    [SerializeField] private Slider masterSlider, bgmSlider, sfxSlider;
+    
+
+    public void OnMasterSliderChanged()
+    {
+        Managers.Sound.SetVolume(SoundType.Master, masterSlider.value);
+    }
+
+    public void OnBGMSliderChanged()
+    {
+        Managers.Sound.SetVolume(SoundType.BGM, bgmSlider.value);
+    }
+
+    public void OnSFXSliderChanged()
+    {
+        Managers.Sound.SetVolume(SoundType.SFX, sfxSlider.value);
+    }
+}

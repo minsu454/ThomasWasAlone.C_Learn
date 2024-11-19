@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class Title : BaseSceneUI
 {
-    public void OnClickPauseButton()
+    public override void Init()
     {
-        Managers.UI.CreatePopup<PausePopup>();
+        base.Init();
+    }
+
+
+    public void OnClickSelectMapButton()
+    {
+        Managers.UI.CreatePopup<SelectMapPopup>();
+    }
+    
+    
+    public void OnClickSettingsButton()
+    {
+        Managers.UI.CreatePopup<SettingsPopup>();
+    }
+    
+    
+    public void OnClickQuitGameButton()
+    {
+        Managers.UI.CreatePopup<QuitGamePopup>();
     }
 }
