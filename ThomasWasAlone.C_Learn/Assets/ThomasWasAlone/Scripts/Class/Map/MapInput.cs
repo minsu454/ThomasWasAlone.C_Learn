@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MapInput : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class MapInput : MonoBehaviour
             case "SmallCube":
             case "JumpBoostCube":
                 ChracterStartEndIns();
+                break;
+            case "MapItem":// 맵 아이템
+                MapItemIns();
                 break;
             default:
                 // 일반적인 오브젝트 생성
@@ -150,11 +154,10 @@ public class MapInput : MonoBehaviour
         towerObj.GetComponent<Tower>().startPos = transform.position;
         objectToSpawn = DefaultObj;
     }
-    // 블럭을 생성하고 반환하는 메서드 (Start 또는 End)
     private GameObject CreateBlock(string blockType)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 spawnPosition = hit.collider.bounds.center + hit.normal * spawnDistance;
 
@@ -165,6 +168,29 @@ public class MapInput : MonoBehaviour
             return block;
         }
         return null;
+    }
+
+    public void MapItemIns()
+    {
+        GameObject itemBlock = CreateBlock("MapItem");
+        MapItem item = itemBlock.GetComponent<MapItem>();
+        switch (item.mapObjType)
+        {
+            case MapObjType.MovingPlatform:
+                MapItemMovingPlatform(itemBlock);
+                break;
+            case MapObjType.Tower:
+                MapItemTower(itemBlock);
+                break;
+        }
+    }
+    public void MapItemMovingPlatform(GameObject obj)
+    {
+        SetTransparency(obj, 1f, Color.yellow);
+    }
+    public void MapItemTower(GameObject obj)
+    {
+        SetTransparency(obj, 1f, Color.grey);
     }
     private void SetTransparency(GameObject obj, float alpha, Color changecolor)
     {
