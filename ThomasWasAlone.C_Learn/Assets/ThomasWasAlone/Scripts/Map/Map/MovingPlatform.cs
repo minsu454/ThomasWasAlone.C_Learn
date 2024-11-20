@@ -18,12 +18,8 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
     [SerializeField] private Vector3 endPosition;
     private float moveSpeed = 2f; // 움직임 속도
     public MapObjType mapObjType = MapObjType.MovingPlatform;
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.transform.position = startPosition;
-        StartCoroutine(MapLogicCoroutine());
-    }
+    public Coroutine coroutine;
+
     // start와 end 위치를 설정하는 메서드
     public void SetStartAndEnd(Vector3 start, Vector3 end)
     {
@@ -31,9 +27,15 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
         endPosition = end;
         transform.position = startPosition; // 처음에는 start 위치로 설정
     }
-
+    public void StartCoroutine()
+    {
+        //한번 발동하면 아이템이 사라짐. 코루틴 중복 발동 예외 처리 필요 없을듯.
+        coroutine = StartCoroutine(MapLogicCoroutine());
+    }
     public IEnumerator MapLogicCoroutine()
     {
+        Debug.Log("코루틴 시작!");
+        gameObject.transform.position = startPosition;
         Vector3 currentStartPos = startPosition;
         Vector3 currentEndPos = endPosition;
 

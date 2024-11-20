@@ -14,16 +14,20 @@ public class Tower : MonoBehaviour, IMapBlockLogic
     public Vector3 targetPos;
     public float moveSpeed = 5f; // 이동 속도
     public MapObjType mapObjType = MapObjType.Tower;
-    void Start()
+    public Coroutine coroutine;
+    private void Start()
     {
-
-        startPos = transform.position;  // 원래 위치 설정
-        targetPos = startPos + new Vector3(10, 0, 0);
         StartCoroutine(MapLogicCoroutine());
+    }
+    public void StartCoroutine()
+    {
+        //한번 발동하면 아이템이 사라짐. 코루틴 중복 발동 예외 처리 필요 없을듯.
+        coroutine = StartCoroutine(MapLogicCoroutine());
     }
 
     public IEnumerator MapLogicCoroutine()
     {
+        startPos = transform.position;  // 원래 위치 설정
         // 타워가 목표 위치로 부드럽게 이동
         float journeyLength = Vector3.Distance(startPos, targetPos); // 이동 거리 계산
         float startTime = Time.time;  // 이동 시작 시간
@@ -43,7 +47,5 @@ public class Tower : MonoBehaviour, IMapBlockLogic
         transform.position = startPos;
         StartCoroutine(MapLogicCoroutine());
     }
-
-
 
 }
