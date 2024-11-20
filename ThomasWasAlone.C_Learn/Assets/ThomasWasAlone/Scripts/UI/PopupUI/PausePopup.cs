@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PausePopup : BasePopupUI
 {
-    private void Awake()
-    {
-        Time.timeScale = 0;
-    }
-
+    // public void SetTimeScale()
+    // {
+    //     Time.timeScale = 0;
+    // }
 
     public void OnClickContinueGame()
     {
