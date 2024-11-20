@@ -5,13 +5,19 @@ using DG.Tweening;
 public class WallTransparencyController : MonoBehaviour
 {
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float raycastDistance = 100f;
+    [SerializeField] private float raycastDistance = 10f;
     [SerializeField] private float fadeDuration = 0.3f;
     [SerializeField] private float targetAlpha = 0.3f;
+    [SerializeField] private float raycastInterval = 0.2f;
     
     private Camera mainCamera;
     private Transform currentTarget;
     private Dictionary<Renderer, Tween> activeTweens = new Dictionary<Renderer, Tween>();
+    private RaycastHit[] hitResults = new RaycastHit[3];
+    private HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
+    private HashSet<Renderer> renderersToFadeIn = new HashSet<Renderer>();
+    private Vector3 direction;
+    private float nextRaycastTime;
     
     private void Awake()
     {
@@ -36,33 +42,46 @@ public class WallTransparencyController : MonoBehaviour
     {
         if (!currentTarget) return;
         
-        // 카메라에서 플레이어로 레이캐스트
-        Vector3 direction = currentTarget.position - mainCamera.transform.position;
-        RaycastHit[] hits = Physics.RaycastAll(
+        if (Time.time < nextRaycastTime) return;
+        nextRaycastTime = Time.time + raycastInterval;
+        
+        CheckWallTransparency();
+    }
+    
+    private void CheckWallTransparency()
+    {
+        hitRenderers.Clear();
+        renderersToFadeIn.Clear();
+        direction = currentTarget.position - mainCamera.transform.position;
+        
+        int hitCount = Physics.RaycastNonAlloc(
             mainCamera.transform.position,
-            direction,
+            direction.normalized,
+            hitResults,
             raycastDistance,
             wallLayer
         );
         
-        // 현재 레이캐스트에 걸린 벽들 처리
-        HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
-        foreach (RaycastHit hit in hits)
+        for (int i = 0; i < hitCount; i++)
         {
-            if (hit.collider.TryGetComponent(out Renderer renderer))
+            if (hitResults[i].collider.TryGetComponent(out Renderer renderer))
             {
                 hitRenderers.Add(renderer);
                 FadeOut(renderer);
             }
         }
         
-        // 레이캐스트에 걸리지 않은 벽들은 원래대로 복구
-        foreach (var kvp in new Dictionary<Renderer, Tween>(activeTweens))
+        foreach (var renderer in activeTweens.Keys)
         {
-            if (!hitRenderers.Contains(kvp.Key))
+            if (!hitRenderers.Contains(renderer))
             {
-                FadeIn(kvp.Key);
+                renderersToFadeIn.Add(renderer);
             }
+        }
+        
+        foreach (var renderer in renderersToFadeIn)
+        {
+            FadeIn(renderer);
         }
     }
     

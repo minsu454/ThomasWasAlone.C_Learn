@@ -294,8 +294,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   raycastDistance: 100
-  fadeSpeed: 2
+  fadeDuration: 0.3
   targetAlpha: 0.3
+  raycastInterval: 0.1
 --- !u!1 &786994027
 GameObject:
   m_ObjectHideFlags: 0
