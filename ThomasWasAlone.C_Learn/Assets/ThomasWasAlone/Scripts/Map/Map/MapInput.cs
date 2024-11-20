@@ -180,24 +180,7 @@ public class MapInput : MonoBehaviour
     public void MapItemIns()
     {
         GameObject itemBlock = CreateBlock();
-        CubeItem item = itemBlock.GetComponent<CubeItem>();
-        switch (item.mapObjType)
-        {
-            case MapObjType.MovingPlatform:
-                MapItemMovingPlatform(itemBlock);
-                break;
-            case MapObjType.Tower:
-                MapItemTower(itemBlock);
-                break;
-        }
-    }
-    public void MapItemMovingPlatform(GameObject obj)
-    {
-        SetTransparency(obj, 1f, Color.yellow);
-    }
-    public void MapItemTower(GameObject obj)
-    {
-        SetTransparency(obj, 1f, Color.grey);
+        objectToSpawn = DefaultObj;
     }
     private void SetTransparency(GameObject obj, float alpha, Color changecolor)
     {
