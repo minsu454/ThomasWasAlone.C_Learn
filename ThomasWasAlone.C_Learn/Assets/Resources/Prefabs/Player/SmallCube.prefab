@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8144736656172537671}
   - component: {fileID: 1403889947149355578}
   - component: {fileID: 5551603279556495693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

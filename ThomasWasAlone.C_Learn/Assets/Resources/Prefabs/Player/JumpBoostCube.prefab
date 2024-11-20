@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6329319191542267759}
   - component: {fileID: 8680983446328223105}
   - component: {fileID: 4526399929347214194}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpBoostCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

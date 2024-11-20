@@ -27,7 +27,7 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
         endPosition = end;
         transform.position = startPosition; // 처음에는 start 위치로 설정
     }
-    public void StartCoroutine()
+    public void StartCoroutineObj()
     {
         //한번 발동하면 아이템이 사라짐. 코루틴 중복 발동 예외 처리 필요 없을듯.
         coroutine = StartCoroutine(MapLogicCoroutine());

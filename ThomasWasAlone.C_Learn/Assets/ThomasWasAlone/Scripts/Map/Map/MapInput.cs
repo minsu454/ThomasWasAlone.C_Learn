@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
 public class MapInput : MonoBehaviour
 {
@@ -10,6 +13,7 @@ public class MapInput : MonoBehaviour
     public float spawnDistance = 1f; // 생성 거리
     private GameObject startBlock;   // 시작 블록
     private GameObject endBlock;     // 끝 블록
+    public List<GameObject> destroyStartEndBlock = new List<GameObject>();
     private bool isStartSelected = false; // 시작 블록이 선택되었는지 여부
     Vector3 startpos;
     [SerializeField] private LayerMask layMask;
@@ -23,7 +27,30 @@ public class MapInput : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 spawnPosition = hit.collider.bounds.center + hit.normal * spawnDistance;
+           
+            Vector2 mapSize = MapManager.Instance.map.mapData.mapSize;
+            ///////////////////////
+            float maxHeight = Math.Max(mapSize.x,mapSize.y); // 최대 높이
 
+            // 하위 오브젝트 위치 검사
+            Transform[] childTransforms = objectToSpawn.GetComponentsInChildren<Transform>();
+            foreach (Transform child in childTransforms)
+            {
+                if (child == objectToSpawn.transform) continue;
+
+                // 하위 오브젝트의 위치 계산
+                Vector3 childPosition = spawnPosition + child.localPosition;
+
+                // 범위는 처음 입력한 맵 크기 + 두 값 중 큰 값이 높이
+                if (childPosition.x < 0 || childPosition.x >= mapSize.x ||
+                    childPosition.z < 0 || childPosition.z >= mapSize.y ||
+                    childPosition.y > maxHeight) 
+                {
+                    Debug.LogWarning("블록 생성 위치가 맵의 범위나 높이 제한 초과");
+                    return null;
+                }
+            }
+            ////////////////////
             GameObject block = Instantiate(objectToSpawn, spawnPosition, Quaternion.identity);
             block.transform.SetParent(MapManager.Instance.MapObject.transform);
             block.name = objectToSpawn.name;
@@ -137,6 +164,7 @@ public class MapInput : MonoBehaviour
                 Debug.Log("block없음");
                 return;
             }
+            destroyStartEndBlock.Add(startBlock);
             MapManager.Instance.map.mapData.startDic.Add(new SpawnData(type, startBlock.transform.position));
             startpos = startBlock.transform.position;
             SetTransparency(startBlock, 0.01f, Color.red);
@@ -150,6 +178,7 @@ public class MapInput : MonoBehaviour
                 Debug.LogWarning("block없음");
                 return;
             }
+            destroyStartEndBlock.Add(endBlock);
             MapManager.Instance.map.mapData.endDic.Add(new SpawnData(type, endBlock.transform.position));
             SetTransparency(endBlock, 0.01f, Color.green);
             //////////////////////////////////////////////////////////////////
