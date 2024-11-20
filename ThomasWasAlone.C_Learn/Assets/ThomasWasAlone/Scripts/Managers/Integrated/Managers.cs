@@ -11,11 +11,13 @@ public sealed class Managers : MonoBehaviour
     public static SoundManager Sound { get { return instance.soundManager; } }
     public static DataManager Data { get { return instance.dataManager; } }
     public static CubeContainer Cube { get { return instance.cubeContainer; } }
+    public static MapContainer Map { get { return instance.mapContainer; } }
 
     private UIManager uiManager;
     private SoundManager soundManager;
     private DataManager dataManager = new DataManager();
     private CubeContainer cubeContainer = new CubeContainer();
+    private MapContainer mapContainer = new MapContainer();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Init()
@@ -27,6 +29,7 @@ public sealed class Managers : MonoBehaviour
 
         instance.dataManager.Init();
         instance.cubeContainer.Init();
+        instance.mapContainer.Init();
 
         instance.uiManager = CreateManager<UIManager>(go.transform);
         instance.soundManager = CreateManager<SoundManager>(go.transform);

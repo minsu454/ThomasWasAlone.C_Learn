@@ -2,6 +2,7 @@ using Common.Yield;
 using System.Collections;
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class CubeManager : MonoBehaviour
 {
@@ -11,8 +12,18 @@ public class CubeManager : MonoBehaviour
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
     
-    private void Start()
+    public void Init(List<SpawnData> data)
     {
+        cubes = new BaseCube[data.Count];
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            GameObject cubePrefab = Managers.Cube.ReturnCube(data[i].Type);
+            GameObject cubeGo = Instantiate(cubePrefab, data[i].Pos, Quaternion.identity);
+
+            cubes[i] = cubeGo.GetComponent<BaseCube>();
+        }
+
         SwitchToCube(0);
     }
 
