@@ -13,6 +13,7 @@ public class WallTransparencyController : MonoBehaviour
     private Camera mainCamera;
     private Transform currentTarget;
     private Dictionary<Renderer, Tween> activeTweens = new Dictionary<Renderer, Tween>();
+    private Dictionary<Renderer, Material> materialCache = new Dictionary<Renderer, Material>();
     private RaycastHit[] hitResults = new RaycastHit[3];
     private HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
     private HashSet<Renderer> renderersToFadeIn = new HashSet<Renderer>();
@@ -26,11 +27,32 @@ public class WallTransparencyController : MonoBehaviour
     
     private void OnDestroy()
     {
+        // 트윈 정리
         foreach (var tween in activeTweens.Values)
         {
             tween?.Kill();
         }
+        
+        // 머터리얼 정리
+        foreach (var material in materialCache.Values)
+        {
+            Destroy(material);
+        }
+        
         activeTweens.Clear();
+        materialCache.Clear();
+    }
+    
+    private Material GetMaterial(Renderer renderer)
+    {
+        if (!materialCache.TryGetValue(renderer, out Material material))
+        {
+            // 머터리얼 캐싱
+            material = new Material(renderer.sharedMaterial);
+            renderer.material = material;
+            materialCache[renderer] = material;
+        }
+        return material;
     }
     
     public void SetTarget(Transform target)
@@ -53,7 +75,7 @@ public class WallTransparencyController : MonoBehaviour
         hitRenderers.Clear();
         renderersToFadeIn.Clear();
         direction = currentTarget.position - mainCamera.transform.position;
-        
+        // 레이캐스트
         int hitCount = Physics.RaycastNonAlloc(
             mainCamera.transform.position,
             direction.normalized,
@@ -61,7 +83,7 @@ public class WallTransparencyController : MonoBehaviour
             raycastDistance,
             wallLayer
         );
-        
+        // 감지된 렌더러 추가 및 투명화
         for (int i = 0; i < hitCount; i++)
         {
             if (hitResults[i].collider.TryGetComponent(out Renderer renderer))
@@ -70,7 +92,7 @@ public class WallTransparencyController : MonoBehaviour
                 FadeOut(renderer);
             }
         }
-        
+        // 투명화 중이지만 감지되지 않은 렌더러 복구목록에 추가
         foreach (var renderer in activeTweens.Keys)
         {
             if (!hitRenderers.Contains(renderer))
@@ -78,7 +100,7 @@ public class WallTransparencyController : MonoBehaviour
                 renderersToFadeIn.Add(renderer);
             }
         }
-        
+        // 복구목록에 있는 렌더러 투명도 복구
         foreach (var renderer in renderersToFadeIn)
         {
             FadeIn(renderer);
@@ -92,7 +114,7 @@ public class WallTransparencyController : MonoBehaviour
             currentTween.Kill();
         }
         
-        Material material = renderer.material;
+        Material material = GetMaterial(renderer);
         activeTweens[renderer] = DOTween.To(
             () => material.color.a,
             (float alpha) => {
@@ -112,7 +134,7 @@ public class WallTransparencyController : MonoBehaviour
             currentTween.Kill();
         }
         
-        Material material = renderer.material;
+        Material material = GetMaterial(renderer);
         activeTweens[renderer] = DOTween.To(
             () => material.color.a,
             (float alpha) => {
