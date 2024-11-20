@@ -1,6 +1,7 @@
 using Common.Yield;
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class CubeManager : MonoBehaviour
 {
@@ -60,5 +61,23 @@ public class CubeManager : MonoBehaviour
     private void SwitchToCube(int index)
     {
         cameraController.SetTarget(cubes[index].transform);
+    }
+
+    public void KillAllCubes()
+    {
+        foreach (var cube in cubes)
+        {
+            // 스케일 감소
+            cube.transform.DOScale(Vector3.zero, 0.5f)
+                .SetEase(Ease.InBack);
+            
+            // 회전
+            cube.transform.DOShakeRotation(0.5f, 45f, 10, 90)
+                .OnComplete(() => {
+                    cube.gameObject.SetActive(false);
+                    // 스케일 복구
+                    cube.transform.localScale = Vector3.one;
+                });
+        }
     }
 } 
