@@ -1,3 +1,4 @@
+using Common.Event;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
@@ -54,7 +55,7 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            switchRequested = true;
+            EventManager.Dispatch(GameEventType.ChangeCube, null);
         }
     }
     
@@ -72,12 +73,6 @@ public class InputController : MonoBehaviour
         {
             cubeManager.Jump();
             jumpRequested = false;
-        }
-        
-        if (switchRequested)
-        {
-            cubeManager.SwitchToNextCube();
-            switchRequested = false;
         }
         
         if (rotateRequested)

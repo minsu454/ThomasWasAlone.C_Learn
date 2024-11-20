@@ -14,10 +14,16 @@ public class InGame : BaseSceneUI
     {
         base.Init();
 
-        CubeType[] cubeType = new CubeType[2];
-        cubeType[0] = CubeType.BigCube;
-        cubeType[1] = CubeType.SmallCube;
-        
+        GameObject mapGo = Managers.Map.ReturnData(Managers.Data.MapName);
+
+        var data = mapGo.GetComponent<Map>().mapData.startDic;
+        CubeType[] cubeType = new CubeType[data.Count];
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            cubeType[i] = data[i].Type;
+        }
+
         _cursorChanger.Init(cubeType);
     }
 

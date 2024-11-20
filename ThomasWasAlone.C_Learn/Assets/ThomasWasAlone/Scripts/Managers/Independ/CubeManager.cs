@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using Common.Event;
 
 public class CubeManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class CubeManager : MonoBehaviour
 
             cubes[i] = cubeGo.GetComponent<BaseCube>();
         }
+
+        EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
 
         SwitchToCube(0);
     }
@@ -63,7 +66,7 @@ public class CubeManager : MonoBehaviour
         }
     }
 
-    public void SwitchToNextCube()
+    public void SwitchToNextCube(object args)
     {
         currentCubeIndex = (currentCubeIndex + 1) % cubes.Length;
         SwitchToCube(currentCubeIndex);
@@ -90,5 +93,10 @@ public class CubeManager : MonoBehaviour
                     cube.transform.localScale = Vector3.one;
                 });
         }
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Unsubscribe(GameEventType.ChangeCube, SwitchToNextCube);
     }
 } 
