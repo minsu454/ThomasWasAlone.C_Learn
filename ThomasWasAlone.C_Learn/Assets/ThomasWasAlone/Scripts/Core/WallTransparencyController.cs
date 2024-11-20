@@ -16,7 +16,7 @@ public class WallTransparencyController : MonoBehaviour
     private Dictionary<Renderer, Material> materialCache = new Dictionary<Renderer, Material>();
     private RaycastHit[] hitResults = new RaycastHit[3];
     private HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
-    private HashSet<Renderer> renderersToFadeIn = new HashSet<Renderer>();
+    private List<Renderer> renderersToFadeIn = new List<Renderer>();
     private Vector3 direction;
     private float nextRaycastTime;
     
@@ -26,6 +26,11 @@ public class WallTransparencyController : MonoBehaviour
     }
     
     private void OnDestroy()
+    {
+        Clear();
+    }
+
+    private void Clear()
     {
         // 트윈 정리
         foreach (var tween in activeTweens.Values)
