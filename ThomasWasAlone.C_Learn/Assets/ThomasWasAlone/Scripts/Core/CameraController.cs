@@ -10,7 +10,13 @@ public class CameraController : MonoBehaviour
     private Transform target;
     private float currentRotationAngle;
     private Vector3 currentVelocity;
-
+    private WallTransparencyController wallTransparency;
+    
+    private void Awake()
+    {
+        wallTransparency = GetComponent<WallTransparencyController>();
+    }
+    
     private void LateUpdate()
     {
         if (!target) return;
@@ -60,5 +66,10 @@ public class CameraController : MonoBehaviour
         target = newTarget;
         currentRotationAngle = 0f;
         target.rotation = Quaternion.Euler(0, currentRotationAngle, 0);
+        
+        if (wallTransparency != null)
+        {
+            wallTransparency.SetTarget(newTarget);
+        }
     }
 } 
