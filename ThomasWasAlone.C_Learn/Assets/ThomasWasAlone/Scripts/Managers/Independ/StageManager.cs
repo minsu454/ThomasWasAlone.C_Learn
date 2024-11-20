@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class StageManager : MonoBehaviour
 {
     [SerializeField] private CubeManager cubeManager;
+
+    private EndCube[] endCubeArr;
 
     private void Awake()
     {
@@ -18,6 +21,20 @@ public class StageManager : MonoBehaviour
 
         MapData data  = mapGo.GetComponent<Map>().mapData;
 
-        cubeManager.Init(data.startDic);
+        cubeManager.Init(data.startList);
+        CreateEndCube(data.endList);
+    }
+
+    private void CreateEndCube(List<SpawnData> data)
+    {
+        endCubeArr = new EndCube[data.Count];
+
+        for (int i = 0; i < data.Count; i++)
+        {
+            GameObject cubePrefab = Managers.Cube.ReturnEndCube(data[i].Type);
+            GameObject cubeGo = Instantiate(cubePrefab, data[i].Pos, Quaternion.identity);
+
+            endCubeArr[i] = cubeGo.GetComponent<EndCube>();
+        }
     }
 }

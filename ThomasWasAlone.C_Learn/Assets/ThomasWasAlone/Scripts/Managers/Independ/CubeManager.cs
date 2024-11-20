@@ -19,7 +19,7 @@ public class CubeManager : MonoBehaviour
 
         for (int i = 0; i < data.Count; i++)
         {
-            GameObject cubePrefab = Managers.Cube.ReturnCube(data[i].Type);
+            GameObject cubePrefab = Managers.Cube.ReturnPlayer(data[i].Type);
             GameObject cubeGo = Instantiate(cubePrefab, data[i].Pos, Quaternion.identity);
 
             cubes[i] = cubeGo.GetComponent<BaseCube>();

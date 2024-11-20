@@ -11,7 +11,7 @@ public class EndCube : MonoBehaviour
 
     [SerializeField] private MeshRenderer myRenderer;
 
-    public bool isInCube;
+    public bool isInCube { get; private set; }
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class EndCube : MonoBehaviour
 
             if (cubeType == cube.CubeType)
             {
-                myRenderer.materials[0] = inCube;
+                myRenderer.material = inCube;
                 isInCube = true;
             }
 
@@ -42,7 +42,10 @@ public class EndCube : MonoBehaviour
                 BaseCube cube = other.GetComponent<BaseCube>();
 
                 if (cubeType == cube.CubeType)
-                    myRenderer.materials[0] = outCube;
+                {
+                    myRenderer.material = outCube;
+                    isInCube = false;
+                }
             }
         }
     }

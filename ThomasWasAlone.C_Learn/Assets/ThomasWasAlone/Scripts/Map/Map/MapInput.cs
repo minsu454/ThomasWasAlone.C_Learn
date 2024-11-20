@@ -165,7 +165,7 @@ public class MapInput : MonoBehaviour
                 return;
             }
             destroyStartEndBlock.Add(startBlock);
-            MapManager.Instance.map.mapData.startDic.Add(new SpawnData(type, startBlock.transform.position));
+            MapManager.Instance.map.mapData.startList.Add(new SpawnData(type, startBlock.transform.position));
             startpos = startBlock.transform.position;
             SetTransparency(startBlock, 0.01f, Color.red);
             isStartSelected = true;
@@ -179,7 +179,7 @@ public class MapInput : MonoBehaviour
                 return;
             }
             destroyStartEndBlock.Add(endBlock);
-            MapManager.Instance.map.mapData.endDic.Add(new SpawnData(type, endBlock.transform.position));
+            MapManager.Instance.map.mapData.endList.Add(new SpawnData(type, endBlock.transform.position));
             SetTransparency(endBlock, 0.01f, Color.green);
             //////////////////////////////////////////////////////////////////
             // 플레이어 생성
