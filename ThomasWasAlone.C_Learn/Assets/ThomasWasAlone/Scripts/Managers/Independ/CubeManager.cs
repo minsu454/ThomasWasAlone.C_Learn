@@ -11,7 +11,6 @@ public class CubeManager : MonoBehaviour
     [SerializeField] private AudioClip dieSound;
     [SerializeField] private AudioClip spawnSound;
     [SerializeField] private BaseCube[] cubes;
-    [SerializeField] private LayerMask wallLayer;
 
     private CameraController cameraController;
     private int currentCubeIndex = 0;
@@ -109,22 +108,7 @@ public class CubeManager : MonoBehaviour
         if (moveDirection != Vector3.zero)
         {
             Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.deltaTime);
-
-            Vector3 originalPosition = currentCube.transform.position;
-
-            float rayDistance = 0.5f;
-            if (!Physics.Raycast(currentCube.transform.position, moveDirection, rayDistance, wallLayer))
-            {
-                currentCube.transform.position += movement;
-
-                if (Physics.OverlapBox(currentCube.transform.position,
-                    currentCube.GetComponent<BoxCollider>().size / 2,
-                    currentCube.transform.rotation,
-                    wallLayer).Length > 0)
-                {
-                    currentCube.transform.position = originalPosition;
-                }
-            }
+            currentCube.transform.position += movement;
         }
     }
 
