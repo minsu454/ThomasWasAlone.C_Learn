@@ -424,8 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapData:
     mapSize: {x: 0, y: 0}
-    startDic: []
-    endDic: []
+    startList: []
+    endList: []
 --- !u!1 &1032833787
 GameObject:
   m_ObjectHideFlags: 0
