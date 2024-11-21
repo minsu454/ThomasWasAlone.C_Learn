@@ -11,9 +11,9 @@ public class CubeManager : MonoBehaviour
     [SerializeField] private AudioClip dieSound;
     [SerializeField] private AudioClip spawnSound;
     [SerializeField] private BaseCube[] cubes;
-    [SerializeField] private CameraController cameraController;
     [SerializeField] private LayerMask wallLayer;
 
+    private CameraController cameraController;
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
     private Vector3[] initialPositions;
@@ -48,6 +48,12 @@ public class CubeManager : MonoBehaviour
 
     public void Init(List<SpawnData> data)
     {
+        cameraController = Camera.main.GetComponent<CameraController>();
+        if (cameraController == null)
+        {
+            return;
+        }
+
         cubes = new BaseCube[data.Count];
         initialPositions = new Vector3[data.Count];
         initialScales = new Vector3[data.Count];
