@@ -69,6 +69,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCubeType: 0
   targetinteractionMap: {fileID: 0}
+  BigMaterial: {fileID: 2100000, guid: cb60916fb05a1214fb4f363abf7fe799, type: 2}
+  smallMaterial: {fileID: 2100000, guid: 92b16b4edc81ee5438a8a38411344b59, type: 2}
+  jumpBoostMaterial: {fileID: 2100000, guid: 01747efb67784d24ebad9b1bb06c777e, type: 2}
+  LightMaterial: {fileID: 2100000, guid: c147b29c866e013418322931a40bcfad, type: 2}
 --- !u!1 &2586827586796432889
 GameObject:
   m_ObjectHideFlags: 0

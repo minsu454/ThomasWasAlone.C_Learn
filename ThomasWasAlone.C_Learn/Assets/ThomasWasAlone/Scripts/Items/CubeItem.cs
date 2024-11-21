@@ -4,6 +4,33 @@ public class CubeItem : MonoBehaviour
 {
     [SerializeField] private CubeType targetCubeType;
     [SerializeField] public GameObject targetinteractionMap;
+    [SerializeField] private Material BigMaterial;
+    [SerializeField] private Material smallMaterial;
+    [SerializeField] private Material jumpBoostMaterial;
+    [SerializeField] private Material LightMaterial;
+    private void Start()
+    {
+        MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
+        switch (targetCubeType)
+        {
+            case CubeType.BigCube:
+                meshRenderer.material = BigMaterial;
+                break;
+
+            case CubeType.SmallCube:
+                meshRenderer.material = smallMaterial;
+                break;
+
+            case CubeType.JumpBoostCube:
+                meshRenderer.material = jumpBoostMaterial;
+                break;
+
+            case CubeType.LightCube:
+                meshRenderer.material = LightMaterial;
+                break;
+
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<BaseCube>(out BaseCube cube)) return;
