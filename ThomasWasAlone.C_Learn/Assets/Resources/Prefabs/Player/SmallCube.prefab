@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 8144736656172537671}
   - component: {fileID: 1403889947149355578}
   - component: {fileID: 5551603279556495693}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SmallCube
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 01747efb67784d24ebad9b1bb06c777e, type: 2}
+  - {fileID: 2100000, guid: 92b16b4edc81ee5438a8a38411344b59, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7e2d2850693750418ed1857e063a867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cubeType: 1
   moveSpeed: 5
   jumpForce: 8
 --- !u!54 &5551603279556495693

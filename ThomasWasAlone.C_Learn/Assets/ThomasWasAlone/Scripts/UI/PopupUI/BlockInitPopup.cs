@@ -16,7 +16,7 @@ public class BlockInitPopup : BasePopupUI
         int y = int.Parse(inputFieldy.text);
         MapManager.Instance.map.mapData.mapSize = new Vector2(x, y);
         MapObject = MapManager.Instance.MapObject;
-        
+        block = MapManager.Instance.Input.DefaultObj;
         for (int i = 0; i < x; i++)
         {
             for (int j = 0; j < y; j++)

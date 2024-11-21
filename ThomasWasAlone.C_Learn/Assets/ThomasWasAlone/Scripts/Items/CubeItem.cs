@@ -34,9 +34,10 @@ public class CubeItem : MonoBehaviour
     public void StartMapObj()
     {
         IMapBlockLogic logicComponent = targetinteractionMap.GetComponent<IMapBlockLogic>();
-        logicComponent.StartCoroutine();
+        logicComponent.StartCoroutineObj();
     }
 } 
 
 // 맵 가장자리 못 넘어가게.
 // 움직이는 함정 박스 레이.
+// 세이브시 스타트 오브젝트들 삭제.

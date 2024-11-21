@@ -2,6 +2,9 @@ using UnityEngine;
 
 public abstract class BaseCube : MonoBehaviour
 {
+    [SerializeField] protected CubeType cubeType;
+    public CubeType CubeType { get { return cubeType; } }
+
     [SerializeField] protected float moveSpeed = 5f;
     [SerializeField] protected float jumpForce = 7f;
     

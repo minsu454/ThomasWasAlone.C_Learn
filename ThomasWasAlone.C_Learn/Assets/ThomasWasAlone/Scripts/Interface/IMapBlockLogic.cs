@@ -3,6 +3,6 @@ using System.Collections;
 public interface IMapBlockLogic
 {
     public IEnumerator MapLogicCoroutine();
-    public void StartCoroutine();
+    public void StartCoroutineObj();
 }
 

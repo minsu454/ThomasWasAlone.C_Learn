@@ -5,44 +5,49 @@ using DG.Tweening;
 public class WallTransparencyController : MonoBehaviour
 {
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float raycastDistance = 10f;
+    [SerializeField] private float raycastDistance = 9f;
     [SerializeField] private float fadeDuration = 0.3f;
     [SerializeField] private float targetAlpha = 0.3f;
     [SerializeField] private float raycastInterval = 0.2f;
-    
+
     private Camera mainCamera;
     private Transform currentTarget;
     private Dictionary<Renderer, Tween> activeTweens = new Dictionary<Renderer, Tween>();
     private Dictionary<Renderer, Material> materialCache = new Dictionary<Renderer, Material>();
     private RaycastHit[] hitResults = new RaycastHit[3];
     private HashSet<Renderer> hitRenderers = new HashSet<Renderer>();
-    private HashSet<Renderer> renderersToFadeIn = new HashSet<Renderer>();
+    private List<Renderer> renderersToFadeIn = new List<Renderer>();
     private Vector3 direction;
     private float nextRaycastTime;
-    
+
     private void Awake()
     {
         mainCamera = Camera.main;
     }
-    
+
     private void OnDestroy()
+    {
+        Clear();
+    }
+
+    private void Clear()
     {
         // 트윈 정리
         foreach (var tween in activeTweens.Values)
         {
             tween?.Kill();
         }
-        
+
         // 머터리얼 정리
         foreach (var material in materialCache.Values)
         {
             Destroy(material);
         }
-        
+
         activeTweens.Clear();
         materialCache.Clear();
     }
-    
+
     private Material GetMaterial(Renderer renderer)
     {
         if (!materialCache.TryGetValue(renderer, out Material material))
@@ -54,22 +59,22 @@ public class WallTransparencyController : MonoBehaviour
         }
         return material;
     }
-    
+
     public void SetTarget(Transform target)
     {
         currentTarget = target;
     }
-    
+
     private void LateUpdate()
     {
         if (!currentTarget) return;
-        
+
         if (Time.time < nextRaycastTime) return;
         nextRaycastTime = Time.time + raycastInterval;
-        
+
         CheckWallTransparency();
     }
-    
+
     private void CheckWallTransparency()
     {
         hitRenderers.Clear();
@@ -106,18 +111,19 @@ public class WallTransparencyController : MonoBehaviour
             FadeIn(renderer);
         }
     }
-    
+
     private void FadeOut(Renderer renderer)
     {
         if (activeTweens.TryGetValue(renderer, out Tween currentTween))
         {
             currentTween.Kill();
         }
-        
+
         Material material = GetMaterial(renderer);
         activeTweens[renderer] = DOTween.To(
             () => material.color.a,
-            (float alpha) => {
+            (float alpha) =>
+            {
                 Color color = material.color;
                 color.a = alpha;
                 material.color = color;
@@ -126,18 +132,19 @@ public class WallTransparencyController : MonoBehaviour
             fadeDuration
         );
     }
-    
+
     private void FadeIn(Renderer renderer)
     {
         if (activeTweens.TryGetValue(renderer, out Tween currentTween))
         {
             currentTween.Kill();
         }
-        
+
         Material material = GetMaterial(renderer);
         activeTweens[renderer] = DOTween.To(
             () => material.color.a,
-            (float alpha) => {
+            (float alpha) =>
+            {
                 Color color = material.color;
                 color.a = alpha;
                 material.color = color;
@@ -146,4 +153,4 @@ public class WallTransparencyController : MonoBehaviour
             fadeDuration
         ).OnComplete(() => activeTweens.Remove(renderer));
     }
-} 
+}

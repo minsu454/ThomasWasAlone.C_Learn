@@ -1,3 +1,4 @@
+using Common.Event;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
@@ -5,11 +6,11 @@ public class InputController : MonoBehaviour
     private Camera mainCamera;
     private CubeManager cubeManager;
     private CameraController cameraController;
-    
+
     private bool jumpRequested;
     private bool switchRequested;
     private bool rotateRequested;
-    
+
     private void Awake()
     {
         cubeManager = GetComponent<CubeManager>();
@@ -27,15 +28,15 @@ public class InputController : MonoBehaviour
         HandleJumpInput();
         HandleSwitchInput();
         HandleRotateInput();
-        
+
         ProcessInputs();
     }
 
     private void HandleMovementInput()
     {
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
-        
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+
         if (h != 0 || v != 0)
         {
             cubeManager.Move(h, v, mainCamera.transform);
@@ -54,10 +55,10 @@ public class InputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            switchRequested = true;
+            EventManager.Dispatch(GameEventType.ChangeCube, null);
         }
     }
-    
+
     private void HandleRotateInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -65,7 +66,7 @@ public class InputController : MonoBehaviour
             rotateRequested = true;
         }
     }
-    
+
     private void ProcessInputs()
     {
         if (jumpRequested)
@@ -73,17 +74,11 @@ public class InputController : MonoBehaviour
             cubeManager.Jump();
             jumpRequested = false;
         }
-        
-        if (switchRequested)
-        {
-            cubeManager.SwitchToNextCube();
-            switchRequested = false;
-        }
-        
+
         if (rotateRequested)
         {
             cameraController.Rotate();
             rotateRequested = false;
         }
     }
-} 
+}

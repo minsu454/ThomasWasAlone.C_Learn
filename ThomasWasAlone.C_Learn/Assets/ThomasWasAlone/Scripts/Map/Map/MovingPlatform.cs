@@ -19,7 +19,6 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
     private float moveSpeed = 2f; // 움직임 속도
     public MapObjType mapObjType = MapObjType.MovingPlatform;
     public Coroutine coroutine;
-
     // start와 end 위치를 설정하는 메서드
     public void SetStartAndEnd(Vector3 start, Vector3 end)
     {
@@ -27,10 +26,29 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
         endPosition = end;
         transform.position = startPosition; // 처음에는 start 위치로 설정
     }
-    public void StartCoroutine()
+    public void StartCoroutineObj()
     {
         //한번 발동하면 아이템이 사라짐. 코루틴 중복 발동 예외 처리 필요 없을듯.
         coroutine = StartCoroutine(MapLogicCoroutine());
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        // 태그로 비교
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("플레이어가 충돌");
+            collision.gameObject.transform.SetParent(transform, true);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        // 태그로 비교
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("플레이어가 충돌 해제");
+            collision.gameObject.transform.SetParent(null, true);
+        }
     }
     public IEnumerator MapLogicCoroutine()
     {

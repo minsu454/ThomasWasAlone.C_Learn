@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEditor;
@@ -32,6 +33,11 @@ public class Park : BaseSceneUI
     public void CombineMeshesSave()
     {
         //meshCombiner.CombineMeshes(MapManager.Instance.map.groundObjs.ToList(), material);
+        foreach (GameObject obj in MapManager.Instance.Input.destroyStartEndBlock)
+        {
+            Destroy(obj);
+        }
+        // 분명 삭제가 됐는데 세이브에는 그냥 삭제 안되고 넘어옴. 1초 뒤 세이브.
         Invoke("SaveMap", 1f);
     }
     public void SaveMap()
@@ -53,7 +59,6 @@ public class Park : BaseSceneUI
         // 맵 이미지를 저장
         SaveMapImage($"{baseName}Image{index}");
     }
-
     private void SaveMapImage(string mapName)
     {
         string imagePath = $"{ImageDirectory}{mapName}.png";

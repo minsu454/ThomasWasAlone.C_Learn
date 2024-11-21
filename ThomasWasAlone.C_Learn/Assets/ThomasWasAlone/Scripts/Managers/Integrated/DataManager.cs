@@ -1,4 +1,5 @@
 using Common.Event;
+using UnityEngine;
 
 public sealed class DataManager
 {
@@ -21,5 +22,30 @@ public sealed class DataManager
     public void Delete()
     {
         EventManager.Subscribe(GameEventType.StageChoice, StageChoiceCompleted);
+    }
+
+    /// <summary>
+    /// 현재 스테이지 저장해주는 함수
+    /// </summary>
+    public void SaveCurrentStage()
+    {
+        string currentStage = mapName;
+        PlayerPrefs.SetInt(currentStage, 1);
+    }
+
+    /// <summary>
+    /// 클리어데이터 반환해주는 함수
+    /// </summary>
+    public bool GetClearData(string stagename)
+    {
+        return PlayerPrefs.HasKey(stagename);
+    }
+
+    /// <summary>
+    /// 모든 저장 데이터 지워주는 함수
+    /// </summary>
+    public void DeleteAllData()
+    {
+        PlayerPrefs.DeleteAll();
     }
 }

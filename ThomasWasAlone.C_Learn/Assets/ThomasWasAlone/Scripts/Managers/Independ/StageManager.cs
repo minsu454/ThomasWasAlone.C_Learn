@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.ProBuilder.Shapes;
 
 public class StageManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> playerObj = new List<GameObject>();
+    [SerializeField] private CubeManager cubeManager;
+
+    private EndCube[] endCubeArr;
 
     private void Awake()
     {
@@ -13,15 +16,25 @@ public class StageManager : MonoBehaviour
 
     private void CreateMap()
     {
-        GameObject prefab = Resources.Load<GameObject>($"Prefabs/Map/SaveMap/SaveMap/{Managers.Data.MapName}");
+        GameObject prefab = Managers.Map.ReturnData(Managers.Data.MapName);
         GameObject mapGo = Instantiate(prefab);
 
-        MapData mapData = mapGo.GetComponent<Map>().mapData;
+        MapData data  = mapGo.GetComponent<Map>().mapData;
 
-        foreach (var spawnData in mapData.startDic)
+        cubeManager.Init(data.startList);
+        CreateEndCube(data.endList);
+    }
+
+    private void CreateEndCube(List<SpawnData> data)
+    {
+        endCubeArr = new EndCube[data.Count];
+
+        for (int i = 0; i < data.Count; i++)
         {
-            GameObject cubePrefab = Managers.Cube.ReturnCube(spawnData.Type);
-            GameObject cubeGo = Instantiate(cubePrefab, spawnData.Pos, Quaternion.identity);
+            GameObject cubePrefab = Managers.Cube.ReturnEndCube(data[i].Type);
+            GameObject cubeGo = Instantiate(cubePrefab, data[i].Pos, Quaternion.identity);
+
+            endCubeArr[i] = cubeGo.GetComponent<EndCube>();
         }
     }
 }
