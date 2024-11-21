@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubeType: 2
   moveSpeed: 5
-  jumpForce: 8
+  jumpForce: 11
   boostForce: 15
 --- !u!54 &4526399929347214194
 Rigidbody:
@@ -131,7 +131,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7453215615626331101}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
