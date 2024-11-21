@@ -7,6 +7,9 @@ using Common.Event;
 
 public class CubeManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip spawnSound;
     [SerializeField] private BaseCube[] cubes;
     [SerializeField] private CameraController cameraController;
 
@@ -18,12 +21,14 @@ public class CubeManager : MonoBehaviour
     private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
     private List<Sequence> tweenSequences = new List<Sequence>();
 
+
     private void SpawnAnimation(BaseCube cube, Vector3 targetScale)
     {
         cube.transform.localScale = Vector3.zero;
 
         Sequence spawnSequence = DOTween.Sequence();
 
+        Managers.Sound.SFX2DPlay(spawnSound);
         //* 큐브가 나타나는 효과
         spawnSequence.Append(cube.transform.DOScale(targetScale * 1.2f, 0.2f)
             .SetEase(Ease.OutQuad));
@@ -105,6 +110,8 @@ public class CubeManager : MonoBehaviour
     {
         if (!currentCube.IsGrounded) return;
 
+        Managers.Sound.SFX2DPlay(jumpSound);
+
         if (currentCube is LightCube)
         {
             var mover = currentCube.GetComponent<LightCubeMover>();
@@ -135,7 +142,7 @@ public class CubeManager : MonoBehaviour
     {
         if (coroutines.TryGetValue("Reset", out var previousCoroutine))
             StopCoroutine(previousCoroutine);
-
+        Managers.Sound.SFX2DPlay(dieSound);
         DieMotion();
         coroutines["Reset"] = StartCoroutine(ResetCubesRoutine());
     }

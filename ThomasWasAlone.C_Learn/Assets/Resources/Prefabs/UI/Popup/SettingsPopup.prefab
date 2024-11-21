@@ -715,8 +715,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6047066734993279599}
-        m_TargetAssemblyTypeName: BasePopupUI, Assembly-CSharp
-        m_MethodName: Close
+        m_TargetAssemblyTypeName: SettingsPopup, Assembly-CSharp
+        m_MethodName: OnClickReturnButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5988dfd96b4dc7540bf0de259c7f0677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _btnClip: {fileID: 8300000, guid: 4793e51a8b4e3384799a9c2d560f5826, type: 3}
   masterSlider: {fileID: 5580077251001295070}
   bgmSlider: {fileID: 4417653238716232186}
   sfxSlider: {fileID: 3579488617625415034}

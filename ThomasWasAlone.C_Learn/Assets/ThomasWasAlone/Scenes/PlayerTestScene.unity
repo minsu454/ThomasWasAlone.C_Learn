@@ -327,6 +327,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfa7702d9debe3c468be6b7060d8ba68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSound: {fileID: 8300000, guid: 3675a1b5c162915478429b18dd67ef37, type: 3}
+  dieSound: {fileID: 8300000, guid: 6b558a498aed5f04990ab7e5444884b4, type: 3}
+  spawnSound: {fileID: 8300000, guid: 180f0c99a35b5214ebf02e1fd6ca144a, type: 3}
   cubes:
   - {fileID: 876482116}
   - {fileID: 871642571}
