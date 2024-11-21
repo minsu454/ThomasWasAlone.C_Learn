@@ -171,7 +171,7 @@ public class MapInput : MonoBehaviour
                     break;
 
                 case CubeType.SmallCube:
-                    startBlock.transform.position += new Vector3(0, -0.35f, 0);
+                    startBlock.transform.position += new Vector3(0, -0.25f, 0);
                     break;
 
                 case CubeType.LightCube:
@@ -203,7 +203,7 @@ public class MapInput : MonoBehaviour
                     break;
 
                 case CubeType.SmallCube:
-                    endBlock.transform.position += new Vector3(0, -0.35f, 0);
+                    endBlock.transform.position += new Vector3(0, -0.25f, 0);
                     break;
 
                 case CubeType.LightCube:
