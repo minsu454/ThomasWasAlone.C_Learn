@@ -35,12 +35,17 @@ public class CubeManager : MonoBehaviour
         tweenSequences.Add(spawnSequence);
     }
 
+    private void OnKillAllCubes(object args)
+    {
+        KillAllCubes();
+    }
+
     public void Init(List<SpawnData> data)
     {
         cubes = new BaseCube[data.Count];
         initialPositions = new Vector3[data.Count];
         initialScales = new Vector3[data.Count];
-
+        EventManager.Subscribe(GameEventType.KillAllCubes, OnKillAllCubes);
         StartCoroutine(SpawnCubesSequentially(data));
     }
 
@@ -194,5 +199,6 @@ public class CubeManager : MonoBehaviour
         coroutines.Clear();
 
         EventManager.Unsubscribe(GameEventType.ChangeCube, SwitchToNextCube);
+        EventManager.Unsubscribe(GameEventType.KillAllCubes, OnKillAllCubes);
     }
 }

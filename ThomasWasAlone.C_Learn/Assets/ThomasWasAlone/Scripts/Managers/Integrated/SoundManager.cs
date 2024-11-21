@@ -41,6 +41,7 @@ public class SoundManager : MonoBehaviour, IInit
         }
 
         bgmSource.clip = clip;
+        bgmSource.Play();
     }
 
     /// <summary>
