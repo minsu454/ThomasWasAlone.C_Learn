@@ -2,21 +2,22 @@ using UnityEngine;
 
 public abstract class BaseCube : MonoBehaviour
 {
+    [SerializeField] protected AudioClip jumpSound;
     [SerializeField] protected CubeType cubeType;
     public CubeType CubeType { get { return cubeType; } }
 
     [SerializeField] protected float moveSpeed = 5f;
     [SerializeField] protected float jumpForce = 7f;
-    
+
     public float MoveSpeed => moveSpeed;
     public float JumpForce => jumpForce;
     public bool IsGrounded => isGrounded;
-    
+
     protected bool isGrounded;
     protected Vector3 boxSize;
     protected float rayLength;
     protected Vector3 origin;
-    
+
     protected Rigidbody rb;
     protected BoxCollider boxCollider;
 
@@ -42,7 +43,7 @@ public abstract class BaseCube : MonoBehaviour
     {
         origin = transform.position;
         origin.y -= GetOriginYOffset();
-        
+
         isGrounded = Physics.BoxCast(
             origin,
             boxSize * 0.5f,
@@ -52,6 +53,7 @@ public abstract class BaseCube : MonoBehaviour
             rayLength
         );
     }
+
     protected virtual Vector3 GetDefaultBoxSize()
     {
         var size = boxCollider.size * 0.9f;
@@ -73,6 +75,7 @@ public abstract class BaseCube : MonoBehaviour
     {
         if (rb)
         {
+            Managers.Sound.SFX2DPlay(jumpSound);
             rb.AddForce(Vector3.up * boostForce, ForceMode.Impulse);
         }
     }

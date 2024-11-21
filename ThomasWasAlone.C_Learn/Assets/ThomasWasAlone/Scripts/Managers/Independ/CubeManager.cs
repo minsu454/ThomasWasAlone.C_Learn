@@ -7,9 +7,13 @@ using Common.Event;
 
 public class CubeManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip dieSound;
+    [SerializeField] private AudioClip spawnSound;
     [SerializeField] private BaseCube[] cubes;
-    [SerializeField] private CameraController cameraController;
+    [SerializeField] private LayerMask wallLayer;
 
+    private CameraController cameraController;
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
     private Vector3[] initialPositions;
@@ -18,12 +22,14 @@ public class CubeManager : MonoBehaviour
     private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
     private List<Sequence> tweenSequences = new List<Sequence>();
 
+
     private void SpawnAnimation(BaseCube cube, Vector3 targetScale)
     {
         cube.transform.localScale = Vector3.zero;
 
         Sequence spawnSequence = DOTween.Sequence();
 
+        Managers.Sound.SFX2DPlay(spawnSound);
         //* 큐브가 나타나는 효과
         spawnSequence.Append(cube.transform.DOScale(targetScale * 1.2f, 0.2f)
             .SetEase(Ease.OutQuad));
@@ -42,6 +48,12 @@ public class CubeManager : MonoBehaviour
 
     public void Init(List<SpawnData> data)
     {
+        cameraController = Camera.main.GetComponent<CameraController>();
+        if (cameraController == null)
+        {
+            return;
+        }
+
         cubes = new BaseCube[data.Count];
         initialPositions = new Vector3[data.Count];
         initialScales = new Vector3[data.Count];
@@ -97,13 +109,30 @@ public class CubeManager : MonoBehaviour
         if (moveDirection != Vector3.zero)
         {
             Vector3 movement = moveDirection * (currentCube.MoveSpeed * Time.deltaTime);
-            currentCube.transform.position += movement;
+
+            Vector3 originalPosition = currentCube.transform.position;
+
+            float rayDistance = 0.5f;
+            if (!Physics.Raycast(currentCube.transform.position, moveDirection, rayDistance, wallLayer))
+            {
+                currentCube.transform.position += movement;
+
+                if (Physics.OverlapBox(currentCube.transform.position,
+                    currentCube.GetComponent<BoxCollider>().size / 2,
+                    currentCube.transform.rotation,
+                    wallLayer).Length > 0)
+                {
+                    currentCube.transform.position = originalPosition;
+                }
+            }
         }
     }
 
     public void Jump()
     {
         if (!currentCube.IsGrounded) return;
+
+        Managers.Sound.SFX2DPlay(jumpSound);
 
         if (currentCube is LightCube)
         {
@@ -135,7 +164,7 @@ public class CubeManager : MonoBehaviour
     {
         if (coroutines.TryGetValue("Reset", out var previousCoroutine))
             StopCoroutine(previousCoroutine);
-
+        Managers.Sound.SFX2DPlay(dieSound);
         DieMotion();
         coroutines["Reset"] = StartCoroutine(ResetCubesRoutine());
     }

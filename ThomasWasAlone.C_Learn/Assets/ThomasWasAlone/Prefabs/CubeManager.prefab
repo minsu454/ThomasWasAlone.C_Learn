@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6322980201866138867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9161711416818099520}
+  - component: {fileID: 893811901190983875}
+  - component: {fileID: 1874091671288829207}
+  m_Layer: 0
+  m_Name: CubeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9161711416818099520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322980201866138867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893811901190983875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322980201866138867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa7702d9debe3c468be6b7060d8ba68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSound: {fileID: 8300000, guid: 3675a1b5c162915478429b18dd67ef37, type: 3}
+  dieSound: {fileID: 8300000, guid: 6b558a498aed5f04990ab7e5444884b4, type: 3}
+  spawnSound: {fileID: 8300000, guid: 180f0c99a35b5214ebf02e1fd6ca144a, type: 3}
+  cubes:
+  - {fileID: 4305414319684008201, guid: b45a7e23c70cd6b4fab240bf1f0721b3, type: 3}
+  - {fileID: 8680983446328223105, guid: 703e3fe5144959745a21200551659ed8, type: 3}
+  - {fileID: 6012194280376170527, guid: 97b6c264521f1a54eb92367e928a970c, type: 3}
+  - {fileID: 1403889947149355578, guid: 783a0ae91b53f6244a2a15ae2c88e516, type: 3}
+  cameraController: {fileID: 0}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!114 &1874091671288829207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6322980201866138867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ad174518b60b9438e9074625829ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
