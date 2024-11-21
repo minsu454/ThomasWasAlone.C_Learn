@@ -9,13 +9,20 @@ public class CubeManager : MonoBehaviour
 {
     [SerializeField] private BaseCube[] cubes;
     [SerializeField] private CameraController cameraController;
-    
+
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
-    
+    private Vector3[] initialPositions;
+    private Vector3[] initialScales;
+
+    private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
+    private List<Sequence> tweenSequences = new List<Sequence>();
+
     public void Init(List<SpawnData> data)
     {
         cubes = new BaseCube[data.Count];
+        initialPositions = new Vector3[data.Count];
+        initialScales = new Vector3[data.Count];
 
         for (int i = 0; i < data.Count; i++)
         {
@@ -28,6 +35,16 @@ public class CubeManager : MonoBehaviour
         EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
 
         SwitchToCube(0);
+        SaveInitialTransforms();
+    }
+
+    private void SaveInitialTransforms()
+    {
+        for (int i = 0; i < cubes.Length; i++)
+        {
+            initialPositions[i] = cubes[i].transform.position;
+            initialScales[i] = cubes[i].transform.localScale;
+        }
     }
 
     public void Move(float horizontal, float vertical, Transform cameraTransform)
@@ -50,7 +67,7 @@ public class CubeManager : MonoBehaviour
     public void Jump()
     {
         if (!currentCube.IsGrounded) return;
-        
+
         if (currentCube is LightCube)
         {
             var mover = currentCube.GetComponent<LightCubeMover>();
@@ -79,24 +96,71 @@ public class CubeManager : MonoBehaviour
 
     public void KillAllCubes()
     {
-        foreach (var cube in cubes)
+        if (coroutines.TryGetValue("Reset", out var previousCoroutine))
+            StopCoroutine(previousCoroutine);
+
+        DieMotion();
+        coroutines["Reset"] = StartCoroutine(ResetCubesRoutine());
+    }
+
+    private IEnumerator ResetCubesRoutine()
+    {
+        yield return new WaitForSeconds(0.6f);
+
+        for (int i = 0; i < cubes.Length; i++)
         {
-            // 스케일 감소
-            cube.transform.DOScale(Vector3.zero, 0.5f)
-                .SetEase(Ease.InBack);
-            
-            // 회전
-            cube.transform.DOShakeRotation(0.5f, 45f, 10, 90)
-                .OnComplete(() => {
-                    cube.gameObject.SetActive(false);
-                    // 스케일 복구
-                    cube.transform.localScale = Vector3.one;
-                });
+            cubes[i].gameObject.SetActive(true);
+            cubes[i].transform.position = initialPositions[i];
+            cubes[i].transform.localScale = initialScales[i];
+        }
+        Physics.SyncTransforms();
+        coroutines.Remove("Reset");
+    }
+
+    private void DieMotion()
+    {
+        foreach (var sequence in tweenSequences)
+        {
+            sequence?.Kill();
+        }
+        tweenSequences.Clear();
+
+        for (int i = 0; i < cubes.Length; i++)
+        {
+            Sequence sequence = DOTween.Sequence();
+            BaseCube cube = cubes[i];
+            int index = i;
+
+            sequence.Join(cube.transform.DOScale(Vector3.zero, 0.5f)
+                .SetEase(Ease.InBack));
+            sequence.Join(cube.transform.DOShakeRotation(0.5f, 45f, 10, 90));
+
+            sequence.OnComplete(() =>
+            {
+                cube.gameObject.SetActive(false);
+                cube.transform.localScale = initialScales[index];
+                cube.transform.rotation = Quaternion.identity;
+            });
+
+            tweenSequences.Add(sequence);
         }
     }
 
     private void OnDestroy()
     {
+        foreach (var sequence in tweenSequences)
+        {
+            sequence?.Kill();
+        }
+        tweenSequences.Clear();
+
+        foreach (var coroutine in coroutines.Values)
+        {
+            if (coroutine != null)
+                StopCoroutine(coroutine);
+        }
+        coroutines.Clear();
+
         EventManager.Unsubscribe(GameEventType.ChangeCube, SwitchToNextCube);
     }
-} 
+}
