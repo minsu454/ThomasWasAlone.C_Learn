@@ -33,7 +33,6 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // 태그로 비교
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("플레이어가 충돌");
@@ -43,7 +42,6 @@ public class MovingPlatform : MonoBehaviour, IMapBlockLogic
 
     private void OnCollisionExit(Collision collision)
     {
-        // 태그로 비교
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("플레이어가 충돌 해제");
