@@ -113,7 +113,7 @@ public class CubeManager : MonoBehaviour
             cubes[i].transform.position = initialPositions[i];
             cubes[i].transform.localScale = initialScales[i];
         }
-
+        Physics.SyncTransforms();
         coroutines.Remove("Reset");
     }
 
