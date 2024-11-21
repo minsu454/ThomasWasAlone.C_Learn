@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Processors;
 using UnityEngine.ProBuilder.Shapes;
 
 public class StageManager : MonoBehaviour
@@ -23,6 +24,8 @@ public class StageManager : MonoBehaviour
 
         cubeManager.Init(data.startList);
         CreateEndCube(data.endList);
+
+        CreateDeadzone(data.mapSize);
     }
 
     private void CreateEndCube(List<SpawnData> data)
@@ -36,5 +39,18 @@ public class StageManager : MonoBehaviour
 
             endCubeArr[i] = cubeGo.GetComponent<EndCube>();
         }
+    }
+
+    private void CreateDeadzone(Vector2 mapsize)
+    {
+        GameObject deadzone = new GameObject("Deadzone");
+        deadzone.AddComponent<Deadzone>();
+
+        BoxCollider col = deadzone.AddComponent<BoxCollider>();
+
+        col.isTrigger = true;
+        col.size = new Vector3(mapsize.x * 5f, 1, mapsize.y * 5f);
+
+        deadzone.transform.position += new Vector3(mapsize.x / 2, -8, mapsize.y  / 2);
     }
 }
