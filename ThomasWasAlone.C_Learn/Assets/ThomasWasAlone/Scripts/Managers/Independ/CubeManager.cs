@@ -18,33 +18,65 @@ public class CubeManager : MonoBehaviour
     private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
     private List<Sequence> tweenSequences = new List<Sequence>();
 
+    private void SpawnAnimation(BaseCube cube, Vector3 targetScale)
+    {
+        cube.transform.localScale = Vector3.zero;
+
+        Sequence spawnSequence = DOTween.Sequence();
+
+        //* 큐브가 나타나는 효과
+        spawnSequence.Append(cube.transform.DOScale(targetScale * 1.2f, 0.2f)
+            .SetEase(Ease.OutQuad));
+
+        //* 큐브가 줄어들었다가 원래 크기로 돌아오는 효과
+        spawnSequence.Append(cube.transform.DOScale(targetScale, 0.1f)
+            .SetEase(Ease.InOutQuad));
+
+        tweenSequences.Add(spawnSequence);
+    }
+
     public void Init(List<SpawnData> data)
     {
         cubes = new BaseCube[data.Count];
         initialPositions = new Vector3[data.Count];
         initialScales = new Vector3[data.Count];
 
+        StartCoroutine(SpawnCubesSequentially(data));
+    }
+
+    private IEnumerator SpawnCubesSequentially(List<SpawnData> data)
+    {
         for (int i = 0; i < data.Count; i++)
         {
             GameObject cubePrefab = Managers.Cube.ReturnPlayer(data[i].Type);
             GameObject cubeGo = Instantiate(cubePrefab, data[i].Pos, Quaternion.identity);
 
-            cubes[i] = cubeGo.GetComponent<BaseCube>();
+            BaseCube cube = cubeGo.GetComponent<BaseCube>();
+            cubes[i] = cube;
+
+            //* 초기 위치와 스케일 저장
+            initialPositions[i] = data[i].Pos;
+            initialScales[i] = cube.transform.localScale;
+
+            //* 스폰 애니메이션 실행
+            SpawnAnimation(cube, initialScales[i]);
+
+            //* 카메라 전환
+            cameraController.SetTarget(cube.transform);
+
+            //* 큐브 커서 변경
+            EventManager.Dispatch(GameEventType.ChangeCube, null);
+
+            //* 다음 큐브 생성 전 대기
+            yield return YieldCache.WaitForSeconds(0.5f);
         }
 
-        EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
-
+        //* 모든 큐브 생성 후 첫 번째 큐브로 카메라 전환
+        currentCubeIndex = 0;
         SwitchToCube(0);
-        SaveInitialTransforms();
-    }
 
-    private void SaveInitialTransforms()
-    {
-        for (int i = 0; i < cubes.Length; i++)
-        {
-            initialPositions[i] = cubes[i].transform.position;
-            initialScales[i] = cubes[i].transform.localScale;
-        }
+        EventManager.Dispatch(GameEventType.ChangeCube, null);
+        EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
     }
 
     public void Move(float horizontal, float vertical, Transform cameraTransform)
@@ -105,7 +137,7 @@ public class CubeManager : MonoBehaviour
 
     private IEnumerator ResetCubesRoutine()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return YieldCache.WaitForSeconds(0.6f);
 
         for (int i = 0; i < cubes.Length; i++)
         {
