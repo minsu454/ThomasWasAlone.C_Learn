@@ -52,10 +52,6 @@ public abstract class BaseCube : MonoBehaviour
             rayLength
         );
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("플레이어 충돌?");
-    }
     protected virtual Vector3 GetDefaultBoxSize()
     {
         var size = boxCollider.size * 0.9f;
