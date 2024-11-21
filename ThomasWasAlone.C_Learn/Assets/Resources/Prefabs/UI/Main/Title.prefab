@@ -1423,6 +1423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaf6fca4b189a743936bc59f4802ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _btnClip: {fileID: 8300000, guid: 4793e51a8b4e3384799a9c2d560f5826, type: 3}
 --- !u!223 &2363570576851902979
 Canvas:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public static class CubeFactory
                 color = new Color32(101, 100, 255, 255);
                 break;
             case CubeType.SmallCube:
-                color = Color.white;
+                color = new Color32(0, 255, 10, 255); ;
                 break;
             case CubeType.JumpBoostCube:
                 color = new Color32(255, 100, 100, 255);
