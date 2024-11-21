@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cursorChanger: {fileID: 2554211236381506594}
+  _btnClip: {fileID: 8300000, guid: 4793e51a8b4e3384799a9c2d560f5826, type: 3}
 --- !u!223 &7113949496668668747
 Canvas:
   m_ObjectHideFlags: 0

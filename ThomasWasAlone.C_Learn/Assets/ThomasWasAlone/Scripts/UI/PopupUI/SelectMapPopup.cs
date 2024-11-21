@@ -1,14 +1,14 @@
 using Common.Event;
 using Common.SceneEx;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class SelectMapPopup : BasePopupUI
 {
     [Header("UIScrollView")]
     [SerializeField] private UIScrollView mapScrollView;                    //맵 스크롤뷰
+    
+    [SerializeField] private AudioClip _btnClip;
 
     public override void Init<T>(T option)
     {
@@ -48,5 +48,14 @@ public class SelectMapPopup : BasePopupUI
         EventManager.Dispatch(GameEventType.StageChoice, type);
 
         SceneManagerEx.LoadScene(SceneType.InGame);
+        
+        Managers.Sound.SFX2DPlay(_btnClip);
+    }
+
+
+    public void OnClickReturnButton()
+    {
+        Managers.Sound.SFX2DPlay(_btnClip);
+        Close();
     }
 }

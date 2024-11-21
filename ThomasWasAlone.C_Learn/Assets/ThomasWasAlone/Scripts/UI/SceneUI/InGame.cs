@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class InGame : BaseSceneUI
 {
     [SerializeField] private CursorChanger _cursorChanger;
+    [SerializeField] private AudioClip _btnClip;
+
     
     public override void Init()
     {
@@ -30,5 +32,6 @@ public class InGame : BaseSceneUI
     public void OnClickPauseButton()
     {
         Managers.UI.CreatePopup<PausePopup>();
+        Managers.Sound.SFX2DPlay(_btnClip);
     }
 }

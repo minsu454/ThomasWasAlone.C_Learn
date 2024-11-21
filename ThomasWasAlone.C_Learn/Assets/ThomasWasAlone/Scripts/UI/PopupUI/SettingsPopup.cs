@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class SettingsPopup : BasePopupUI
 {
-    
+    [SerializeField] private AudioClip _btnClip;
     [SerializeField] private Slider masterSlider, bgmSlider, sfxSlider;
 
     public override void Init<T>(T option)
@@ -32,5 +32,12 @@ public class SettingsPopup : BasePopupUI
     public void OnSFXSliderChanged()
     {
         Managers.Sound.SetVolume(SoundType.SFX, sfxSlider.value);
+    }
+
+
+    public void OnClickReturnButton()
+    {
+        Managers.Sound.SFX2DPlay(_btnClip);
+        Close();
     }
 }
