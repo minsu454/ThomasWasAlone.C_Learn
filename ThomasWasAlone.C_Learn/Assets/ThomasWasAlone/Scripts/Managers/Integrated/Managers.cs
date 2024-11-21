@@ -35,6 +35,11 @@ public sealed class Managers : MonoBehaviour
         instance.soundManager = CreateManager<SoundManager>(go.transform);
     }
 
+    private void Start()
+    {
+        instance.soundManager.OnStart();
+    }
+
     private static T CreateManager<T>(Transform parent) where T : Component, IInit
     {
         GameObject go = new GameObject(typeof(T).Name);
