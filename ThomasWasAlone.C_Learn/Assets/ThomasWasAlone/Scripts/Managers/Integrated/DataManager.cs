@@ -3,7 +3,7 @@ using UnityEngine;
 
 public sealed class DataManager
 {
-    private string mapName = "SaveMap5";    //맵이름
+    private string mapName = "SaveMap1";    //맵이름
     public string MapName { get { return mapName; } }
 
     public StageSO stageSO { get; private set; }

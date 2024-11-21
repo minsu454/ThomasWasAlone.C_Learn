@@ -12,6 +12,9 @@ public class CubeManager : MonoBehaviour
     [SerializeField] private AudioClip spawnSound;
     [SerializeField] private BaseCube[] cubes;
 
+    [Header("Input")]
+    [SerializeField] private InputController inputController;
+
     private CameraController cameraController;
     private int currentCubeIndex = 0;
     private BaseCube currentCube => cubes[currentCubeIndex];
@@ -21,14 +24,13 @@ public class CubeManager : MonoBehaviour
     private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
     private List<Sequence> tweenSequences = new List<Sequence>();
 
-
     private void SpawnAnimation(BaseCube cube, Vector3 targetScale)
     {
         cube.transform.localScale = Vector3.zero;
 
-        Sequence spawnSequence = DOTween.Sequence();
-
         Managers.Sound.SFX2DPlay(spawnSound);
+
+        Sequence spawnSequence = DOTween.Sequence();
         //* 큐브가 나타나는 효과
         spawnSequence.Append(cube.transform.DOScale(targetScale * 1.2f, 0.2f)
             .SetEase(Ease.OutQuad));
@@ -45,6 +47,11 @@ public class CubeManager : MonoBehaviour
         KillAllCubes();
     }
 
+    private void LookInput(object args)
+    {
+        inputController.enabled = (bool)args;
+    }
+
     public void Init(List<SpawnData> data)
     {
         cameraController = Camera.main.GetComponent<CameraController>();
@@ -56,7 +63,12 @@ public class CubeManager : MonoBehaviour
         cubes = new BaseCube[data.Count];
         initialPositions = new Vector3[data.Count];
         initialScales = new Vector3[data.Count];
+
         EventManager.Subscribe(GameEventType.KillAllCubes, OnKillAllCubes);
+        EventManager.Subscribe(GameEventType.LockInput, LookInput);
+
+        EventManager.Dispatch(GameEventType.LockInput, false);
+
         StartCoroutine(SpawnCubesSequentially(data));
     }
 
@@ -92,6 +104,8 @@ public class CubeManager : MonoBehaviour
         SwitchToCube(0);
 
         EventManager.Dispatch(GameEventType.ChangeCube, null);
+        EventManager.Dispatch(GameEventType.LockInput, true);
+
         EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
     }
 
@@ -213,5 +227,6 @@ public class CubeManager : MonoBehaviour
 
         EventManager.Unsubscribe(GameEventType.ChangeCube, SwitchToNextCube);
         EventManager.Unsubscribe(GameEventType.KillAllCubes, OnKillAllCubes);
+        EventManager.Unsubscribe(GameEventType.LockInput, LookInput);
     }
 }

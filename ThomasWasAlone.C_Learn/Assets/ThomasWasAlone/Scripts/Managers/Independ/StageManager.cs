@@ -53,6 +53,7 @@ public class StageManager : MonoBehaviour
     /// </summary>
     private void GameClear()
     {
+        EventManager.Dispatch(GameEventType.LockInput, false);
         Managers.UI.CreatePopup<StageClearPopup>();
     }
 
