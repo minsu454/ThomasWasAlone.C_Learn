@@ -336,6 +336,9 @@ MonoBehaviour:
   - {fileID: 1396900963}
   - {fileID: 1733986599}
   cameraController: {fileID: 158364340}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!4 &786994029
 Transform:
   m_ObjectHideFlags: 0
