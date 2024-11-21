@@ -7,7 +7,7 @@ public abstract class BaseCube : MonoBehaviour
     public CubeType CubeType { get { return cubeType; } }
 
     [SerializeField] protected float moveSpeed = 5f;
-    [SerializeField] protected float jumpForce = 150f;
+    [SerializeField] protected float jumpForce = 170f;
 
     [SerializeField] protected float normalDrag = 3f;
     [SerializeField] protected float fallingDrag = 0f;

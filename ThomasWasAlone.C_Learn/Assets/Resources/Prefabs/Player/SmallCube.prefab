@@ -122,7 +122,9 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 3675a1b5c162915478429b18dd67ef37, type: 3}
   cubeType: 1
   moveSpeed: 5
-  jumpForce: 150
+  jumpForce: 170
+  normalDrag: 3
+  fallingDrag: 0
 --- !u!54 &5551603279556495693
 Rigidbody:
   m_ObjectHideFlags: 0
