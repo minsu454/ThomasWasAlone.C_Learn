@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8264420135234058785}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.19, z: 0}
+  m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1.7, y: 0.5, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -51,7 +51,6 @@ MonoBehaviour:
   outCube: {fileID: 2100000, guid: f3175c287034d0040b1902cee0417cc9, type: 2}
   inCube: {fileID: 2100000, guid: 6733e9844cdab6e49b02ba378f6951dd, type: 2}
   myRenderer: {fileID: 3000672715897637051}
-  isInCube: 0
 --- !u!33 &1146327766614759401
 MeshFilter:
   m_ObjectHideFlags: 0

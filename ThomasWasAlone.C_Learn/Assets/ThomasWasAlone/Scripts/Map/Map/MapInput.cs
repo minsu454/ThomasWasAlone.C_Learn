@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class MapInput : MonoBehaviour
 {
-    public GameObject DefaultObj;    
+    public GameObject DefaultObj;
     public GameObject objectToSpawn; // 생성할 오브젝트
     public float spawnDistance = 1f; // 생성 거리
     private GameObject startBlock;   // 시작 블록
@@ -27,10 +27,10 @@ public class MapInput : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layMask) && !EventSystem.current.IsPointerOverGameObject())
         {
             Vector3 spawnPosition = hit.collider.bounds.center + hit.normal * spawnDistance;
-           
+
             Vector2 mapSize = MapManager.Instance.map.mapData.mapSize;
             ///////////////////////
-            float maxHeight = Math.Max(mapSize.x,mapSize.y); // 최대 높이
+            float maxHeight = Math.Max(mapSize.x, mapSize.y); // 최대 높이
 
             // 하위 오브젝트 위치 검사
             Transform[] childTransforms = objectToSpawn.GetComponentsInChildren<Transform>();
@@ -44,7 +44,7 @@ public class MapInput : MonoBehaviour
                 // 범위는 처음 입력한 맵 크기 + 두 값 중 큰 값이 높이
                 if (childPosition.x < 0 || childPosition.x >= mapSize.x ||
                     childPosition.z < 0 || childPosition.z >= mapSize.y ||
-                    childPosition.y > maxHeight) 
+                    childPosition.y > maxHeight)
                 {
                     Debug.LogWarning("블록 생성 위치가 맵의 범위나 높이 제한 초과");
                     return null;
@@ -164,6 +164,24 @@ public class MapInput : MonoBehaviour
                 Debug.Log("block없음");
                 return;
             }
+            switch (type)
+            {
+                case CubeType.BigCube:
+                    startBlock.transform.position += new Vector3(0, +0.5f, 0);
+                    break;
+
+                case CubeType.SmallCube:
+                    startBlock.transform.position += new Vector3(0, -0.35f, 0);
+                    break;
+
+                case CubeType.LightCube:
+                    startBlock.transform.position += new Vector3(0, +0.25f, 0);
+                    break;
+
+                case CubeType.JumpBoostCube:
+                    startBlock.transform.position += new Vector3(0, -0.25f, 0);
+                    break;
+            }
             destroyStartEndBlock.Add(startBlock);
             MapManager.Instance.map.mapData.startList.Add(new SpawnData(type, startBlock.transform.position));
             startpos = startBlock.transform.position;
@@ -177,6 +195,24 @@ public class MapInput : MonoBehaviour
             {
                 Debug.LogWarning("block없음");
                 return;
+            }
+            switch (type)
+            {
+                case CubeType.BigCube:
+                    endBlock.transform.position += new Vector3(0, +0.5f, 0);
+                    break;
+
+                case CubeType.SmallCube:
+                    endBlock.transform.position += new Vector3(0, -0.35f, 0);
+                    break;
+
+                case CubeType.LightCube:
+                    endBlock.transform.position += new Vector3(0, +0.25f, 0);
+                    break;
+
+                case CubeType.JumpBoostCube:
+                    endBlock.transform.position += new Vector3(0, -0.25f, 0);
+                    break;
             }
             destroyStartEndBlock.Add(endBlock);
             MapManager.Instance.map.mapData.endList.Add(new SpawnData(type, endBlock.transform.position));
@@ -237,7 +273,7 @@ public class MapInput : MonoBehaviour
             color.a = Mathf.Clamp(alpha, 0f, 1f);  // 알파값이 0에서 1 사이로 제한
             material.color = color;
         }
-    
+
     }
 
 }

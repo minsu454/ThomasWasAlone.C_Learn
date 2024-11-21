@@ -51,7 +51,6 @@ MonoBehaviour:
   outCube: {fileID: 2100000, guid: f3175c287034d0040b1902cee0417cc9, type: 2}
   inCube: {fileID: 2100000, guid: 6733e9844cdab6e49b02ba378f6951dd, type: 2}
   myRenderer: {fileID: 4786123705879397613}
-  isInCube: 0
 --- !u!33 &5247386319873517835
 MeshFilter:
   m_ObjectHideFlags: 0
