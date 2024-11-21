@@ -5,4 +5,5 @@ public enum GameEventType
 {
     StageChoice = 0,        //스테이지 골랐을 때
     ChangeCube,             //큐브 전환할 때
+    KillAllCubes,           //모든 큐브 죽일 때
 }

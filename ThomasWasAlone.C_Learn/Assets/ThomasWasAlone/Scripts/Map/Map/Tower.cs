@@ -1,6 +1,6 @@
+using Common.Event;
 using Common.Yield;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour, IMapBlockLogic
@@ -46,7 +46,7 @@ public class Tower : MonoBehaviour, IMapBlockLogic
         {
             StartCoroutineObj();
             Debug.Log("BoxRay 충돌한 오브젝트: " + hit.collider.gameObject.name);
-            hitPoint = hit.point; 
+            hitPoint = hit.point;
         }
     }
 
@@ -83,4 +83,11 @@ public class Tower : MonoBehaviour, IMapBlockLogic
         coroutine = null;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<BaseCube>(out _))
+        {
+            EventManager.Dispatch(GameEventType.KillAllCubes, null);
+        }
+    }
 }
