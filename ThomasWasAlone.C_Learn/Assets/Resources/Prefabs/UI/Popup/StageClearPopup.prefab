@@ -660,6 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 289e34c8975686f42a8a2aebedcd9919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clearClip: {fileID: 8300000, guid: f1ecbe846c79ee14990ed723ce20eaf5, type: 3}
   _btnClip: {fileID: 8300000, guid: 4793e51a8b4e3384799a9c2d560f5826, type: 3}
 --- !u!223 &1330575545162646111
 Canvas:

@@ -1,3 +1,4 @@
+using Common.Event;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,6 @@ public class EndCube : MonoBehaviour
     [SerializeField] private Material inCube;
 
     [SerializeField] private MeshRenderer myRenderer;
-
-    public bool isInCube { get; private set; }
 
     private void Awake()
     {
@@ -28,9 +27,8 @@ public class EndCube : MonoBehaviour
             if (cubeType == cube.CubeType)
             {
                 myRenderer.material = inCube;
-                isInCube = true;
+                EventManager.Dispatch(GameEventType.InEndCube, 1);
             }
-
         }
     }
 
@@ -38,16 +36,18 @@ public class EndCube : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (isInCube)
-            {
-                BaseCube cube = other.GetComponent<BaseCube>();
+            BaseCube cube = other.GetComponent<BaseCube>();
 
-                if (cubeType == cube.CubeType)
-                {
-                    myRenderer.material = outCube;
-                    isInCube = false;
-                }
+            if (cubeType == cube.CubeType)
+            {
+                myRenderer.material = outCube;
+                EventManager.Dispatch(GameEventType.InEndCube, -1);
             }
         }
+    }
+
+    public void ResetMaterial()
+    {
+        myRenderer.material = outCube;
     }
 }
