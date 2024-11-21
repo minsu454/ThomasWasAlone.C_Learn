@@ -26,7 +26,12 @@ public class SoundManager : MonoBehaviour, IInit
 
         SceneManagerEx.OnLoadCompleted(OnSceneLoaded);
     }
-    
+
+    public void OnStart()
+    {
+        InitPlayerPrefsVolume();
+    }
+
     /// <summary>
     /// 씬 로드시 bgm깔아주는 이벤트 함수
     /// </summary>
@@ -42,6 +47,24 @@ public class SoundManager : MonoBehaviour, IInit
 
         bgmSource.clip = clip;
         bgmSource.Play();
+    }
+
+    /// <summary>
+    /// 저장된 사운드 크기로 초기화 함수
+    /// </summary>
+    private void InitPlayerPrefsVolume()
+    {
+        foreach (SoundType type in Enum.GetValues(typeof(SoundType)))
+        {
+            string name = type.EnumToString();
+            if (!GetAudioMixerGroup(name, out var group))
+            {
+                Debug.LogError($"Is Not Found Group : {name}");
+                return;
+            }
+
+            SetVolume(type, PlayerPrefs.GetFloat(name));
+        }
     }
 
     /// <summary>
@@ -117,8 +140,12 @@ public class SoundManager : MonoBehaviour, IInit
         soundPlayer.Play(clip);
     }
 
+    /// <summary>
+    /// 소리 크기 설정 함수
+    /// </summary>
     public void SetVolume(SoundType type, float volume)
     {
         audioMixer.SetFloat(type.EnumToString(), Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat(type.EnumToString(), volume);
     }
 }

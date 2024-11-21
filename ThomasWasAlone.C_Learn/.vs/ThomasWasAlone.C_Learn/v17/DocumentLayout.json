@@ -1,26 +1,82 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\",
+  "WorkspaceRootPath": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|c:\\users\\qkrtk\\desktop\\thomaswasalone.c_learn\\thomaswasalone.c_learn\\assets\\thomaswasalone\\scripts\\map\\map\\movingplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\map\\map\\movingplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|c:\\unity\\thomaswasalone.c_learn\\thomaswasalone.c_learn\\assets\\thomaswasalone\\scripts\\ui\\popupui\\settingspopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\ui\\popupui\\settingspopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|c:\\users\\qkrtk\\desktop\\thomaswasalone.c_learn\\thomaswasalone.c_learn\\assets\\thomaswasalone\\scripts\\map\\map\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\map\\map\\tower.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|c:\\unity\\thomaswasalone.c_learn\\thomaswasalone.c_learn\\assets\\thomaswasalone\\scripts\\managers\\integrated\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\integrated\\soundmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\map\\map\\mapinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\map\\map\\mapinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\managers\\integrated\\cubecontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\integrated\\cubecontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\player\\cube\\endcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\managers\\integrated\\managers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\integrated\\managers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\managers\\integrated\\mapcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\integrated\\mapcontainer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\class\\mapdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\class\\mapdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\player\\cube\\basecube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\player\\cube\\basecube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\managers\\independ\\stagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\independ\\stagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|c:\\unity\\thomaswasalone.c_learn\\thomaswasalone.c_learn\\assets\\thomaswasalone\\scripts\\player\\cube\\endcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\player\\cube\\endcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\ui\\parts\\cursorchanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\managers\\independ\\cubemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\managers\\independ\\cubemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\core\\inputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\core\\inputcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\player\\cube\\jumpboostcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\player\\cube\\jumpboostcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\enum\\gameeventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\enum\\gameeventtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\ui\\sceneui\\ingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\ui\\sceneui\\ingame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\ui\\parts\\cursorchanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\ui\\parts\\cursorchanger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\factory\\cubefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\factory\\cubefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\ui\\popupui\\selectmappopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\ui\\popupui\\selectmappopup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\player\\cube\\bigcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\player\\cube\\bigcube.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\assets\\thomaswasalone\\scripts\\map\\map\\mapinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{730A141E-CDAF-5518-F87F-07078888F6F6}|Assembly-CSharp.csproj|solutionrelative:assets\\thomaswasalone\\scripts\\map\\map\\mapinput.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,49 +91,62 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MovingPlatform.cs",
-              "DocumentMoniker": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MovingPlatform.cs",
-              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MovingPlatform.cs",
-              "ToolTip": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MovingPlatform.cs",
-              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MovingPlatform.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAAwCMAAAARAAAAAAAAAA==",
+              "Title": "SettingsPopup.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SettingsPopup.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SettingsPopup.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SettingsPopup.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SettingsPopup.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T02:45:22.374Z",
+              "WhenOpened": "2024-11-21T09:27:33.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Tower.cs",
-              "DocumentMoniker": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\Tower.cs",
-              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\Tower.cs",
-              "ToolTip": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\Tower.cs",
-              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\Tower.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAADgAAAAlAAAAAAAAAA==",
+              "Title": "SoundManager.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\SoundManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\SoundManager.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\SoundManager.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\SoundManager.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAiwJIAAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-21T01:58:49.331Z",
+              "WhenOpened": "2024-11-21T07:31:23.945Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "BaseCube.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BaseCube.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BaseCube.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BaseCube.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BaseCube.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T18:50:42.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "EndCube.cs",
-              "DocumentMoniker": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
               "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
-              "ToolTip": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
               "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\EndCube.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAqAAAAAAAAAA==",
+              "ViewState": "AQIAABMAAAAAAAAAAAAkwBsAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-20T18:48:56.424Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
               "Title": "CursorChanger.cs",
-              "DocumentMoniker": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
               "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
-              "ToolTip": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
               "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\UI\\Parts\\CursorChanger.cs",
               "ViewState": "AQIAACEAAAAAAAAAAAAAADgAAABHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -85,16 +154,178 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "MapInput.cs",
-              "DocumentMoniker": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
-              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
-              "ToolTip": "C:\\Users\\qkrtk\\Desktop\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
-              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
-              "ViewState": "AgIAAMUAAAAAAAAAAAAcwPAAAAAnAAAAAAAAAA==",
+              "DocumentIndex": 13,
+              "Title": "InGame.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\SceneUI\\InGame.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\UI\\SceneUI\\InGame.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\SceneUI\\InGame.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\UI\\SceneUI\\InGame.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T17:36:17.235Z",
+              "WhenOpened": "2024-11-20T17:49:14.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MapInput.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Map\\Map\\MapInput.cs",
+              "ViewState": "AQIAALMAAAAAAAAAAAAswKQAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T17:36:17.235Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "BigCube.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BigCube.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BigCube.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BigCube.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\BigCube.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T17:16:28.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CubeManager.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\CubeManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\CubeManager.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\CubeManager.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\CubeManager.cs",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAAAFYAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T17:03:41.69Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MapData.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Class\\MapData.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Class\\MapData.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Class\\MapData.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Class\\MapData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:28:06.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SelectMapPopup.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SelectMapPopup.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SelectMapPopup.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SelectMapPopup.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\UI\\PopupUI\\SelectMapPopup.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAABUAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:25:39.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CubeContainer.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\CubeContainer.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\CubeContainer.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\CubeContainer.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\CubeContainer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:16:31.256Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CubeFactory.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Factory\\CubeFactory.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Factory\\CubeFactory.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Factory\\CubeFactory.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Factory\\CubeFactory.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABMAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T18:05:20.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Managers.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\Managers.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\Managers.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\Managers.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\Managers.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:22:54.663Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MapContainer.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\MapContainer.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\MapContainer.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\MapContainer.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Integrated\\MapContainer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:22:42.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "StageManager.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\StageManager.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\StageManager.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\StageManager.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Managers\\Independ\\StageManager.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACEAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T15:16:37.41Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GameEventType.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Enum\\GameEventType.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Enum\\GameEventType.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Enum\\GameEventType.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Enum\\GameEventType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T18:19:32.599Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InputController.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Core\\InputController.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Core\\InputController.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Core\\InputController.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Core\\InputController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T18:10:11.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "JumpBoostCube.cs",
+              "DocumentMoniker": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\JumpBoostCube.cs",
+              "RelativeDocumentMoniker": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\JumpBoostCube.cs",
+              "ToolTip": "C:\\unity\\ThomasWasAlone.C_Learn\\ThomasWasAlone.C_Learn\\Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\JumpBoostCube.cs",
+              "RelativeToolTip": "Assets\\ThomasWasAlone\\Scripts\\Player\\Cube\\JumpBoostCube.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-20T18:58:42.337Z"
             }
           ]
         }
