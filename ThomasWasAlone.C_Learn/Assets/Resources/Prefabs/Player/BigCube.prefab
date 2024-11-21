@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4d06ae0c293f141bb3cf9262b164b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSound: {fileID: 8300000, guid: 3675a1b5c162915478429b18dd67ef37, type: 3}
   cubeType: 0
   moveSpeed: 5
   jumpForce: 11
