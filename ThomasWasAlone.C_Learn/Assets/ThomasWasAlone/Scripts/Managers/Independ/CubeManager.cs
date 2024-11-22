@@ -7,23 +7,37 @@ using Common.Event;
 
 public class CubeManager : MonoBehaviour
 {
+    // 점프 시 재생할 사운드
     [SerializeField] private AudioClip jumpSound;
+    // 사망 시 재생할 사운드
     [SerializeField] private AudioClip dieSound;
+    // 스폰 시 재생할 사운드
     [SerializeField] private AudioClip spawnSound;
+    // 게임에서 사용할 큐브들의 배열
     [SerializeField] private BaseCube[] cubes;
 
-    [Header("Input")]
+    // 입력 제어를 위한 컨트롤러
     [SerializeField] private InputController inputController;
 
+    // 카메라 제어를 위한 컨트롤러
     private CameraController cameraController;
+    // 현재 선택된 큐브의 인덱스
     private int currentCubeIndex = 0;
+    // 현재 선택된 큐브에 대한 프로퍼티
     private BaseCube currentCube => cubes[currentCubeIndex];
+    // 큐브들의 초기 위치를 저장하는 배열
     private Vector3[] initialPositions;
+    // 큐브들의 초기 크기를 저장하는 배열
     private Vector3[] initialScales;
 
+    // 코루틴들을 관리하는 딕셔너리
     private Dictionary<string, Coroutine> coroutines = new Dictionary<string, Coroutine>();
+    // DOTween 시퀀스들을 관리하는 리스트
     private List<Sequence> tweenSequences = new List<Sequence>();
 
+    /// <summary>
+    /// 큐브 생성 시 실행되는 애니메이션을 처리합니다.
+    /// </summary>
     private void SpawnAnimation(BaseCube cube, Vector3 targetScale)
     {
         cube.transform.localScale = Vector3.zero;
@@ -42,16 +56,25 @@ public class CubeManager : MonoBehaviour
         tweenSequences.Add(spawnSequence);
     }
 
+    /// <summary>
+    /// 모든 큐브 사망 이벤트를 처리합니다.
+    /// </summary>
     private void OnKillAllCubes(object args)
     {
         KillAllCubes();
     }
 
+    /// <summary>
+    /// 입력 잠금 상태를 처리합니다.
+    /// </summary>
     private void LookInput(object args)
     {
         inputController.enabled = (bool)args;
     }
 
+    /// <summary>
+    /// CubeManager를 초기화하고 큐브들을 생성합니다.
+    /// </summary>
     public void Init(List<SpawnData> data)
     {
         cameraController = Camera.main.GetComponent<CameraController>();
@@ -72,6 +95,9 @@ public class CubeManager : MonoBehaviour
         StartCoroutine(SpawnCubesSequentially(data));
     }
 
+    /// <summary>
+    /// 큐브들을 순차적으로 생성하는 코루틴입니다.
+    /// </summary>
     private IEnumerator SpawnCubesSequentially(List<SpawnData> data)
     {
         for (int i = 0; i < data.Count; i++)
@@ -109,6 +135,9 @@ public class CubeManager : MonoBehaviour
         EventManager.Subscribe(GameEventType.ChangeCube, SwitchToNextCube);
     }
 
+    /// <summary>
+    /// 현재 선택된 큐브를 이동시킵니다.
+    /// </summary>
     public void Move(float horizontal, float vertical, Transform cameraTransform)
     {
         Vector3 forward = cameraTransform.forward;
@@ -126,6 +155,9 @@ public class CubeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 현재 선택된 큐브를 점프시킵니다.
+    /// </summary>
     public void Jump()
     {
         if (!currentCube.IsGrounded) return;
@@ -147,17 +179,26 @@ public class CubeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 다음 큐브로 전환합니다.
+    /// </summary>
     public void SwitchToNextCube(object args)
     {
         currentCubeIndex = (currentCubeIndex + 1) % cubes.Length;
         SwitchToCube(currentCubeIndex);
     }
 
+    /// <summary>
+    /// 지정된 인덱스의 큐브로 전환합니다.
+    /// </summary>
     private void SwitchToCube(int index)
     {
         cameraController.SetTarget(cubes[index].transform);
     }
 
+    /// <summary>
+    /// 모든 큐브를 사망 상태로 만듭니다.
+    /// </summary>
     public void KillAllCubes()
     {
         if (coroutines.TryGetValue("Reset", out var previousCoroutine))
@@ -167,6 +208,9 @@ public class CubeManager : MonoBehaviour
         coroutines["Reset"] = StartCoroutine(ResetCubesRoutine());
     }
 
+    /// <summary>
+    /// 큐브들을 초기 상태로 리셋하는 코루틴입니다.
+    /// </summary>
     private IEnumerator ResetCubesRoutine()
     {
         yield return YieldCache.WaitForSeconds(0.6f);
@@ -181,6 +225,9 @@ public class CubeManager : MonoBehaviour
         coroutines.Remove("Reset");
     }
 
+    /// <summary>
+    /// 큐브들의 사망 모션을 실행합니다.
+    /// </summary>
     private void DieMotion()
     {
         foreach (var sequence in tweenSequences)
@@ -210,6 +257,9 @@ public class CubeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 객체가 파괴될 때 리소스를 정리합니다.
+    /// </summary>
     private void OnDestroy()
     {
         foreach (var sequence in tweenSequences)

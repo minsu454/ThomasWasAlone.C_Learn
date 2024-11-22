@@ -7,6 +7,7 @@ public class InputController : MonoBehaviour
     private CubeManager cubeManager;
     private CameraController cameraController;
 
+    // 입력 처리를 위한 요청 플래그들
     private bool jumpRequested;
     private bool switchRequested;
     private bool rotateRequested;
@@ -32,6 +33,9 @@ public class InputController : MonoBehaviour
         ProcessInputs();
     }
 
+    /// <summary>
+    /// 이동 입력을 처리합니다.
+    /// </summary>
     private void HandleMovementInput()
     {
         float h = Input.GetAxisRaw("Horizontal");
@@ -43,6 +47,9 @@ public class InputController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 점프 입력을 처리합니다.
+    /// </summary>
     private void HandleJumpInput()
     {
         if (Input.GetButtonDown("Jump"))
@@ -51,6 +58,9 @@ public class InputController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 큐브 전환 입력을 처리합니다.
+    /// </summary>
     private void HandleSwitchInput()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -59,6 +69,9 @@ public class InputController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 카메라 회전 입력을 처리합니다.
+    /// </summary>
     private void HandleRotateInput()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -67,6 +80,9 @@ public class InputController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 수집된 입력을 실제 동작으로 처리합니다.
+    /// </summary>
     private void ProcessInputs()
     {
         if (jumpRequested)
