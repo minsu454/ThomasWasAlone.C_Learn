@@ -94,7 +94,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653397576091963340}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: af1a390af4c0106449be4631db527473, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 3675a1b5c162915478429b18dd67ef37, type: 3}
   cubeType: 3
   moveSpeed: 5
-  jumpForce: 8
+  jumpForce: 150
 --- !u!54 &8609760914750194550
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -132,8 +132,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653397576091963340}
   serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 3
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

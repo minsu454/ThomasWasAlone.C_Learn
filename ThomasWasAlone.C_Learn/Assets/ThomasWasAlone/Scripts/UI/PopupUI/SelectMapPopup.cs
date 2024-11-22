@@ -19,7 +19,7 @@ public class SelectMapPopup : BasePopupUI
 
     public void SetScrollView()
     {
-        string[] mapNameArr = Managers.Map.KeyToArrayAll();
+        string[] mapNameArr = Managers.Data.stageSO.stageNameArr;
 
         string[] clearArr = new string[mapNameArr.Length];
 

@@ -663,9 +663,7 @@ MonoBehaviour:
   - {fileID: 8680983446328223105, guid: 703e3fe5144959745a21200551659ed8, type: 3}
   - {fileID: 6012194280376170527, guid: 97b6c264521f1a54eb92367e928a970c, type: 3}
   - {fileID: 1403889947149355578, guid: 783a0ae91b53f6244a2a15ae2c88e516, type: 3}
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  inputController: {fileID: 5641242742614799291}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
