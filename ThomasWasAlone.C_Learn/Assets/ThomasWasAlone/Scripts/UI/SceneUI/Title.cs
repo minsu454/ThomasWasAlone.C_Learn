@@ -11,6 +11,9 @@ public class Title : BaseSceneUI
     }
 
 
+    /// <summary>
+    /// SelectMapPopup UI 생성
+    /// </summary>
     public void OnClickSelectMapButton()
     {
         Managers.UI.CreatePopup<SelectMapPopup>();
@@ -18,6 +21,9 @@ public class Title : BaseSceneUI
     }
     
     
+    /// <summary>
+    /// SettingsPopup UI 생성
+    /// </summary>
     public void OnClickSettingsButton()
     {
         Managers.UI.CreatePopup<SettingsPopup>();
@@ -25,6 +31,9 @@ public class Title : BaseSceneUI
     }
     
     
+    /// <summary>
+    /// QuitGamePopup UI 생성
+    /// </summary>
     public void OnClickQuitGameButton()
     {
         Managers.UI.CreatePopup<QuitGamePopup>();

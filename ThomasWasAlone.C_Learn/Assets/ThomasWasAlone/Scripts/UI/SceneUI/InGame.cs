@@ -12,6 +12,9 @@ public class InGame : BaseSceneUI
     [SerializeField] private AudioClip _btnClip;
 
     
+    /// <summary>
+    /// 스테이지에서 사용될 큐브들의 정보를 이용하여 커서 이미지에 사용될 수 있도록 지정
+    /// </summary>
     public override void Init()
     {
         base.Init();
@@ -29,6 +32,10 @@ public class InGame : BaseSceneUI
         _cursorChanger.Init(cubeType);
     }
 
+    
+    /// <summary>
+    /// PausePopup UI 생성
+    /// </summary>
     public void OnClickPauseButton()
     {
         Managers.UI.CreatePopup<PausePopup>();
