@@ -130,10 +130,9 @@ public class CubeManager : MonoBehaviour
     {
         if (!currentCube.IsGrounded) return;
 
-        Managers.Sound.SFX2DPlay(jumpSound);
-
         if (currentCube is LightCube)
         {
+            Managers.Sound.SFX2DPlay(jumpSound);
             var mover = currentCube.GetComponent<LightCubeMover>();
             mover.Jump(currentCube.JumpForce);
         }
@@ -142,6 +141,7 @@ public class CubeManager : MonoBehaviour
             Rigidbody rb = currentCube.GetComponent<Rigidbody>();
             if (rb != null)
             {
+                Managers.Sound.SFX2DPlay(jumpSound);
                 rb.AddForce(Vector3.up * currentCube.JumpForce, ForceMode.Impulse);
             }
         }

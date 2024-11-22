@@ -16,7 +16,7 @@ public class SoundPlayer : MonoBehaviour, IObjectPoolable<SoundPlayer>
         StartCoroutine(CoTimer.Start(delay, () => ReturnEvent.Invoke(this)));
     }
 
-    public void SetDelay(float delay, bool is3D = true)
+    public void SetDelay(float delay)
     {
         this.delay = delay;
         

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class JumpBoostCube : BaseCube
 {
-    [SerializeField] private float boostForce = 200f;
+    [SerializeField] private float boostForce = 230f;
     // 이미 부스트된 큐브들을 확인하기위한 HashSet
     private HashSet<BaseCube> boostedCubes = new HashSet<BaseCube>();
 
