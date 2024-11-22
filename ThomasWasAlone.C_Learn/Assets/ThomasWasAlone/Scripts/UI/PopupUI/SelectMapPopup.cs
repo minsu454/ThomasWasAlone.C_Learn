@@ -53,6 +53,9 @@ public class SelectMapPopup : BasePopupUI
     }
 
 
+    /// <summary>
+    /// 해당 팝업 비활성화
+    /// </summary>
     public void OnClickReturnButton()
     {
         Managers.Sound.SFX2DPlay(_btnClip);

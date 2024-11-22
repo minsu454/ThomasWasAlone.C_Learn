@@ -25,6 +25,11 @@ public class CursorChanger : MonoBehaviour
         EventManager.Subscribe(GameEventType.ChangeCube, ChangeNextIndex);
     }
 
+    
+    /// <summary>
+    /// 해당 스테이지에 등장하는 큐브를을 이용하여 이미지를 세팅해줌
+    /// </summary>
+    /// <param name="cubeType"></param>
     private void SetCube(CubeType[] cubeType)
     {
         for (int i = 0; i < cubeType.Length; i++)
@@ -44,6 +49,11 @@ public class CursorChanger : MonoBehaviour
         }
     }
 
+    
+    /// <summary>
+    /// 현재 커서의 인덱스를 변경 시켜줌
+    /// </summary>
+    /// <param name="args"></param>
     public void ChangeNextIndex(object args)
     {
         _currentCursorIndex = (_currentCursorIndex + 1) % _maxCubeQuantity;
@@ -52,6 +62,9 @@ public class CursorChanger : MonoBehaviour
     }
 
     
+    /// <summary>
+    /// 커서를 다음 큐브위로 이동시켜줌
+    /// </summary>
     private void UpdateCursorPosition()
     {
         float cursorXPosition = (_currentCursorIndex - _maxCubeQuantity + 1) * (gridLayoutGroup.cellSize.x + gridLayoutGroup.spacing.x); // 현재 spacing은 0

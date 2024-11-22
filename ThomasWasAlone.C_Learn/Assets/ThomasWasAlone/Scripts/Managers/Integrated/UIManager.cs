@@ -18,6 +18,11 @@ public sealed class UIManager : MonoBehaviour, IInit
         CreateSceneUI(scene.name);
     }
 
+    
+    
+    /// <summary>
+    /// 메인 UI 만들어주는 기능
+    /// </summary>
     private void CreateSceneUI(string name)
     {
         GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/Main/{name}");
@@ -39,6 +44,10 @@ public sealed class UIManager : MonoBehaviour, IInit
         sceneUI.Init();
     }
 
+    
+    /// <summary>
+    /// 각 각의 팝업 UI 생성
+    /// </summary>
     public void CreatePopup<T>(PopupOption option = null) where T : BasePopupUI
     {
         GameObject prefab = Resources.Load<GameObject>($"Prefabs/UI/Popup/{typeof(T).Name}");
@@ -61,6 +70,10 @@ public sealed class UIManager : MonoBehaviour, IInit
         popupUI.Init(option);
     }
 
+    
+    /// <summary>
+    /// 실행하여 현재 가장 위의 팝업 제거
+    /// </summary>
     public void ClosePopup()
     {
         if (showList.Count == 0)
