@@ -7,7 +7,10 @@ public abstract class BaseCube : MonoBehaviour
     public CubeType CubeType { get { return cubeType; } }
 
     [SerializeField] protected float moveSpeed = 5f;
-    [SerializeField] protected float jumpForce = 7f;
+    [SerializeField] protected float jumpForce = 170f;
+
+    [SerializeField] protected float normalDrag = 3f;
+    [SerializeField] protected float fallingDrag = 0f;
 
     public float MoveSpeed => moveSpeed;
     public float JumpForce => jumpForce;
@@ -21,11 +24,15 @@ public abstract class BaseCube : MonoBehaviour
     protected Rigidbody rb;
     protected BoxCollider boxCollider;
 
+    protected bool isFalling => !isGrounded && rb.velocity.y < 0;
+
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         InitializeGroundCheck();
+
+        rb.drag = normalDrag;
     }
 
     protected virtual void InitializeGroundCheck()
@@ -37,6 +44,7 @@ public abstract class BaseCube : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         CheckGrounded();
+        UpdateDrag();
     }
 
     protected virtual void CheckGrounded()
@@ -69,6 +77,11 @@ public abstract class BaseCube : MonoBehaviour
     protected virtual float GetOriginYOffset()
     {
         return boxCollider.size.y * 0.5f;
+    }
+
+    protected virtual void UpdateDrag()
+    {
+        rb.drag = isFalling ? fallingDrag : normalDrag;
     }
 
     public virtual void BoostJump(float boostForce)

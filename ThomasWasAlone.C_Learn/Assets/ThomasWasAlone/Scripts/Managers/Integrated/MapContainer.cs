@@ -8,11 +8,17 @@ public class MapContainer
 
     public void Init()
     {
-        GameObject[] prefabArr = Resources.LoadAll<GameObject>($"Prefabs/Map/SaveMap/SaveMap");
-
-        foreach (GameObject go in prefabArr)
+        foreach (string name in Managers.Data.stageSO.stageNameArr)
         {
-            containerDic[go.name] = go;
+            GameObject go = Resources.Load<GameObject>($"Prefabs/Map/SaveMap/SaveMap/{name}");
+
+            if (go == null)
+            {
+                Debug.LogWarning($"Player Prefab is Null : {name}");
+                continue;
+            }
+
+            containerDic[name] = go;
         }
     }
 
@@ -25,10 +31,5 @@ public class MapContainer
         }
 
         return data;
-    }
-
-    public string[] KeyToArrayAll()
-    {
-        return containerDic.Keys.ToArray();
     }
 }
