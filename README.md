@@ -3,7 +3,7 @@
 ## 소개
 Thomas Was Alone에 3D 버전을 제작하였습니다.
 블록마다 다른 기믹이 존재하고 그 블록끼리 상호작용하여 서로의 목표물에 도착해야 하는 게임입니다.
-관련 자료: [Figma](https://www.youtube.com/watch?v=J19OqRQliAY)
+관련 자료: [Youtube](https://www.youtube.com/watch?v=J19OqRQliAY)
 
 ## 목차
 - [소개](#소개)
@@ -16,7 +16,7 @@ Thomas Was Alone에 3D 버전을 제작하였습니다.
 - Unity 버전: [2022.3.17f1]
 - C# 버전: [C#-17]
 - 와이어프레임: [Figma](https://www.figma.com/board/fMQBL9w37MvjobztJfz0hS/Untitled?node-id=0-1&node-type=canvas&t=WVI7KkmLMgMR7FkZ-0) 
-- 발표 자료 & 프로젝트 기술 소개: [Figma]()
+- 발표 자료 & 프로젝트 기술 소개: [Figma](https://www.figma.com/slides/8Iw77NpYTmYbKYoMoXajjc/15%EC%A1%B0-%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C?node-id=64-40&node-type=slide&t=WWSL8du8ssjBzTuR-0)
 
 ## 게임소개
 
