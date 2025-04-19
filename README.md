@@ -1,15 +1,18 @@
 2024 스파르타 Unity track 6기 심화 프로젝트 주간에서 Thomas Was Alone에 3D 버전을 제작하였습니다.
 
-## 소개
-Thomas Was Alone에 3D 버전을 제작하였습니다.
-블록마다 다른 기믹이 존재하고 그 블록끼리 상호작용하여 서로의 목표물에 도착해야 하는 게임입니다.
-관련 자료: [Youtube](https://www.youtube.com/watch?v=J19OqRQliAY)
-
 ## 목차
 - [소개](#소개)
 - [기술 스택](#기술-스택)
 - [게임소개](#게임소개)
 - [참여 인원](#참여-인원)
+
+## 소개
+Thomas Was Alone에 3D 버전을 제작하였습니다.
+블록마다 다른 기믹이 존재하고 그 블록끼리 상호작용하여 서로의 목표물에 도착해야 하는 게임입니다.
+관련 자료: [Youtube](https://www.youtube.com/watch?v=J19OqRQliAY)
+
+## 시연 영상
+### https://www.youtube.com/watch?v=3TvVPOdsA7M
 
 ## 기술 스택
 
